@@ -5,6 +5,10 @@
  */
 package garits.admin;
 
+import garits.DBConnectivity.DBConnection;
+import static java.awt.Event.DELETE;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import javax.swing.JFrame;
 
 /**
@@ -12,6 +16,8 @@ import javax.swing.JFrame;
  * @author Ionut
  */
 public class RemoveAccountForm extends javax.swing.JFrame {
+    
+     String employeeID;
 
     /**
      * Creates new form RemoveAccountForm
@@ -93,6 +99,20 @@ public class RemoveAccountForm extends javax.swing.JFrame {
         frame.pack();
         frame.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        // TODO add your handling code here:
+        employeeID = jTextField1.getText();
+        RemoveAccount removeAccount = new RemoveAccount();
+        try {
+            removeAccount.removeAccount(employeeID);
+            System.out.println("User removed");
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+   
 
     /**
      * @param args the command line arguments

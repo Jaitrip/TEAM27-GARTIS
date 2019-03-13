@@ -12,8 +12,8 @@ package garits.Control;
 public class Mechanic extends User {
     private double labourRate;
 
-    public Mechanic(String employeeID, String employeeName, String username, String password, String role, double labourRate) {
-        super(employeeID, employeeName, username, password, role);
+    public Mechanic(String employeeID, String firstName, String lastName, String username, String password, String role, double labourRate) {
+        super(employeeID, firstName, lastName, username, password, role);
         this.labourRate = labourRate;
     }
 

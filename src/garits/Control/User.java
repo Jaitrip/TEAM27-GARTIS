@@ -12,17 +12,19 @@ package garits.Control;
 public class User {
     
     private String employeeID;
-    private String employeeName;
-    private String username;
-    private String password;
     private String role;
+    private String firstName;
+    private String lastName;
+    private String password;
+    private String username;
 
-    public User(String employeeID, String employeeName, String username, String password, String role) {
+    public User(String employeeID, String role, String firstName, String lastName, String password, String username) {
         this.employeeID = employeeID;
-        this.employeeName = employeeName;
-        this.username = username;
-        this.password = password;
         this.role = role;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.password = password;
+        this.username = username;
     }
 
     public String getEmployeeID() {
@@ -33,20 +35,28 @@ public class User {
         this.employeeID = employeeID;
     }
 
-    public String getEmployeeName() {
-        return employeeName;
+    public String getRole() {
+        return role;
     }
 
-    public void setEmployeeName(String employeeName) {
-        this.employeeName = employeeName;
+    public void setRole(String role) {
+        this.role = role;
     }
 
-    public String getUsername() {
-        return username;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getPassword() {
@@ -57,13 +67,15 @@ public class User {
         this.password = password;
     }
 
-    public String getRole() {
-        return role;
+    public String getUsername() {
+        return username;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setUsername(String username) {
+        this.username = username;
     }
     
     
+    
+
 }

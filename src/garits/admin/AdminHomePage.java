@@ -90,7 +90,7 @@ public class AdminHomePage extends javax.swing.JFrame {
     private void usersButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usersButtonActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        JFrame frame = new UserPage();
+        JFrame frame = new AddAccountForm();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);

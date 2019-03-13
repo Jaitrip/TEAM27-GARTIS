@@ -9,8 +9,6 @@ import static com.sun.corba.se.impl.util.Utility.printStackTrace;
 
 public class DBConnection  {
 
-    
-
     public static Connection getConnection() throws SQLException {
         try {
             Class.forName("org.sqlite.JDBC");
