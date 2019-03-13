@@ -29,16 +29,17 @@ public class Login {
         }
     }
     
-    public boolean isLogin(String username, String password) throws SQLException {
+    public boolean isLogin(String username, String password, String role) throws SQLException {
         PreparedStatement pStatement = null;
         ResultSet rSet = null;
-        String sqlQuery = "SELECT * FROM Employee WHERE username=? and password=?";
+        String sqlQuery = "SELECT * FROM Employee WHERE username=? and password=? and role=?";
         
         try {
             
             pStatement = connection.prepareStatement(sqlQuery);
             pStatement.setString(1, username);
             pStatement.setString(2, password);
+            pStatement.setString(3, role);
             
             rSet = pStatement.executeQuery();
             System.out.println("query executed");
