@@ -6,9 +6,11 @@
 package garits.admin;
 
 import java.io.File;
-import javafx.scene.shape.Path;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import org.apache.commons.io.FileUtils;
 //import org.apache.commons.io.FileUtils;
 
 /**
@@ -35,7 +37,7 @@ public class BackupForm extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        backUpButton = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         browseButton = new javax.swing.JButton();
@@ -46,7 +48,12 @@ public class BackupForm extends javax.swing.JFrame {
 
         jTextField1.setToolTipText("enter");
 
-        jButton1.setText("Back-up");
+        backUpButton.setText("Back-up");
+        backUpButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backUpButtonActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Back");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -78,7 +85,7 @@ public class BackupForm extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(backUpButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel3))
                             .addGroup(layout.createSequentialGroup()
@@ -98,7 +105,7 @@ public class BackupForm extends javax.swing.JFrame {
                     .addComponent(browseButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(backUpButton)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 171, Short.MAX_VALUE)
                 .addComponent(jButton3)
@@ -126,7 +133,9 @@ public class BackupForm extends javax.swing.JFrame {
         String path;
         //Path sourceFile = Path.get("/Users/jaimik/Downloads/GARITS-3/GARTISDatabase.sqlite");
         JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         fileChooser.showOpenDialog(this);
+        
         
         try {
             File file = fileChooser.getSelectedFile();
@@ -139,6 +148,21 @@ public class BackupForm extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_browseButtonActionPerformed
+
+    private void backUpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backUpButtonActionPerformed
+        // TODO add your handling code here:
+        Path sourceFile = Paths.get("/Users/jaimik/Downloads/GARITS-3/database/GARTISDatabase.sqlite");
+        Path targetDirectory = Paths.get(jTextField1.getText());
+        
+        try {
+            File source = sourceFile.toFile();
+            File target = targetDirectory.toFile();
+            FileUtils.copyFileToDirectory(source, target);
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_backUpButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -176,8 +200,8 @@ public class BackupForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backUpButton;
     private javax.swing.JButton browseButton;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
