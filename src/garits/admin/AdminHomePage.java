@@ -108,7 +108,7 @@ public class AdminHomePage extends javax.swing.JFrame {
     private void databaseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_databaseButtonActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        JFrame frame = new DatabasePage();
+        JFrame frame = new BackupForm();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);

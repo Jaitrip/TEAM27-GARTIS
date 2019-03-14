@@ -35,18 +35,29 @@ public class BackupForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jTextField2 = new javax.swing.JTextField();
+        restoreField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        backupField = new javax.swing.JTextField();
         backUpButton = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         browseButton = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        browseButton1 = new javax.swing.JButton();
+        restoreButton = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        restoreTextField = new javax.swing.JTextField();
+
+        jTextField2.setToolTipText("enter");
+
+        restoreField.setToolTipText("enter");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Enter Folder for Back-up");
 
-        jTextField1.setToolTipText("enter");
+        backupField.setToolTipText("enter");
 
         backUpButton.setText("Back-up");
         backUpButton.addActionListener(new java.awt.event.ActionListener() {
@@ -71,6 +82,26 @@ public class BackupForm extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setText("Set database file to restore");
+
+        browseButton1.setText("Browse");
+        browseButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                browseButton1ActionPerformed(evt);
+            }
+        });
+
+        restoreButton.setText("Restore");
+        restoreButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                restoreButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("Restore Status:");
+
+        restoreTextField.setToolTipText("enter");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -89,9 +120,18 @@ public class BackupForm extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel3))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(backupField, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(browseButton)))))
+                                .addComponent(browseButton))
+                            .addComponent(jLabel2)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(restoreTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(browseButton1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(restoreButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel4)))))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -101,19 +141,29 @@ public class BackupForm extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(browseButton))
+                    .addComponent(browseButton)
+                    .addComponent(backupField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(backUpButton)
                     .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 171, Short.MAX_VALUE)
+                .addGap(35, 35, 35)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(browseButton1)
+                    .addComponent(restoreTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(restoreButton)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addComponent(jButton3)
                 .addContainerGap())
         );
 
-        jTextField1.getAccessibleContext().setAccessibleName("");
-        jTextField1.getAccessibleContext().setAccessibleDescription("");
+        backupField.getAccessibleContext().setAccessibleName("");
+        backupField.getAccessibleContext().setAccessibleDescription("");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -121,7 +171,7 @@ public class BackupForm extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        JFrame frame = new DatabasePage();
+        JFrame frame = new AdminHomePage();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
@@ -140,7 +190,7 @@ public class BackupForm extends javax.swing.JFrame {
         try {
             File file = fileChooser.getSelectedFile();
             path = file.getAbsolutePath();
-            jTextField1.setText(path);
+            backupField.setText(path);
             
         } catch (Exception e) {
             e.printStackTrace();
@@ -152,17 +202,53 @@ public class BackupForm extends javax.swing.JFrame {
     private void backUpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backUpButtonActionPerformed
         // TODO add your handling code here:
         Path sourceFile = Paths.get("/Users/jaimik/Downloads/GARITS-3/database/GARTISDatabase.sqlite");
-        Path targetDirectory = Paths.get(jTextField1.getText());
+        Path targetDirectory = Paths.get(backupField.getText());
         
         try {
             File source = sourceFile.toFile();
             File target = targetDirectory.toFile();
             FileUtils.copyFileToDirectory(source, target);
+            jLabel3.setText("Backed up");
             
         } catch (Exception e) {
             e.printStackTrace();
         }
     }//GEN-LAST:event_backUpButtonActionPerformed
+
+    private void browseButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browseButton1ActionPerformed
+
+         // TODO add your handling code here:
+        String path;
+        //Path sourceFile = Path.get("/Users/jaimik/Downloads/GARITS-3/GARTISDatabase.sqlite");
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.showOpenDialog(this);
+        
+        
+        try {
+            File file = fileChooser.getSelectedFile();
+            path = file.getAbsolutePath();
+            restoreTextField.setText(path);
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_browseButton1ActionPerformed
+
+    private void restoreButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restoreButtonActionPerformed
+        // TODO add your handling code here:
+        Path targetDirectory = Paths.get("/Users/jaimik/Downloads/GARITS-3/database");
+        Path sourceFile = Paths.get(restoreTextField.getText());
+        
+        try {
+            File source = sourceFile.toFile();
+            File target = targetDirectory.toFile();
+            FileUtils.copyFileToDirectory(source, target);
+            jLabel4.setText("Restored");
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_restoreButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -201,10 +287,17 @@ public class BackupForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backUpButton;
+    private javax.swing.JTextField backupField;
     private javax.swing.JButton browseButton;
+    private javax.swing.JButton browseButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JButton restoreButton;
+    private javax.swing.JTextField restoreField;
+    private javax.swing.JTextField restoreTextField;
     // End of variables declaration//GEN-END:variables
 }
