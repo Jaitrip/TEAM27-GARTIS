@@ -318,6 +318,9 @@ public class AddAccountForm extends javax.swing.JFrame {
                 
                         
             }
+            pStatement.close();
+            resultSet.close();
+            connection.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -367,6 +370,8 @@ public class AddAccountForm extends javax.swing.JFrame {
             pStatement.setString(3, username);
             pStatement.executeUpdate();
             System.out.println("updated");
+            pStatement.close();
+            connection.close();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -385,6 +390,8 @@ public class AddAccountForm extends javax.swing.JFrame {
             PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
             pStatement.executeUpdate();
             System.out.println("deleted");
+            pStatement.close();
+            connection.close();
 
         } catch (Exception e) {
             e.printStackTrace();
