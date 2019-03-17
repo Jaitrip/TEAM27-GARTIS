@@ -5,8 +5,14 @@
  */
 package garits.franchisee.stock;
 
-import garits.franchisee.Stock;
+import garits.receptionist.stock.*;
+import garits.DBConnectivity.DBConnection;
+import garits.receptionist.Stock;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javax.swing.JFrame;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -15,7 +21,7 @@ import javax.swing.JFrame;
 public class CheckStock extends javax.swing.JFrame {
 
     /**
-     * Creates new form FranchiseeCheckStock
+     * Creates new form ReceptionistCheckStock
      */
     public CheckStock() {
         initComponents();
@@ -30,28 +36,15 @@ public class CheckStock extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        enterPartNoLabel = new javax.swing.JLabel();
-        quantityRemainingLabel = new javax.swing.JLabel();
-        stockLevelLabel = new javax.swing.JLabel();
-        thresholdLabel = new javax.swing.JLabel();
-        searchButton = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
-        enterPartNoField = new javax.swing.JTextField();
-        quantityRemainingField = new javax.swing.JTextField();
-        stockLevelField = new javax.swing.JTextField();
-        thresholdField = new javax.swing.JTextField();
+        enterPartNumberLabel = new javax.swing.JLabel();
+        enterPartNumberField = new javax.swing.JTextField();
+        searchButton = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        viewPartsButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        enterPartNoLabel.setText("Enter Part No");
-
-        quantityRemainingLabel.setText("Quantity Remaining");
-
-        stockLevelLabel.setText("Stock Level");
-
-        thresholdLabel.setText("Threshold");
-
-        searchButton.setText("Search");
 
         backButton.setText("Back");
         backButton.addActionListener(new java.awt.event.ActionListener() {
@@ -60,58 +53,69 @@ public class CheckStock extends javax.swing.JFrame {
             }
         });
 
+        enterPartNumberLabel.setText("Enter Part Number");
+
+        searchButton.setText("Search");
+        searchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchButtonActionPerformed(evt);
+            }
+        });
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "code", "partName", "reorderThreshold", "quantity", "price"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        viewPartsButton.setText("View Parts");
+        viewPartsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewPartsButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(backButton))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(115, 115, 115)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                        .addGap(26, 26, 26)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(enterPartNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(enterPartNumberLabel)
                             .addComponent(searchButton)
-                            .addComponent(enterPartNoField, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(enterPartNoLabel))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 421, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(quantityRemainingField)
-                    .addComponent(stockLevelField)
-                    .addComponent(thresholdField)
-                    .addComponent(quantityRemainingLabel)
-                    .addComponent(stockLevelLabel)
-                    .addComponent(thresholdLabel))
-                .addGap(219, 219, 219))
+                            .addComponent(viewPartsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 631, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(67, 67, 67)
-                .addComponent(quantityRemainingLabel)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(enterPartNumberLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(enterPartNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(enterPartNoLabel)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(11, 11, 11)
-                        .addComponent(quantityRemainingField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37)
-                        .addComponent(stockLevelLabel))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(enterPartNoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33)
-                        .addComponent(searchButton)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(stockLevelField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
-                .addComponent(thresholdLabel)
-                .addGap(34, 34, 34)
-                .addComponent(thresholdField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
+                .addComponent(searchButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(viewPartsButton)
+                .addGap(147, 147, 147)
                 .addComponent(backButton)
                 .addContainerGap())
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
         );
 
         pack();
@@ -125,6 +129,59 @@ public class CheckStock extends javax.swing.JFrame {
         frame.pack();
         frame.setVisible(true);
     }//GEN-LAST:event_backButtonActionPerformed
+
+    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
+        // TODO add your handling code here:
+        String code = enterPartNumberField.getText();
+        System.out.println("Button clicked");
+        try {
+            Connection connection = DBConnection.getConnection();
+            String sqlQuery = "SELECT * FROM StockLedger WHERE code = ?";
+            PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
+            pStatement.setString(1, code );
+            ResultSet resultSet = pStatement.executeQuery();
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            model.setRowCount(0);
+            while (resultSet.next()) {
+                Object o[] = {
+                    resultSet.getString("code"), resultSet.getString("partName"), resultSet.getString("reorderThreshold"), resultSet.getString("quantity"), resultSet.getString("price")
+                };
+                model.addRow(o);
+                
+                        
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_searchButtonActionPerformed
+
+    private void viewPartsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewPartsButtonActionPerformed
+        // TODO add your handling code here:
+        
+        try {
+            
+            Connection connection = DBConnection.getConnection();
+            String sqlQuery = "SELECT * FROM StockLedger";
+            PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
+            ResultSet resultSet = pStatement.executeQuery();
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            model.setRowCount(0);
+            while (resultSet.next()) {
+                Object o[] = {
+                    resultSet.getString("code"), resultSet.getString("partName"), resultSet.getString("reorderThreshold"), resultSet.getString("quantity"), resultSet.getString("price")
+                };
+                model.addRow(o);
+                
+                        
+            }
+            pStatement.close();
+            resultSet.close();
+            connection.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    
+    }//GEN-LAST:event_viewPartsButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -153,6 +210,12 @@ public class CheckStock extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -164,14 +227,11 @@ public class CheckStock extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
-    private javax.swing.JTextField enterPartNoField;
-    private javax.swing.JLabel enterPartNoLabel;
-    private javax.swing.JTextField quantityRemainingField;
-    private javax.swing.JLabel quantityRemainingLabel;
+    private javax.swing.JTextField enterPartNumberField;
+    private javax.swing.JLabel enterPartNumberLabel;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JButton searchButton;
-    private javax.swing.JTextField stockLevelField;
-    private javax.swing.JLabel stockLevelLabel;
-    private javax.swing.JTextField thresholdField;
-    private javax.swing.JLabel thresholdLabel;
+    private javax.swing.JButton viewPartsButton;
     // End of variables declaration//GEN-END:variables
 }
