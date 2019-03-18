@@ -5,8 +5,16 @@
  */
 package garits.receptionist.managejob;
 
+import garits.DBConnectivity.DBConnection;
 import garits.receptionist.ManageJob;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JFrame;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -32,25 +40,15 @@ public class AcceptJob extends javax.swing.JFrame {
 
         jobNumberLabel = new javax.swing.JLabel();
         vehicleRegLabel = new javax.swing.JLabel();
-        dateLabel = new javax.swing.JLabel();
-        manufacturerLabel = new javax.swing.JLabel();
-        modelLabel = new javax.swing.JLabel();
-        customerNameLabel = new javax.swing.JLabel();
         jobNumberField = new javax.swing.JTextField();
         vehicleRegField = new javax.swing.JTextField();
-        dateField = new javax.swing.JTextField();
-        manufacturerField = new javax.swing.JTextField();
-        modelField = new javax.swing.JTextField();
-        customerNameField = new javax.swing.JTextField();
-        telephoneLabel = new javax.swing.JLabel();
-        descriptionLabel = new javax.swing.JLabel();
-        estimatedTimeLabel = new javax.swing.JLabel();
-        telephoneField = new javax.swing.JTextField();
-        descriptionField = new javax.swing.JTextField();
-        estimatedTimeField = new javax.swing.JTextField();
-        saveButton = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
-        jScrollBar1 = new javax.swing.JScrollBar();
+        jLabel1 = new javax.swing.JLabel();
+        jobTypeBox = new javax.swing.JComboBox<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        acceptJobButton = new javax.swing.JButton();
+        refreshButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,35 +56,11 @@ public class AcceptJob extends javax.swing.JFrame {
 
         vehicleRegLabel.setText("Vehicle Reg.");
 
-        dateLabel.setText("Date");
-
-        manufacturerLabel.setText("Manufacturer");
-
-        modelLabel.setText("Model");
-
-        customerNameLabel.setText("Customer Name");
-
         vehicleRegField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 vehicleRegFieldActionPerformed(evt);
             }
         });
-
-        telephoneLabel.setText("Telephone");
-
-        descriptionLabel.setText("Description");
-
-        estimatedTimeLabel.setText("Estimated Time");
-
-        descriptionField.setAlignmentX(0.0F);
-        descriptionField.setAlignmentY(0.0F);
-        descriptionField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                descriptionFieldActionPerformed(evt);
-            }
-        });
-
-        saveButton.setText("Save");
 
         backButton.setText("Back");
         backButton.addActionListener(new java.awt.event.ActionListener() {
@@ -95,92 +69,81 @@ public class AcceptJob extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("Job Type");
+
+        jobTypeBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MOT", "Repair", "Annual Service" }));
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "jobNumber", "dateBookedIn", "jobType", "workDescription", "status", "VehicleregistrationNumber", "InvoiceinvoiceNumber", "EmployeeemployeeID"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        acceptJobButton.setText("Accept Job");
+        acceptJobButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                acceptJobButtonActionPerformed(evt);
+            }
+        });
+
+        refreshButton.setText("Refresh List");
+        refreshButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(72, 72, 72)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(manufacturerLabel)
-                    .addComponent(modelLabel)
-                    .addComponent(customerNameLabel)
-                    .addComponent(jobNumberField)
-                    .addComponent(vehicleRegField)
-                    .addComponent(dateField)
-                    .addComponent(manufacturerField)
-                    .addComponent(modelField)
-                    .addComponent(jobNumberLabel)
-                    .addComponent(customerNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(vehicleRegLabel)
-                    .addComponent(dateLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 243, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(estimatedTimeLabel)
-                    .addComponent(telephoneField, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(estimatedTimeField, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(saveButton)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(descriptionField, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(telephoneLabel)
-                    .addComponent(descriptionLabel))
-                .addGap(133, 133, 133))
-            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(backButton)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(vehicleRegField, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
+                        .addComponent(backButton, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jobNumberLabel, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jobNumberField)
+                        .addComponent(vehicleRegLabel, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addComponent(jLabel1)
+                    .addComponent(jobTypeBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(acceptJobButton)
+                    .addComponent(refreshButton))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 731, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(57, 57, 57)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jobNumberLabel)
-                .addGap(9, 9, 9)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jobNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(telephoneLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(vehicleRegLabel)
-                    .addComponent(telephoneField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(vehicleRegField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(dateLabel)
-                        .addGap(8, 8, 8)
-                        .addComponent(dateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(manufacturerLabel)
-                        .addGap(11, 11, 11)
-                        .addComponent(manufacturerField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(descriptionLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(descriptionField))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(modelLabel)
-                    .addComponent(estimatedTimeLabel))
-                .addGap(9, 9, 9)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(modelField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(estimatedTimeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(customerNameLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(customerNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(saveButton))
-                .addGap(41, 41, 41)
+                .addComponent(jobNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(vehicleRegLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(vehicleRegField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jobTypeBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(62, 62, 62)
+                .addComponent(acceptJobButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(refreshButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(backButton)
                 .addContainerGap())
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE)
         );
 
         pack();
@@ -188,11 +151,8 @@ public class AcceptJob extends javax.swing.JFrame {
 
     private void vehicleRegFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vehicleRegFieldActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_vehicleRegFieldActionPerformed
-
-    private void descriptionFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_descriptionFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_descriptionFieldActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
@@ -202,6 +162,55 @@ public class AcceptJob extends javax.swing.JFrame {
         frame.pack();
         frame.setVisible(true);
     }//GEN-LAST:event_backButtonActionPerformed
+
+    private void acceptJobButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptJobButtonActionPerformed
+        // TODO add your handling code here:
+        try {
+            
+            Date date = new Date();
+            DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+            
+            Connection connection = DBConnection.getConnection();
+            String sqlQuery = "INSERT INTO JobSheet (jobNumber, dateBookedIn, jobType, status, VehicleregistrationNumber) VALUES (?, ?, ?, ?, ?)";
+            PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
+            pStatement.setString(1, jobNumberField.getText());
+            pStatement.setString(2, df.format(date));
+            pStatement.setString(3, jobTypeBox.getSelectedItem().toString());
+            pStatement.setString(4, "Pending");
+            pStatement.setString(5, vehicleRegField.getText());
+            pStatement.executeUpdate();
+            pStatement.close();
+            connection.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_acceptJobButtonActionPerformed
+
+    private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
+        // TODO add your handling code here:
+        try {
+
+            Connection connection = DBConnection.getConnection();
+            String sqlQuery = "SELECT * FROM JobSheet";
+            PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
+            ResultSet resultSet = pStatement.executeQuery();
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            model.setRowCount(0);
+            while (resultSet.next()) {
+                Object o[] = {
+                    resultSet.getString("jobNumber"), resultSet.getString("dateBookedIn"), resultSet.getString("jobType"), resultSet.getString("workDescription"), resultSet.getString("status"), resultSet.getString("VehicleregistrationNumber"), resultSet.getString("InvoiceinvoiceNumber"), resultSet.getString("EmployeeemployeeID")
+                };
+                model.addRow(o);
+
+            }
+            pStatement.close();
+            resultSet.close();
+            connection.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_refreshButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -242,25 +251,15 @@ public class AcceptJob extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton acceptJobButton;
     private javax.swing.JButton backButton;
-    private javax.swing.JTextField customerNameField;
-    private javax.swing.JLabel customerNameLabel;
-    private javax.swing.JTextField dateField;
-    private javax.swing.JLabel dateLabel;
-    private javax.swing.JTextField descriptionField;
-    private javax.swing.JLabel descriptionLabel;
-    private javax.swing.JTextField estimatedTimeField;
-    private javax.swing.JLabel estimatedTimeLabel;
-    private javax.swing.JScrollBar jScrollBar1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jobNumberField;
     private javax.swing.JLabel jobNumberLabel;
-    private javax.swing.JTextField manufacturerField;
-    private javax.swing.JLabel manufacturerLabel;
-    private javax.swing.JTextField modelField;
-    private javax.swing.JLabel modelLabel;
-    private javax.swing.JButton saveButton;
-    private javax.swing.JTextField telephoneField;
-    private javax.swing.JLabel telephoneLabel;
+    private javax.swing.JComboBox<String> jobTypeBox;
+    private javax.swing.JButton refreshButton;
     private javax.swing.JTextField vehicleRegField;
     private javax.swing.JLabel vehicleRegLabel;
     // End of variables declaration//GEN-END:variables
