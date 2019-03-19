@@ -5,9 +5,8 @@
  */
 package garits.foreperson.stock;
 
-import garits.receptionist.stock.*;
 import garits.DBConnectivity.DBConnection;
-import garits.receptionist.Stock;
+import garits.foreperson.StockPage;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -124,7 +123,7 @@ public class CheckStockForm extends javax.swing.JFrame {
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        JFrame frame = new Stock();
+        JFrame frame = new StockPage();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);

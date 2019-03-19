@@ -5,6 +5,9 @@
  */
 package garits.foreperson;
 
+import garits.foreperson.jobs.ProduceInvoiceForm;
+import garits.foreperson.jobs.PartsUsedForm;
+import garits.foreperson.jobs.TaskCompletedForm;
 import garits.SignInForm;
 import javax.swing.JFrame;
 

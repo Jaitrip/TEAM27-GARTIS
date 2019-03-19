@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package garits.receptionist;
+package garits.receptionist.managejob;
 
+import garits.receptionist.ReceptionistHomePage;
 import javax.swing.JFrame;
 
 /**
