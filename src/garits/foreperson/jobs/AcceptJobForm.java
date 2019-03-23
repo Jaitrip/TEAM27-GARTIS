@@ -36,20 +36,24 @@ public class AcceptJobForm extends javax.swing.JFrame {
     private void initComponents() {
 
         jobNumberLabel = new javax.swing.JLabel();
-        workDescriptionField = new javax.swing.JTextField();
+        jobSearchField = new javax.swing.JTextField();
         backButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        addDescriptionButton = new javax.swing.JButton();
+        searchJobsButton = new javax.swing.JButton();
         refreshButton = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        taskTable = new javax.swing.JTable();
+        taskRefreshButton = new javax.swing.JButton();
+        addTaskButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jobNumberLabel.setText("Work Description");
+        jobNumberLabel.setText("Search Jobs:");
 
-        workDescriptionField.addActionListener(new java.awt.event.ActionListener() {
+        jobSearchField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                workDescriptionFieldActionPerformed(evt);
+                jobSearchFieldActionPerformed(evt);
             }
         });
 
@@ -73,10 +77,10 @@ public class AcceptJobForm extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        addDescriptionButton.setText("Add Work Description");
-        addDescriptionButton.addActionListener(new java.awt.event.ActionListener() {
+        searchJobsButton.setText("Search Jobs");
+        searchJobsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addDescriptionButtonActionPerformed(evt);
+                searchJobsButtonActionPerformed(evt);
             }
         });
 
@@ -87,6 +91,33 @@ public class AcceptJobForm extends javax.swing.JFrame {
             }
         });
 
+        taskTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "taskID", "taskDescription", "taskDuration"
+            }
+        ));
+        jScrollPane2.setViewportView(taskTable);
+
+        taskRefreshButton.setText("Refresh List");
+        taskRefreshButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                taskRefreshButtonActionPerformed(evt);
+            }
+        });
+
+        addTaskButton.setText("Add Task");
+        addTaskButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addTaskButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -94,30 +125,53 @@ public class AcceptJobForm extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(backButton)
                     .addComponent(jobNumberLabel)
-                    .addComponent(addDescriptionButton)
-                    .addComponent(refreshButton)
-                    .addComponent(workDescriptionField, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jobSearchField, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(backButton)
+                    .addComponent(searchJobsButton))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 687, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(addTaskButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(taskRefreshButton))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(refreshButton)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 687, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jobNumberLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(workDescriptionField)
-                .addGap(18, 18, 18)
-                .addComponent(addDescriptionButton)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(refreshButton)
-                .addGap(36, 36, 36)
-                .addComponent(backButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(taskRefreshButton)
+                .addGap(17, 17, 17))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jobNumberLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jobSearchField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(searchJobsButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(backButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(539, 539, 539)
+                        .addComponent(addTaskButton)
+                        .addGap(0, 11, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE)
         );
 
         pack();
@@ -132,24 +186,31 @@ public class AcceptJobForm extends javax.swing.JFrame {
         frame.setVisible(true);
     }//GEN-LAST:event_backButtonActionPerformed
 
-    private void addDescriptionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDescriptionButtonActionPerformed
+    private void searchJobsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchJobsButtonActionPerformed
         // TODO add your handling code here:
         try {
-                        
-            Connection connection = DBConnection.getConnection();
-            int row = jTable1.getSelectedRow();
-            String jobNumber = jTable1.getModel().getValueAt(row, 0).toString();
-            String sqlQuery = "UPDATE JobSheet SET workDescription = ? WHERE jobNumber =" + jobNumber ;
-            PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
-            pStatement.setString(1, workDescriptionField.getText());
-            pStatement.executeUpdate();
-            pStatement.close();
-            connection.close();
 
+            Connection connection = DBConnection.getConnection();
+            String sqlQuery = "SELECT * FROM JobSheet WHERE jobNumber = ?";
+            PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
+            pStatement.setString(1, jobSearchField.getText());
+            ResultSet resultSet = pStatement.executeQuery();
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            model.setRowCount(0);
+            while (resultSet.next()) {
+                Object o[] = {
+                    resultSet.getString("jobNumber"), resultSet.getString("dateBookedIn"), resultSet.getString("jobType"), resultSet.getString("workDescription"), resultSet.getString("status"), resultSet.getString("VehicleregistrationNumber"), resultSet.getString("InvoiceinvoiceNumber"), resultSet.getString("EmployeeemployeeID")
+                };
+                model.addRow(o);
+
+            }
+            pStatement.close();
+            resultSet.close();
+            connection.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }//GEN-LAST:event_addDescriptionButtonActionPerformed
+    }//GEN-LAST:event_searchJobsButtonActionPerformed
 
     private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
         // TODO add your handling code here:
@@ -177,9 +238,63 @@ public class AcceptJobForm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_refreshButtonActionPerformed
 
-    private void workDescriptionFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_workDescriptionFieldActionPerformed
+    private void jobSearchFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jobSearchFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_workDescriptionFieldActionPerformed
+    }//GEN-LAST:event_jobSearchFieldActionPerformed
+
+    private void taskRefreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_taskRefreshButtonActionPerformed
+        // TODO add your handling code here:
+
+        try {
+
+            Connection connection = DBConnection.getConnection();
+            String sqlQuery = "SELECT * FROM Task";
+            PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
+            ResultSet resultSet = pStatement.executeQuery();
+            DefaultTableModel model = (DefaultTableModel) taskTable.getModel();
+            model.setRowCount(0);
+            while (resultSet.next()) {
+                Object o[] = {
+                    resultSet.getString("taskID"), resultSet.getString("taskDescription"), resultSet.getString("taskDuration")
+                };
+                model.addRow(o);
+
+            }
+            pStatement.close();
+            resultSet.close();
+            connection.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }  
+    }//GEN-LAST:event_taskRefreshButtonActionPerformed
+
+    private void addTaskButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addTaskButtonActionPerformed
+        // TODO add your handling code here:
+        int jobRow = jTable1.getSelectedRow();
+        String jobNumber = jTable1.getModel().getValueAt(jobRow, 0).toString();
+        int taskRow = taskTable.getSelectedRow();
+        String taskCode = taskTable.getModel().getValueAt(taskRow, 0).toString();
+        String taskDescription = taskTable.getModel().getValueAt(taskRow, 1).toString();
+        String taskDuration = taskTable.getModel().getValueAt(taskRow, 2).toString();
+        
+        try {
+            Connection connection = DBConnection.getConnection();
+            String sqlQuery = "INSERT INTO JobTask (JobSheetjobNumber, taskID, estimatedTime, taskDescription) VALUES (?, ?, ?, ?)" ;
+            PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
+            pStatement.setString(1, jobNumber);
+            pStatement.setString(2, taskCode);
+            pStatement.setString(3, taskDuration);
+            pStatement.setString(4, taskDescription);
+            pStatement.executeUpdate();
+            System.out.println("updated");
+            pStatement.close();
+            connection.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Exception");
+        }   
+    }//GEN-LAST:event_addTaskButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -232,12 +347,16 @@ public class AcceptJobForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addDescriptionButton;
+    private javax.swing.JButton addTaskButton;
     private javax.swing.JButton backButton;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel jobNumberLabel;
+    private javax.swing.JTextField jobSearchField;
     private javax.swing.JButton refreshButton;
-    private javax.swing.JTextField workDescriptionField;
+    private javax.swing.JButton searchJobsButton;
+    private javax.swing.JButton taskRefreshButton;
+    private javax.swing.JTable taskTable;
     // End of variables declaration//GEN-END:variables
 }
