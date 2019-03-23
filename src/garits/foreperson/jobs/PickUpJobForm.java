@@ -37,7 +37,7 @@ public class PickUpJobForm extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        acceptJobButton = new javax.swing.JButton();
+        allocateMechanicButton = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
         refreshJobButton = new javax.swing.JButton();
         mechanicIDField = new javax.swing.JTextField();
@@ -58,10 +58,10 @@ public class PickUpJobForm extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        acceptJobButton.setText("Accept Job");
-        acceptJobButton.addActionListener(new java.awt.event.ActionListener() {
+        allocateMechanicButton.setText("Allocate Mechanic");
+        allocateMechanicButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                acceptJobButtonActionPerformed(evt);
+                allocateMechanicButtonActionPerformed(evt);
             }
         });
 
@@ -85,7 +85,7 @@ public class PickUpJobForm extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Enter your ID");
+        jLabel1.setText("Enter Mechanic ID");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -93,37 +93,34 @@ public class PickUpJobForm extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(allocateMechanicButton)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(backButton))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(backButton)
                             .addComponent(jLabel1)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(refreshJobButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(acceptJobButton)
-                                .addComponent(mechanicIDField)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(mechanicIDField, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(refreshJobButton, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 731, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 469, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(mechanicIDField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(48, 48, 48)
-                        .addComponent(acceptJobButton)
-                        .addGap(34, 34, 34)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(allocateMechanicButton)
+                        .addGap(37, 37, 37)
                         .addComponent(refreshJobButton)
                         .addGap(162, 162, 162)
-                        .addComponent(backButton))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 469, Short.MAX_VALUE))
+                        .addComponent(backButton)))
                 .addContainerGap())
         );
 
@@ -169,7 +166,7 @@ public class PickUpJobForm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_refreshJobButtonActionPerformed
 
-    private void acceptJobButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptJobButtonActionPerformed
+    private void allocateMechanicButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_allocateMechanicButtonActionPerformed
         // TODO add your handling code here:
         try {
             
@@ -187,7 +184,7 @@ public class PickUpJobForm extends javax.swing.JFrame {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }//GEN-LAST:event_acceptJobButtonActionPerformed
+    }//GEN-LAST:event_allocateMechanicButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -228,7 +225,7 @@ public class PickUpJobForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton acceptJobButton;
+    private javax.swing.JButton allocateMechanicButton;
     private javax.swing.JButton backButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
