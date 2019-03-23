@@ -279,12 +279,13 @@ public class AcceptJobForm extends javax.swing.JFrame {
         
         try {
             Connection connection = DBConnection.getConnection();
-            String sqlQuery = "INSERT INTO JobTask (JobSheetjobNumber, taskID, estimatedTime, taskDescription) VALUES (?, ?, ?, ?)" ;
+            String sqlQuery = "INSERT INTO JobTask (JobSheetjobNumber, taskID, estimatedTime, taskDescription, status) VALUES (?, ?, ?, ?, ?)" ;
             PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
             pStatement.setString(1, jobNumber);
             pStatement.setString(2, taskCode);
             pStatement.setString(3, taskDuration);
             pStatement.setString(4, taskDescription);
+            pStatement.setString(5, "Pending");
             pStatement.executeUpdate();
             System.out.println("updated");
             pStatement.close();
