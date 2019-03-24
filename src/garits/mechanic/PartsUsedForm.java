@@ -355,7 +355,7 @@ public class PartsUsedForm extends javax.swing.JFrame {
                 PreparedStatement pStatement2 = connection.prepareStatement(updateQuery);
                 pStatement2.setString(1, newQty);
                 pStatement2.setString(2, partCode);
-                pStatement2.executeUpdate(updateQuery);
+                pStatement2.executeUpdate();
                
                 
                 
