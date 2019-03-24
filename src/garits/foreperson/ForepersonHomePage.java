@@ -7,7 +7,7 @@ package garits.foreperson;
 
 import garits.foreperson.jobs.ProduceInvoiceForm;
 import garits.foreperson.jobs.PartsUsedForm;
-import garits.foreperson.jobs.TaskCompletedForm;
+import garits.foreperson.jobs.TasksCompletedForm;
 import garits.SignInForm;
 import javax.swing.JFrame;
 
@@ -161,7 +161,7 @@ public class ForepersonHomePage extends javax.swing.JFrame {
     private void tasksCompletedButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tasksCompletedButtonActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        JFrame frame = new TaskCompletedForm();
+        JFrame frame = new TasksCompletedForm();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
