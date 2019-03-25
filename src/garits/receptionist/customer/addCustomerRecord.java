@@ -404,6 +404,10 @@ public class addCustomerRecord extends javax.swing.JFrame {
 
     private void addCorprateCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCorprateCustomerActionPerformed
         // TODO add your handling code here:
+        JFrame frame = new addCorprateCustomer();
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
     }//GEN-LAST:event_addCorprateCustomerActionPerformed
 
     private void addVehicleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addVehicleButtonActionPerformed
