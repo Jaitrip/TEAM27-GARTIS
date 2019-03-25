@@ -5,8 +5,9 @@
  */
 package garits.foreperson.stock;
 
-import garits.foreperson.ForepersonHomePage;
 import garits.foreperson.StockPage;
+import java.io.File;
+import java.io.FileOutputStream;
 import javax.swing.JFrame;
 
 /**
@@ -41,6 +42,11 @@ public class StockReportForm extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButton1.setText("SEARCH");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Back");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -101,6 +107,11 @@ public class StockReportForm extends javax.swing.JFrame {
         frame.pack();
         frame.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

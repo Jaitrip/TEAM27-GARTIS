@@ -24,7 +24,9 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="251" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="186" max="-2" attributes="0"/>
+              <Component id="addCustomerButton" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="manageJobButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="produceInvoiceButton" min="-2" pref="143" max="-2" attributes="0"/>
@@ -32,21 +34,22 @@
               <Component id="stockButton" min="-2" pref="79" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="logOutButton" min="-2" pref="94" max="-2" attributes="0"/>
-              <EmptySpace pref="263" max="32767" attributes="0"/>
+              <EmptySpace pref="176" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="185" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="187" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="manageJobButton" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
                   <Component id="produceInvoiceButton" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
                   <Component id="stockButton" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
                   <Component id="logOutButton" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                  <Component id="addCustomerButton" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="253" max="32767" attributes="0"/>
+              <EmptySpace pref="251" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -82,6 +85,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="logOutButtonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="addCustomerButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Add Customer"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addCustomerButtonActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
