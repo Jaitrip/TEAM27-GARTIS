@@ -180,7 +180,7 @@ public class BackupForm extends javax.swing.JFrame {
     
     private void browseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browseButtonActionPerformed
         // TODO add your handling code here:
-        String path;
+        
         //Path sourceFile = Path.get("/Users/jaimik/Downloads/GARITS-3/GARTISDatabase.sqlite");
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
@@ -189,7 +189,7 @@ public class BackupForm extends javax.swing.JFrame {
         
         try {
             File file = fileChooser.getSelectedFile();
-            path = file.getAbsolutePath();
+            String path = file.getAbsolutePath();
             backupField.setText(path);
             
         } catch (Exception e) {
@@ -201,7 +201,7 @@ public class BackupForm extends javax.swing.JFrame {
 
     private void backUpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backUpButtonActionPerformed
         // TODO add your handling code here:
-        Path sourceFile = Paths.get("/Users/jaimik/Downloads/GARITS-3/database/GARTISDatabase.sqlite");
+        Path sourceFile = Paths.get("src/database/GARTISDatabase.sqlite");
         Path targetDirectory = Paths.get(backupField.getText());
         
         try {
@@ -236,7 +236,7 @@ public class BackupForm extends javax.swing.JFrame {
 
     private void restoreButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restoreButtonActionPerformed
         // TODO add your handling code here:
-        Path targetDirectory = Paths.get("/Users/jaimik/Downloads/GARITS-3/database");
+        Path targetDirectory = Paths.get("src/database/GARTISDatabase.sqlite");
         Path sourceFile = Paths.get(restoreTextField.getText());
         
         try {
