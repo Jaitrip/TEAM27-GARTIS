@@ -12,7 +12,7 @@ public class DBConnection  {
     public static Connection getConnection() throws SQLException {
         try {
             Class.forName("org.sqlite.JDBC");
-            return DriverManager.getConnection("jdbc:sqlite:/Users/jaimik/Downloads/GARITS-3/database/GARTISDatabase.sqlite");
+            return DriverManager.getConnection("jdbc:sqlite:src/database/GARTISDatabase.sqlite");
         } catch (ClassNotFoundException ex) {
             ex.printStackTrace();
         }
