@@ -7,6 +7,7 @@ package garits.receptionist;
 
 import garits.receptionist.managejob.AcceptJob;
 import garits.receptionist.managejob.MonitorProgress;
+import garits.receptionist.managejob.RecordPayment;
 import javax.swing.JFrame;
 
 /**
@@ -34,6 +35,7 @@ public class ManageJob extends javax.swing.JFrame {
         backButton = new javax.swing.JButton();
         acceptJobButton = new javax.swing.JButton();
         monitorProgressButton = new javax.swing.JButton();
+        recordPaymentButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,6 +60,13 @@ public class ManageJob extends javax.swing.JFrame {
             }
         });
 
+        recordPaymentButton.setText("Record Payment");
+        recordPaymentButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                recordPaymentButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -68,11 +77,13 @@ public class ManageJob extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(backButton))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(340, 340, 340)
+                        .addGap(261, 261, 261)
                         .addComponent(acceptJobButton)
-                        .addGap(61, 61, 61)
-                        .addComponent(monitorProgressButton)))
-                .addContainerGap(337, Short.MAX_VALUE))
+                        .addGap(29, 29, 29)
+                        .addComponent(monitorProgressButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(recordPaymentButton)))
+                .addContainerGap(292, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -80,7 +91,8 @@ public class ManageJob extends javax.swing.JFrame {
                 .addGap(185, 185, 185)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(acceptJobButton)
-                    .addComponent(monitorProgressButton))
+                    .addComponent(monitorProgressButton)
+                    .addComponent(recordPaymentButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 231, Short.MAX_VALUE)
                 .addComponent(backButton)
                 .addContainerGap())
@@ -115,6 +127,15 @@ public class ManageJob extends javax.swing.JFrame {
         frame.pack();
         frame.setVisible(true);
     }//GEN-LAST:event_monitorProgressButtonActionPerformed
+
+    private void recordPaymentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_recordPaymentButtonActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        JFrame frame = new RecordPayment();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
+    }//GEN-LAST:event_recordPaymentButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -156,5 +177,6 @@ public class ManageJob extends javax.swing.JFrame {
     private javax.swing.JButton acceptJobButton;
     private javax.swing.JButton backButton;
     private javax.swing.JButton monitorProgressButton;
+    private javax.swing.JButton recordPaymentButton;
     // End of variables declaration//GEN-END:variables
 }
