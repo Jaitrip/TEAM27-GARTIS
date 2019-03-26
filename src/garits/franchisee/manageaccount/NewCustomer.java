@@ -39,30 +39,18 @@ public class NewCustomer extends javax.swing.JFrame {
     private void initComponents() {
 
         enterCustomerIDLabel = new javax.swing.JLabel();
-        postcodeField = new javax.swing.JTextField();
         enterCustomerIDField = new javax.swing.JTextField();
         backButton = new javax.swing.JButton();
         firstNameLabel = new javax.swing.JLabel();
-        surnameLabel = new javax.swing.JLabel();
-        addressLabel = new javax.swing.JLabel();
-        postcodeLabel = new javax.swing.JLabel();
-        firstNameField = new javax.swing.JTextField();
-        surnameField = new javax.swing.JTextField();
-        addressField = new javax.swing.JTextField();
-        emailTextField = new javax.swing.JTextField();
-        emailLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         addCustomerButton = new javax.swing.JButton();
         viewCustomersButton = new javax.swing.JButton();
-        emailLabel1 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        telephoneNumberField = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        discountPlanBox = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         payLaterBox = new javax.swing.JComboBox<>();
-        customerTypeBox = new javax.swing.JComboBox<>();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        customerTable = new javax.swing.JTable();
+        viewAllCustomersButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -81,37 +69,15 @@ public class NewCustomer extends javax.swing.JFrame {
             }
         });
 
-        firstNameLabel.setText("First Name");
-
-        surnameLabel.setText("Surname");
-
-        addressLabel.setText("Address");
-
-        postcodeLabel.setText("Postcode");
-
-        surnameField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                surnameFieldActionPerformed(evt);
-            }
-        });
-
-        addressField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addressFieldActionPerformed(evt);
-            }
-        });
-
-        emailLabel.setText("Email");
-
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "customerID", "date", "firstName", "lastName", "address", "postcode", "telephoneNumberNumber", "email", "typeOfCustomer", "payLater", "discountPlan"
+                "customerID", "discountPlan", "payLater", "credit"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -130,143 +96,106 @@ public class NewCustomer extends javax.swing.JFrame {
             }
         });
 
-        emailLabel1.setText("Telephone Number");
+        jLabel3.setText("Pay Later");
 
-        jLabel1.setText("Type Of Customer");
-
-        jLabel2.setText("Discount Plan");
-
-        discountPlanBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Fixed Discount\t", "Variable Discount", "Flexible Discount", "No Discount" }));
-        discountPlanBox.addActionListener(new java.awt.event.ActionListener() {
+        payLaterBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "True", "False" }));
+        payLaterBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                discountPlanBoxActionPerformed(evt);
+                payLaterBoxActionPerformed(evt);
             }
         });
 
-        jLabel3.setText("Pay Later");
+        customerTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "customerID", "date", "firstName", "lastName", "address", "postcode", "telephoneNumber", "telephoneNumber2", "email"
+            }
+        ));
+        jScrollPane2.setViewportView(customerTable);
 
-        payLaterBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Yes", "No" }));
-
-        customerTypeBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Casual", "Corprate" }));
+        viewAllCustomersButton.setText("View Customers");
+        viewAllCustomersButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewAllCustomersButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(backButton)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(enterCustomerIDField, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(enterCustomerIDLabel)
-                            .addComponent(firstNameLabel)
-                            .addComponent(firstNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(surnameLabel))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(21, 21, 21)
-                                .addComponent(emailLabel1))
+                                .addComponent(backButton)
+                                .addGap(207, 207, 207))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel1))
+                                .addComponent(viewAllCustomersButton)
+                                .addGap(18, 18, 18)))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 782, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(20, 20, 20)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(emailLabel)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(firstNameLabel)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel3))
+                                    .addComponent(enterCustomerIDLabel)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(enterCustomerIDField, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(50, 50, 50)
+                                        .addComponent(addCustomerButton)))
+                                .addGap(24, 24, 24))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(telephoneNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(surnameField, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(addCustomerButton)
-                            .addComponent(addressLabel)
-                            .addComponent(addressField, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(postcodeLabel)
-                            .addComponent(postcodeField, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(viewCustomersButton)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(9, 9, 9)
-                                .addComponent(jLabel2))
-                            .addComponent(payLaterBox, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(customerTypeBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(discountPlanBox, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE))
+                                .addComponent(payLaterBox, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(viewCustomersButton)
+                                .addGap(18, 18, 18)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 712, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(enterCustomerIDLabel)
-                    .addComponent(emailLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(enterCustomerIDField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(firstNameLabel)
-                    .addComponent(emailLabel1))
-                .addGap(15, 15, 15)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(firstNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(telephoneNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(payLaterBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(viewCustomersButton))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(enterCustomerIDLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(enterCustomerIDField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(addCustomerButton))
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel3)
+                                .addGap(39, 39, 39)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(surnameLabel))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(surnameField, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(customerTypeBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18)
+                        .addComponent(firstNameLabel))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(addressLabel)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(addressField, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(discountPlanBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(postcodeLabel)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(postcodeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(payLaterBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(91, 91, 91)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addCustomerButton)
-                    .addComponent(viewCustomersButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                .addComponent(backButton)
-                .addContainerGap())
-            .addComponent(jScrollPane1)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(viewAllCustomersButton)
+                        .addGap(76, 76, 76)
+                        .addComponent(backButton)
+                        .addContainerGap())
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void surnameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_surnameFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_surnameFieldActionPerformed
-
-    private void addressFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addressFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_addressFieldActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
@@ -287,14 +216,14 @@ public class NewCustomer extends javax.swing.JFrame {
         try {
             
             Connection connection = DBConnection.getConnection();
-            String sqlQuery = "SELECT * FROM Customer";
+            String sqlQuery = "SELECT * FROM AccountHolder";
             PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
             ResultSet resultSet = pStatement.executeQuery();
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
             model.setRowCount(0);
             while (resultSet.next()) {
                 Object o[] = {
-                    resultSet.getString("customerID"), resultSet.getString("date"), resultSet.getString("firstName"), resultSet.getString("lastName"), resultSet.getString("address"), resultSet.getString("postcode"),resultSet.getString("telephoneNumber"), resultSet.getString("email"), resultSet.getString("typeOfCustomer"), resultSet.getString("payLater"), resultSet.getString("discountType") 
+                    resultSet.getString("customerID"), resultSet.getString("discountPlan"), resultSet.getString("payLater"), resultSet.getString("credit")
                 };
                 model.addRow(o);
                 
@@ -308,30 +237,17 @@ public class NewCustomer extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_viewCustomersButtonActionPerformed
 
-    private void discountPlanBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_discountPlanBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_discountPlanBoxActionPerformed
-
     private void addCustomerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCustomerButtonActionPerformed
         // TODO add your handling code here:
         try {
-            Date date = new Date();
-            DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
             
             Connection connection = DBConnection.getConnection();
-            String sqlQuery = "INSERT INTO Customer (customerID, date, firstName, lastName, address, postcode, telephoneNumber, email, typeOfCustomer, payLater, discountType) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String sqlQuery = "INSERT INTO AccountHolder (customerID, discountPlan, payLater, credit) VALUES (?, ?, ?, ?)";
             PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
             pStatement.setString(1, enterCustomerIDField.getText());
-            pStatement.setString(2, df.format(date));
-            pStatement.setString(3, firstNameField.getText());
-            pStatement.setString(4, surnameField.getText());
-            pStatement.setString(5, addressField.getText());
-            pStatement.setString(6, postcodeField.getText());
-            pStatement.setString(7, telephoneNumberField.getText());
-            pStatement.setString(8, emailTextField.getText());
-            pStatement.setString(9, customerTypeBox.getSelectedItem().toString());
-            pStatement.setString(10, payLaterBox.getSelectedItem().toString());
-            pStatement.setString(11, discountPlanBox.getSelectedItem().toString());
+            pStatement.setString(2, "");
+            pStatement.setString(3, payLaterBox.getSelectedItem().toString());
+            pStatement.setString(4, "");
             pStatement.executeUpdate();
             pStatement.close();
             connection.close();
@@ -340,6 +256,36 @@ public class NewCustomer extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }//GEN-LAST:event_addCustomerButtonActionPerformed
+
+    private void viewAllCustomersButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewAllCustomersButtonActionPerformed
+        // TODO add your handling code here:
+        try {
+
+            Connection connection = DBConnection.getConnection();
+            String sqlQuery = "SELECT * FROM Customer";
+            PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
+            ResultSet resultSet = pStatement.executeQuery();
+            DefaultTableModel model = (DefaultTableModel) customerTable.getModel();
+            model.setRowCount(0);
+            while (resultSet.next()) {
+                Object o[] = {
+                    resultSet.getString("customerID"), resultSet.getString("date"), resultSet.getString("firstName"), resultSet.getString("lastName"), resultSet.getString("address"), resultSet.getString("postcode"), resultSet.getString("telephoneNumber"), resultSet.getString("telephoneNumber2"), resultSet.getString("email")
+                };
+                model.addRow(o);
+
+            }
+            pStatement.close();
+            resultSet.close();
+            connection.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }//GEN-LAST:event_viewAllCustomersButtonActionPerformed
+
+    private void payLaterBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payLaterBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_payLaterBoxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -379,29 +325,17 @@ public class NewCustomer extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addCustomerButton;
-    private javax.swing.JTextField addressField;
-    private javax.swing.JLabel addressLabel;
     private javax.swing.JButton backButton;
-    private javax.swing.JComboBox<String> customerTypeBox;
-    private javax.swing.JComboBox<String> discountPlanBox;
-    private javax.swing.JLabel emailLabel;
-    private javax.swing.JLabel emailLabel1;
-    private javax.swing.JTextField emailTextField;
+    private javax.swing.JTable customerTable;
     private javax.swing.JTextField enterCustomerIDField;
     private javax.swing.JLabel enterCustomerIDLabel;
-    private javax.swing.JTextField firstNameField;
     private javax.swing.JLabel firstNameLabel;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JComboBox<String> payLaterBox;
-    private javax.swing.JTextField postcodeField;
-    private javax.swing.JLabel postcodeLabel;
-    private javax.swing.JTextField surnameField;
-    private javax.swing.JLabel surnameLabel;
-    private javax.swing.JTextField telephoneNumberField;
+    private javax.swing.JButton viewAllCustomersButton;
     private javax.swing.JButton viewCustomersButton;
     // End of variables declaration//GEN-END:variables
 }
