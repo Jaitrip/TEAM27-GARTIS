@@ -290,7 +290,7 @@ public class SellParts extends javax.swing.JFrame {
                 }
                 viewPartsButtonActionPerformed(evt);
                         
-                pStatement1.close();
+                pStatement1.close();//
                 resultSet1.close();
                 connection.close();
             } catch (Exception e) {
