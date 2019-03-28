@@ -13,6 +13,7 @@ import java.sql.ResultSet;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Random;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 
@@ -38,9 +39,7 @@ public class AcceptJob extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jobNumberLabel = new javax.swing.JLabel();
         vehicleRegLabel = new javax.swing.JLabel();
-        jobNumberField = new javax.swing.JTextField();
         vehicleRegField = new javax.swing.JTextField();
         backButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -51,8 +50,6 @@ public class AcceptJob extends javax.swing.JFrame {
         refreshButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jobNumberLabel.setText("Job Number");
 
         vehicleRegLabel.setText("Vehicle Reg.");
 
@@ -107,17 +104,20 @@ public class AcceptJob extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(vehicleRegField, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
-                        .addComponent(backButton, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jobNumberLabel, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jobNumberField)
-                        .addComponent(vehicleRegLabel, javax.swing.GroupLayout.Alignment.LEADING))
-                    .addComponent(jLabel1)
-                    .addComponent(jobTypeBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(acceptJobButton)
-                    .addComponent(refreshButton))
-                .addGap(18, 18, 18)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(backButton)
+                            .addComponent(acceptJobButton)
+                            .addComponent(refreshButton))
+                        .addGap(89, 89, 89))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(vehicleRegField, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(vehicleRegLabel, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(jLabel1)
+                            .addComponent(jobTypeBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 731, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -125,10 +125,6 @@ public class AcceptJob extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jobNumberLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jobNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(vehicleRegLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(vehicleRegField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -136,9 +132,9 @@ public class AcceptJob extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jobTypeBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(62, 62, 62)
+                .addGap(128, 128, 128)
                 .addComponent(acceptJobButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(refreshButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(backButton)
@@ -170,10 +166,14 @@ public class AcceptJob extends javax.swing.JFrame {
             Date date = new Date();
             DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
             
+            Random rand = new Random();
+            int n = rand.nextInt(100);
+            String jobNumber = String.valueOf(n);
+            
             Connection connection = DBConnection.getConnection();
             String sqlQuery = "INSERT INTO JobSheet (jobNumber, dateBookedIn, jobType, status, VehicleregistrationNumber) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
-            pStatement.setString(1, jobNumberField.getText());
+            pStatement.setString(1, jobNumber);
             pStatement.setString(2, df.format(date));
             pStatement.setString(3, jobTypeBox.getSelectedItem().toString());
             pStatement.setString(4, "Pending");
@@ -256,8 +256,6 @@ public class AcceptJob extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jobNumberField;
-    private javax.swing.JLabel jobNumberLabel;
     private javax.swing.JComboBox<String> jobTypeBox;
     private javax.swing.JButton refreshButton;
     private javax.swing.JTextField vehicleRegField;

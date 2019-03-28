@@ -13,6 +13,7 @@ import java.sql.ResultSet;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Random;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 
@@ -44,7 +45,6 @@ public class addCustomerRecord extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         customerTable = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -52,7 +52,6 @@ public class addCustomerRecord extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        customerIDField = new javax.swing.JTextField();
         firstNameField = new javax.swing.JTextField();
         lastNameField = new javax.swing.JTextField();
         addressField = new javax.swing.JTextField();
@@ -122,8 +121,6 @@ public class addCustomerRecord extends javax.swing.JFrame {
 
         jLabel2.setText("Add Customer Record:");
 
-        jLabel3.setText("customerID");
-
         jLabel4.setText("firstName");
 
         jLabel5.setText("lastName");
@@ -137,12 +134,6 @@ public class addCustomerRecord extends javax.swing.JFrame {
         jLabel9.setText("telephoneNumber2");
 
         jLabel10.setText("email");
-
-        customerIDField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                customerIDFieldActionPerformed(evt);
-            }
-        });
 
         jLabel11.setText("registrationNumber");
 
@@ -207,7 +198,6 @@ public class addCustomerRecord extends javax.swing.JFrame {
                             .addComponent(jLabel2)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
                                     .addComponent(jLabel4)
                                     .addComponent(jLabel5)
                                     .addComponent(jLabel6)
@@ -223,8 +213,7 @@ public class addCustomerRecord extends javax.swing.JFrame {
                                     .addComponent(postcodeField, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(addressField, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lastNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(firstNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(customerIDField, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(firstNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -273,10 +262,6 @@ public class addCustomerRecord extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2)
-                .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(customerIDField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -305,7 +290,7 @@ public class addCustomerRecord extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addCustomerButton)
                     .addComponent(refreshListButton)
@@ -371,20 +356,21 @@ public class addCustomerRecord extends javax.swing.JFrame {
         frame.setVisible(true);
     }//GEN-LAST:event_backButtonActionPerformed
 
-    private void customerIDFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customerIDFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_customerIDFieldActionPerformed
-
     private void addCustomerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCustomerButtonActionPerformed
         // TODO add your handling code here
         try {
+
+            Random rand = new Random();
+            int n = rand.nextInt(100);
+            String id = String.valueOf(n);
+            
             Date date = new Date();
             DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
             
             Connection connection = DBConnection.getConnection();
             String sqlQuery = "INSERT INTO Customer (customerID, date, firstName, lastName, address, postcode, telephoneNumber, telephoneNumber2, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
-            pStatement.setString(1, customerIDField.getText());
+            pStatement.setString(1, id);
             pStatement.setString(2, df.format(date));
             pStatement.setString(3, firstNameField.getText());
             pStatement.setString(4, lastNameField.getText());
@@ -546,7 +532,6 @@ public class addCustomerRecord extends javax.swing.JFrame {
     private javax.swing.JTextField chassisNumber;
     private javax.swing.JTextField colourField;
     private javax.swing.JTextField customerID2Field;
-    private javax.swing.JTextField customerIDField;
     private javax.swing.JTable customerTable;
     private javax.swing.JTextField emailField;
     private javax.swing.JTextField engineSerialField;
@@ -561,7 +546,6 @@ public class addCustomerRecord extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

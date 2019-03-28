@@ -13,6 +13,7 @@ import java.sql.ResultSet;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Random;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 
@@ -39,10 +40,8 @@ public class RecordPayment extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        paymentNumberField = new javax.swing.JTextField();
         jobNumberField = new javax.swing.JTextField();
         amountField = new javax.swing.JTextField();
         takePaymentButton = new javax.swing.JButton();
@@ -55,17 +54,9 @@ public class RecordPayment extends javax.swing.JFrame {
 
         jLabel2.setText("Take Payment:");
 
-        jLabel3.setText("paymentNumber");
-
         jLabel4.setText("jobNumber");
 
         jLabel5.setText("amount");
-
-        paymentNumberField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                paymentNumberFieldActionPerformed(evt);
-            }
-        });
 
         takePaymentButton.setText("Take Payment");
         takePaymentButton.addActionListener(new java.awt.event.ActionListener() {
@@ -106,28 +97,27 @@ public class RecordPayment extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(takePaymentButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(refreshListButton))
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
                                     .addComponent(jLabel4)
                                     .addComponent(jLabel5))
-                                .addGap(35, 35, 35)
+                                .addGap(69, 69, 69)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(amountField, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jobNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(paymentNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(backButton))
-                        .addGap(0, 13, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jobNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(backButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 108, Short.MAX_VALUE)
+                                .addComponent(refreshListButton)))
+                        .addGap(12, 12, 12))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(takePaymentButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 565, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -137,10 +127,6 @@ public class RecordPayment extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2)
-                .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(paymentNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -149,31 +135,34 @@ public class RecordPayment extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(amountField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(takePaymentButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(refreshListButton)
-                    .addComponent(takePaymentButton))
-                .addGap(70, 70, 70)
-                .addComponent(backButton))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(backButton, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(refreshListButton)
+                        .addContainerGap())))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void paymentNumberFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paymentNumberFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_paymentNumberFieldActionPerformed
-
     private void takePaymentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_takePaymentButtonActionPerformed
         // TODO add your handling code here
         Date date = new Date();
         DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+        
+        Random rand = new Random();
+        int n = rand.nextInt(100);
+        String paymentNumber = String.valueOf(n);
+        
         try {
 
             Connection connection = DBConnection.getConnection();
             String sqlQuery = "INSERT INTO Payment (paymentNumber, jobNumber, amount, dateTaken) VALUES (?, ?, ?, ?)";
             PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
-            pStatement.setString(1, paymentNumberField.getText());
+            pStatement.setString(1, paymentNumber);
             pStatement.setString(2, jobNumberField.getText());
             pStatement.setString(3, amountField.getText());
             pStatement.setString(4, df.format(date));
@@ -245,12 +234,10 @@ public class RecordPayment extends javax.swing.JFrame {
     private javax.swing.JTextField amountField;
     private javax.swing.JButton backButton;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jobNumberField;
-    private javax.swing.JTextField paymentNumberField;
     private javax.swing.JTable paymentTable;
     private javax.swing.JButton refreshListButton;
     private javax.swing.JButton takePaymentButton;

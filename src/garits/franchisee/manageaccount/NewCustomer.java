@@ -10,9 +10,7 @@ import garits.franchisee.ManageAccount;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.Random;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 
@@ -239,6 +237,10 @@ public class NewCustomer extends javax.swing.JFrame {
 
     private void addCustomerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCustomerButtonActionPerformed
         // TODO add your handling code here:
+        Random rand = new Random();
+        int n = rand.nextInt(100);
+        String id = String.valueOf(n);
+        
         try {
             
             Connection connection = DBConnection.getConnection();
