@@ -10,6 +10,9 @@ import garits.franchisee.Stock;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 
@@ -263,35 +266,60 @@ public class SellParts extends javax.swing.JFrame {
         String code = pnum.getText();
         String qtyChange = qnum.getText();
         if (qtyChange.matches("[0-9]+")){
+            
+            Date date = new Date();
+            DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
         
             try {
                 Connection connection = DBConnection.getConnection();
                 String sqlQuery1 = "SELECT quantity FROM StockLedger WHERE code=?";
-                PreparedStatement pStatement1 = connection.prepareStatement(sqlQuery1);
-                pStatement1.setString(1, code );
-                ResultSet resultSet1 = pStatement1.executeQuery();
+                PreparedStatement pStatement = connection.prepareStatement(sqlQuery1);
+                pStatement.setString(1, code );
+                ResultSet resultSet = pStatement.executeQuery();
                 
                 String quantity="0";
-                while(resultSet1.next()) {
-                    quantity = resultSet1.getString("quantity");
+                while(resultSet.next()) {
+                    quantity = resultSet.getString("quantity");
                 }
-
+                
+ 
+                String sqlQuery4 = "SELECT amount FROM StockLedger WHERE code=?";
+                pStatement = connection.prepareStatement(sqlQuery4);
+                pStatement.setString(1, code );
+                ResultSet resultSet2 = pStatement.executeQuery();
+                
+                String a="0";
+                while(resultSet2.next()) {
+                    a = resultSet2.getString("quantity");
+                }
+                double amount = Double.parseDouble(a);
+                
+                
                 int qty;
                 qty = Integer.parseInt(quantity)-Integer.parseInt(qtyChange);
                 
                 if (qty>=0){
 
                     String sqlQuery2 = "UPDATE StockLedger SET quantity=? WHERE code=?";
-                    PreparedStatement pStatement = connection.prepareStatement(sqlQuery2);
+                    pStatement = connection.prepareStatement(sqlQuery2);
                     pStatement.setString(1, Integer.toString(qty) );
                     pStatement.setString(2, code );
+                    pStatement.executeUpdate();
+                    pStatement.close();
+                    
+                    String sqlQuery3 = "INSERT INTO Payment (paymentNumber,amount,dateTaken,status)" + "VALUES (?, ?, ?, ?)";
+                    pStatement = connection.prepareStatement(sqlQuery3);
+                    pStatement.setString(1,"1234");
+                    pStatement.setString(2,  Double.toString(1.2*Double.parseDouble(qtyChange)*amount));
+                    pStatement.setString(3,  df.format(date));
+                    pStatement.setString(4, "Paid" );
                     pStatement.executeUpdate();
                     pStatement.close();
                 }
                 viewPartsButtonActionPerformed(evt);
                         
-                pStatement1.close();
-                resultSet1.close();
+                pStatement.close();
+                resultSet.close();
                 connection.close();
             } catch (Exception e) {
                 e.printStackTrace();
