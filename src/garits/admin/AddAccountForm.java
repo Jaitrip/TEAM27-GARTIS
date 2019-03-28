@@ -298,6 +298,7 @@ public class AddAccountForm extends javax.swing.JFrame {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        viewButtonActionPerformed(evt);
     }//GEN-LAST:event_addUserButtonActionPerformed
 
     private void viewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewButtonActionPerformed
@@ -377,6 +378,7 @@ public class AddAccountForm extends javax.swing.JFrame {
             e.printStackTrace();
             System.out.println("Exception");
         }
+        viewButtonActionPerformed(evt);
     }//GEN-LAST:event_updateButtonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -397,6 +399,7 @@ public class AddAccountForm extends javax.swing.JFrame {
             e.printStackTrace();
             System.out.println("Exception");
         }
+        viewButtonActionPerformed(evt);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
