@@ -77,6 +77,8 @@ public class SignInForm extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(0, 0, 0, 0));
+        setPreferredSize(new java.awt.Dimension(1920, 1080));
+        setSize(new java.awt.Dimension(1920, 1080));
 
         passwordField.setToolTipText("");
         passwordField.addActionListener(new java.awt.event.ActionListener() {

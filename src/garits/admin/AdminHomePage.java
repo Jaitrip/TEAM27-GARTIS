@@ -38,22 +38,36 @@ public class AdminHomePage extends javax.swing.JFrame {
         jToolBar1.setRollover(true);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1920, 1080));
+        setSize(new java.awt.Dimension(1920, 1080));
 
+        databaseButton.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        databaseButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garits/ICONS/Data-Database-Protection-icon.png"))); // NOI18N
         databaseButton.setText("Database");
+        databaseButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        databaseButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         databaseButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 databaseButtonActionPerformed(evt);
             }
         });
 
+        usersButton.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        usersButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garits/ICONS/users-4-icon.png"))); // NOI18N
         usersButton.setText("Users");
+        usersButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        usersButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         usersButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 usersButtonActionPerformed(evt);
             }
         });
 
+        logOutButton.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        logOutButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garits/ICONS/User-Interface-Logout-icon.png"))); // NOI18N
         logOutButton.setText("Log Out");
+        logOutButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        logOutButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         logOutButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 logOutButtonActionPerformed(evt);
@@ -64,24 +78,25 @@ public class AdminHomePage extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(304, 304, 304)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(677, Short.MAX_VALUE)
                 .addComponent(databaseButton)
-                .addGap(18, 18, 18)
-                .addComponent(usersButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(logOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(385, Short.MAX_VALUE))
+                .addGap(57, 57, 57)
+                .addComponent(usersButton, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(58, 58, 58)
+                .addComponent(logOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(645, 645, 645))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(221, 221, 221)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(databaseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(usersButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(logOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(209, Short.MAX_VALUE))
+                .addGap(383, 383, 383)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(logOutButton)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(databaseButton)
+                        .addComponent(usersButton)))
+                .addContainerGap(540, Short.MAX_VALUE))
         );
 
         pack();
