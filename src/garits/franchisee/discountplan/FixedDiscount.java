@@ -11,6 +11,7 @@ import garits.franchisee.FranchiseeHomePage;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Random;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 
@@ -41,7 +42,8 @@ public class FixedDiscount extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
-        fixedIDTextField = new javax.swing.JTextField();
+        jDialog1 = new javax.swing.JDialog();
+        jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
         fixedRateTextField = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         discountTable = new javax.swing.JTable();
@@ -49,7 +51,6 @@ public class FixedDiscount extends javax.swing.JFrame {
         fixedDiscountTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         viewCustomersButton = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         label1 = new java.awt.Label();
@@ -61,6 +62,7 @@ public class FixedDiscount extends javax.swing.JFrame {
         viewFixedPlansButton = new javax.swing.JButton();
         addDiscountPlanButton = new javax.swing.JButton();
         updateDiscountPlan = new javax.swing.JButton();
+        deleteDiscountPlanButton = new javax.swing.JButton();
 
         jScrollPane4.setViewportView(jEditorPane1);
 
@@ -70,13 +72,21 @@ public class FixedDiscount extends javax.swing.JFrame {
         jMenu2.setText("Edit");
         jMenuBar1.add(jMenu2);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
+        jDialog1.getContentPane().setLayout(jDialog1Layout);
+        jDialog1Layout.setHorizontalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jDialog1Layout.setVerticalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
 
-        fixedIDTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fixedIDTextFieldActionPerformed(evt);
-            }
-        });
+        jCheckBoxMenuItem1.setSelected(true);
+        jCheckBoxMenuItem1.setText("jCheckBoxMenuItem1");
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         discountTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -104,6 +114,7 @@ public class FixedDiscount extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(fixedDiscountTable);
 
+        jLabel1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel1.setText("Fixed Discount");
 
         viewCustomersButton.setText("View Customers");
@@ -112,8 +123,6 @@ public class FixedDiscount extends javax.swing.JFrame {
                 viewCustomersButtonActionPerformed(evt);
             }
         });
-
-        jLabel3.setText("Fixed_ID");
 
         jLabel5.setText("Fixed Rate");
 
@@ -154,7 +163,7 @@ public class FixedDiscount extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 249, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(homeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(variableDiscountButton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -180,13 +189,13 @@ public class FixedDiscount extends javax.swing.JFrame {
 
         accountHolderTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "customerID", "discountPlan", "payLater", "credit"
+                "customerID", "firstName", "lastName"
             }
         ));
         jScrollPane3.setViewportView(accountHolderTable);
@@ -212,6 +221,13 @@ public class FixedDiscount extends javax.swing.JFrame {
             }
         });
 
+        deleteDiscountPlanButton.setText("Delete Discount Plan ");
+        deleteDiscountPlanButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteDiscountPlanButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -219,42 +235,34 @@ public class FixedDiscount extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(viewCustomersButton, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(viewFixedPlansButton, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(viewFixedPlansButton)
-                            .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(addDiscountPlanButton, javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(updateDiscountPlan, javax.swing.GroupLayout.Alignment.TRAILING))
-                                        .addGap(57, 57, 57))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jLabel3)
-                                                    .addComponent(jLabel5))
-                                                .addGap(58, 58, 58)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                    .addComponent(fixedIDTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
-                                                    .addComponent(fixedRateTextField))))
-                                        .addGap(31, 31, 31)))
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 712, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(viewCustomersButton))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel5)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(fixedRateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(updateDiscountPlan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(addDiscountPlanButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(deleteDiscountPlanButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGap(57, 57, 57)))
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 712, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 587, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(48, 48, 48))))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -264,28 +272,27 @@ public class FixedDiscount extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(viewCustomersButton)
-                .addGap(35, 35, 35)
+                .addGap(3, 3, 3)
+                .addComponent(jLabel1)
+                .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(24, 24, 24)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(fixedIDTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                        .addGap(34, 34, 34)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
                             .addComponent(fixedRateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(98, 98, 98)
+                        .addGap(121, 121, 121)
                         .addComponent(addDiscountPlanButton)
-                        .addGap(15, 15, 15)
-                        .addComponent(updateDiscountPlan)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(updateDiscountPlan)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(deleteDiscountPlanButton)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(viewFixedPlansButton)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -299,10 +306,6 @@ public class FixedDiscount extends javax.swing.JFrame {
         frame.pack();
         frame.setVisible(true);
     }//GEN-LAST:event_homeButtonActionPerformed
-
-    private void fixedIDTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fixedIDTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_fixedIDTextFieldActionPerformed
 
     private void variableDiscountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_variableDiscountButtonActionPerformed
         // TODO add your handling code here:
@@ -327,41 +330,41 @@ public class FixedDiscount extends javax.swing.JFrame {
         try {
             Connection connection = DBConnection.getConnection();
             connection.setAutoCommit(false);
-            
-            String sqlQuery = "SELECT * FROM AccountHolder";
+
+            String sqlQuery = "SELECT customerID, firstName, lastName FROM Customer";
             String sqlQuery2 = "SELECT * FROM Discount";
-            
+
             PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
             ResultSet resultSet = pStatement.executeQuery();
-            
+
             PreparedStatement pStatement2 = connection.prepareStatement(sqlQuery2);
             ResultSet resultSet2 = pStatement2.executeQuery();
-            
-            DefaultTableModel model = (DefaultTableModel)accountHolderTable.getModel();
-            DefaultTableModel model2 = (DefaultTableModel)discountTable.getModel();
-            
+
+            DefaultTableModel model = (DefaultTableModel) accountHolderTable.getModel();
+            DefaultTableModel model2 = (DefaultTableModel) discountTable.getModel();
+
             model.setRowCount(0);
             model2.setRowCount(0);
-            
+
             while (resultSet.next()) {
                 Object o[] = {
-                    resultSet.getString("customerID"), resultSet.getString("discountPlan"), resultSet.getString("payLater"), resultSet.getString("credit")
+                    resultSet.getString("customerID"), resultSet.getString("firstName"), resultSet.getString("lastName")
                 };
                 model.addRow(o);
-               
+
             }
-            
+
             while (resultSet2.next()) {
                 Object o[] = {
                     resultSet2.getString("Discount_ID"), resultSet2.getString("customerID")
                 };
                 model2.addRow(o);
-               
+
             }
-            
+
             connection.commit();
             connection.setAutoCommit(true);
-            
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -381,8 +384,7 @@ public class FixedDiscount extends javax.swing.JFrame {
                     resultSet.getString("Fixed_ID"), resultSet.getString("Discount_ID"), resultSet.getString("Fixed_Rate")
                 };
                 model.addRow(o);
-                
-                        
+
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -391,25 +393,47 @@ public class FixedDiscount extends javax.swing.JFrame {
 
     private void addDiscountPlanButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDiscountPlanButtonActionPerformed
         // TODO add your handling code here:
-        String fixedID = fixedIDTextField.getText();
+
+        Random rand = new Random();
+        int n = rand.nextInt(100);
+        String fixedID = String.valueOf(n);
+
         String fixedRate = fixedRateTextField.getText();
         int row = discountTable.getSelectedRow();
         String discountID = discountTable.getModel().getValueAt(row, 0).toString();
-        
+        String customerID = discountTable.getModel().getValueAt(row, 1).toString();
+
         try {
             Connection connection = DBConnection.getConnection();
+            connection.setAutoCommit(false);
+
             String sqlQuery = "INSERT INTO Fixed (Fixed_ID, Discount_ID, Fixed_Rate) VALUES (?, ?, ?)";
+            String sqlQuery2 = "UPDATE AccountHolder SET discountPlan = ? WHERE customerID =" + customerID;
+
             PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
+            PreparedStatement pStatement2 = connection.prepareStatement(sqlQuery2);
+
             pStatement.setString(1, fixedID);
             pStatement.setString(2, discountID);
             pStatement.setString(3, fixedRate);
+
+            pStatement2.setString(1, "Fixed");
+
             pStatement.executeUpdate();
+            pStatement2.executeUpdate();
             System.out.println("Added");
+            connection.commit();
+            connection.setAutoCommit(true);
+            viewFixedPlansButtonActionPerformed(evt);
+
+            pStatement.close();
+            pStatement2.close();
+            connection.close();
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
     }//GEN-LAST:event_addDiscountPlanButtonActionPerformed
 
     private void updateDiscountPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateDiscountPlanActionPerformed
@@ -417,7 +441,7 @@ public class FixedDiscount extends javax.swing.JFrame {
         String fixedRate = fixedRateTextField.getText();
         int row = fixedDiscountTable.getSelectedRow();
         String discountID = fixedDiscountTable.getModel().getValueAt(row, 1).toString();
-        
+
         try {
             Connection connection = DBConnection.getConnection();
             String sqlQuery = "UPDATE Fixed SET Fixed_Rate = ? WHERE Discount_ID =" + discountID;
@@ -425,11 +449,40 @@ public class FixedDiscount extends javax.swing.JFrame {
             pStatement.setString(1, fixedRate);
             pStatement.executeUpdate();
             System.out.println("Added");
+            viewFixedPlansButtonActionPerformed(evt);
+
+            pStatement.close();
+            connection.close();
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }//GEN-LAST:event_updateDiscountPlanActionPerformed
+
+    private void deleteDiscountPlanButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteDiscountPlanButtonActionPerformed
+        // TODO add your handling code here:
+
+        try {
+            Connection connection = DBConnection.getConnection();
+
+            int row = fixedDiscountTable.getSelectedRow();
+            String fixedID = fixedDiscountTable.getModel().getValueAt(row, 0).toString();
+            System.out.println(fixedID);
+
+            String sqlQuery = "DELETE FROM Fixed WHERE Fixed_ID =" + fixedID;
+            PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
+            pStatement.executeUpdate();
+            System.out.println("Deleted");
+            pStatement.close();
+            connection.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Exception");
+        }
+
+        viewFixedPlansButtonActionPerformed(evt);
+    }//GEN-LAST:event_deleteDiscountPlanButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -472,15 +525,16 @@ public class FixedDiscount extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable accountHolderTable;
     private javax.swing.JButton addDiscountPlanButton;
+    private javax.swing.JButton deleteDiscountPlanButton;
     private javax.swing.JTable discountTable;
     private javax.swing.JTable fixedDiscountTable;
-    private javax.swing.JTextField fixedIDTextField;
     private javax.swing.JTextField fixedRateTextField;
     private javax.swing.JButton flexibleDiscountButton;
     private javax.swing.JButton homeButton;
+    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
+    private javax.swing.JDialog jDialog1;
     private javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;

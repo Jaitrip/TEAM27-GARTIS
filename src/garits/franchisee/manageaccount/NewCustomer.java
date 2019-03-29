@@ -75,9 +75,17 @@ public class NewCustomer extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "customerID", "discountPlan", "payLater", "credit"
+                "customerID", "payLater", "credit", "Discount_ID"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         addCustomerButton.setText("Add Customer");
@@ -179,7 +187,6 @@ public class NewCustomer extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel3)
                                 .addGap(39, 39, 39)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(firstNameLabel))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
@@ -239,19 +246,35 @@ public class NewCustomer extends javax.swing.JFrame {
         // TODO add your handling code here:
         Random rand = new Random();
         int n = rand.nextInt(100);
-        String id = String.valueOf(n);
+        String discountID = String.valueOf(n);
         
         try {
             
             Connection connection = DBConnection.getConnection();
+            connection.setAutoCommit(false);
+            
             String sqlQuery = "INSERT INTO AccountHolder (customerID, discountPlan, payLater, credit) VALUES (?, ?, ?, ?)";
+            String sqlQuery2 = "INSERT INTO Discount (Discount_ID, customerID) VALUES (?, ?)";
+            
             PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
             pStatement.setString(1, enterCustomerIDField.getText());
             pStatement.setString(2, "");
             pStatement.setString(3, payLaterBox.getSelectedItem().toString());
             pStatement.setString(4, "");
+            
+            PreparedStatement pStatement2 = connection.prepareStatement(sqlQuery2);
+            pStatement2.setString(1, discountID);
+            pStatement2.setString(2, enterCustomerIDField.getText());
+            
             pStatement.executeUpdate();
+            pStatement2.executeUpdate();
+            
+            connection.commit();
+            connection.setAutoCommit(true);
+            
             pStatement.close();
+            pStatement2.close();
+            
             connection.close();
             
         } catch (Exception e) {
