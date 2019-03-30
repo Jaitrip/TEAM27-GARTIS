@@ -392,7 +392,7 @@ public class FlexibleDiscount extends javax.swing.JFrame {
 
         try {
             Connection connection = DBConnection.getConnection();
-            String sqlQuery = "UPDATE Flexible SET 0-1000 = ?, 1001-5000 = ?, 5001-10000 = ? WHERE Discount_ID =" + discountID;
+            String sqlQuery = "UPDATE Flexible SET zeroToThousand = ?, thousandToFive = ?, fiveToTenThousand = ? WHERE Discount_ID =" + discountID;
             PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
             pStatement.setString(1, zeroToThousand);
             pStatement.setString(2, thousandToFive);
@@ -445,7 +445,7 @@ public class FlexibleDiscount extends javax.swing.JFrame {
             model.setRowCount(0);
             while (resultSet.next()) {
                 Object o[] = {
-                    resultSet.getString("Flexi_ID"), resultSet.getString("Discount_ID"), resultSet.getString("0-1000"), resultSet.getString("1001-5000"), resultSet.getString("5001-10000")
+                    resultSet.getString("Flexi_ID"), resultSet.getString("Discount_ID"), resultSet.getString("zeroToThousand"), resultSet.getString("thousandToFive"), resultSet.getString("fiveToTenThousand")
                 };
                 model.addRow(o);
 
@@ -471,7 +471,7 @@ public class FlexibleDiscount extends javax.swing.JFrame {
         try {
             Connection connection = DBConnection.getConnection();
 
-            String sqlQuery = "INSERT INTO Flexible (Flexi_ID, Discount_ID, 0-1000, 1001-5000, 5001-10000) VALUES (?, ?, ?, ?, ?)";
+            String sqlQuery = "INSERT INTO Flexible (Flexi_ID, Discount_ID, zeroToThousand, thousandToFive, fiveToTenThousand) VALUES (?, ?, ?, ?, ?)";
 
             PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
 
