@@ -121,7 +121,7 @@
                       <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jTextField6" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="118" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="106" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="addUserButton" min="-2" max="-2" attributes="0"/>
                           <Component id="jButton1" min="-2" max="-2" attributes="0"/>
@@ -131,7 +131,7 @@
                           <Component id="viewButton" max="32767" attributes="0"/>
                           <Component id="updateButton" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="173" max="32767" attributes="0"/>
+                      <EmptySpace pref="185" max="32767" attributes="0"/>
                       <Component id="jButton2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
