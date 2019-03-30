@@ -216,6 +216,7 @@ public class TasksCompletedForm extends javax.swing.JFrame {
         
         try {
             Connection connection = DBConnection.getConnection();
+            connection.setAutoCommit(false);
             String sqlQuery = "UPDATE JobTask SET actualTime = ?, status = ? WHERE JobSheetjobNumber = ? AND taskID = ?" ;
             PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
             pStatement.setString(1, timeTakenField.getText());
@@ -225,6 +226,28 @@ public class TasksCompletedForm extends javax.swing.JFrame {
             pStatement.executeUpdate();
             System.out.println("updated");
             pStatement.close();
+            
+            
+            String checkCompleted = "SELECT COUNT(*) FROM JobTask WHERE status = ? AND JobSheetjobNumber = ?";
+            PreparedStatement checkStatement = connection.prepareStatement(checkCompleted);
+            
+            checkStatement.setString(1, "Pending");
+            checkStatement.setString(2, jobNumber);
+            ResultSet resultSet = checkStatement.executeQuery();
+            
+            if (resultSet.getString("COUNT(*)").equals("0")) {
+                String updateQuery = "UPDATE JobSheet SET status = ? WHERE jobNumber = ?";
+                PreparedStatement updateStatement = connection.prepareStatement(updateQuery);
+                updateStatement.setString(1, "Completed");
+                updateStatement.setString(2, jobNumber);
+                updateStatement.executeUpdate();
+                System.out.println("Updated JobSheet");
+                updateStatement.close();
+            }
+            
+            connection.commit();
+            connection.setAutoCommit(true);
+            checkStatement.close();
             connection.close();
 
         } catch (Exception e) {
