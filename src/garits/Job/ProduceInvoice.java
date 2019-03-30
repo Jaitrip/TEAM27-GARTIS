@@ -40,6 +40,11 @@ public class ProduceInvoice {
     
     public void produceInvoice(String jNumber) throws SQLException {
         
+        String partQuery = "SELECT Description, qty FROM PartsUsed WHERE JobSheetjobNumber = ?";
+        String partCost = "SELECT price FROM StockLedger WHERE partName = ?";
+        String taskTime = "SELECT actualTime FROM JobTask WHERE JobSheetjobNumber = ?";
+        
+        
         try {
             
             
