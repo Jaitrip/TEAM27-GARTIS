@@ -5,7 +5,13 @@
  */
 package garits.franchisee.reports;
 
+import garits.DBConnectivity.DBConnection;
 import garits.franchisee.Reports;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.LinkedList;
+import java.util.List;
 import javax.swing.JFrame;
 
 /**
@@ -30,55 +36,24 @@ public class JobReport extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jobTypeLabel = new javax.swing.JLabel();
-        startDateLabel = new javax.swing.JLabel();
-        endDateLabel = new javax.swing.JLabel();
-        searchButton = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        jobTypeLabel2 = new javax.swing.JLabel();
-        averageJobDurationLabel = new javax.swing.JLabel();
-        averagePriceLabel = new javax.swing.JLabel();
-        jobTypeField = new javax.swing.JTextField();
+        backButotn = new javax.swing.JButton();
+        startDateLabel = new javax.swing.JLabel();
+        generateButton = new javax.swing.JButton();
+        endDateLabel = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        label2 = new java.awt.Label();
         startDateField = new javax.swing.JTextField();
         endDateField = new javax.swing.JTextField();
-        jobTypeField2 = new javax.swing.JTextField();
-        averageJobDurationField = new javax.swing.JTextField();
-        averagePriceField = new javax.swing.JTextField();
-        backButotn = new javax.swing.JButton();
+        printButton = new javax.swing.JButton();
+        jobTypeBox = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
+        priceLabel = new javax.swing.JLabel();
+        timeLabel = new javax.swing.JLabel();
+        mechanicBox = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jobTypeLabel.setText("Job Type");
-
-        startDateLabel.setText("Start Date");
-
-        endDateLabel.setText("End Date");
-
-        searchButton.setText("Search");
-
-        jobTypeLabel2.setText("Job Type");
-
-        averageJobDurationLabel.setText("Average Job Duration");
-
-        averagePriceLabel.setText("Average Price");
-
-        startDateField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                startDateFieldActionPerformed(evt);
-            }
-        });
-
-        jobTypeField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jobTypeField2ActionPerformed(evt);
-            }
-        });
-
-        averagePriceField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                averagePriceFieldActionPerformed(evt);
-            }
-        });
 
         backButotn.setText("Back");
         backButotn.addActionListener(new java.awt.event.ActionListener() {
@@ -87,91 +62,168 @@ public class JobReport extends javax.swing.JFrame {
             }
         });
 
+        startDateLabel.setText("Start Date");
+
+        generateButton.setText("Generate Report ");
+        generateButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                generateButtonActionPerformed(evt);
+            }
+        });
+
+        endDateLabel.setText("End Date");
+
+        jPanel2.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel2.setPreferredSize(new java.awt.Dimension(1920, 100));
+
+        label2.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 36)); // NOI18N
+        label2.setForeground(new java.awt.Color(255, 255, 255));
+        label2.setText("GARITS");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(846, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        startDateField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                startDateFieldActionPerformed(evt);
+            }
+        });
+
+        printButton.setText("Print Report");
+        printButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                printButtonActionPerformed(evt);
+            }
+        });
+
+        jobTypeBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All", "MOT", "Annual Service", "Repair" }));
+        jobTypeBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jobTypeBoxActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Job Type");
+
+        priceLabel.setText("Average Price: ");
+
+        timeLabel.setText("Average Time Taken: ");
+
+        mechanicBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All", "2222", "5555", "6666" }));
+        mechanicBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mechanicBoxActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setText("Mechanic");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(220, 220, 220)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(startDateField, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(startDateLabel))
+                .addGap(71, 71, 71)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(endDateField, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(endDateLabel))
+                .addGap(66, 66, 66)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jobTypeBox, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(mechanicBox, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
                 .addGap(311, 311, 311))
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(backButotn)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(backButotn))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 1033, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(105, 105, 105)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jobTypeField)
-                    .addComponent(startDateField)
-                    .addComponent(endDateField)
-                    .addComponent(jobTypeLabel)
-                    .addComponent(startDateLabel)
-                    .addComponent(endDateLabel)
-                    .addComponent(searchButton))
-                .addGap(435, 435, 435)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jobTypeField2, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(averageJobDurationField, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(averagePriceField, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jobTypeLabel2)
-                    .addComponent(averageJobDurationLabel)
-                    .addComponent(averagePriceLabel))
-                .addGap(299, 299, 299))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(292, 292, 292)
+                        .addComponent(priceLabel)
+                        .addGap(226, 226, 226)
+                        .addComponent(timeLabel))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(360, 360, 360)
+                        .addComponent(generateButton)
+                        .addGap(50, 50, 50)
+                        .addComponent(printButton)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(68, 68, 68)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jobTypeLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jobTypeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(24, 24, 24)
-                        .addComponent(startDateLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(startDateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34)
-                        .addComponent(endDateLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(endDateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(searchButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(backButotn)
-                        .addContainerGap())
+                        .addGap(0, 19, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(backButotn)
+                                .addContainerGap())
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(144, 144, 144)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(priceLabel)
+                                    .addComponent(timeLabel))
+                                .addGap(125, 125, 125)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(printButton)
+                                    .addComponent(generateButton))
+                                .addGap(98, 98, 98))))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(35, 35, 35)
-                        .addComponent(jobTypeLabel2)
-                        .addGap(24, 24, 24)
-                        .addComponent(jobTypeField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
-                        .addComponent(averageJobDurationLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(averageJobDurationField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(40, 40, 40)
-                        .addComponent(averagePriceLabel)
-                        .addGap(18, 18, 18)
-                        .addComponent(averagePriceField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(129, 129, 129))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(startDateLabel)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(startDateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel1)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jobTypeBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(endDateLabel)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(endDateField, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(mechanicBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void startDateFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startDateFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_startDateFieldActionPerformed
-
-    private void averagePriceFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_averagePriceFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_averagePriceFieldActionPerformed
-
-    private void jobTypeField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jobTypeField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jobTypeField2ActionPerformed
 
     private void backButotnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButotnActionPerformed
         // TODO add your handling code here:
@@ -181,6 +233,162 @@ public class JobReport extends javax.swing.JFrame {
         frame.pack();
         frame.setVisible(true);
     }//GEN-LAST:event_backButotnActionPerformed
+
+    private void generateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateButtonActionPerformed
+        // TODO add your handling code here:
+        String jobType = jobTypeBox.getSelectedItem().toString();
+        String mechanic = mechanicBox.getSelectedItem().toString();
+        String startDate = startDateField.getText();
+        String endDate = endDateField.getText();
+        
+        List<String> totalList = new LinkedList<String>();
+        List<String> timeList = new LinkedList<String>();
+        
+        double totalTime = 0;
+        double totalPrice = 0;
+        
+        double averageTime = 0;
+        double averagePrice = 0;
+        
+        String byJobAndMechanicQuery = "SELECT grandTotal, totalTimeTaken FROM Invoice INNER JOIN JobSheet ON Invoice.jobNumber = JobSheet.jobNumber WHERE dateOfInvoice BETWEEN ? AND ? AND JobSheet.EmployeeemployeeID = ? AND JobSheet.jobtype = ?";
+        String byJobQuery = "SELECT grandTotal, totalTimeTaken FROM Invoice INNER JOIN JobSheet ON Invoice.jobNumber = JobSheet.jobNumber WHERE dateOfInvoice BETWEEN ? AND ? AND JobSheet.jobtype = ?";
+        String byMechanicQuery = "SELECT grandTotal, totalTimeTaken FROM Invoice INNER JOIN JobSheet ON Invoice.jobNumber = JobSheet.jobNumber WHERE dateOfInvoice BETWEEN ? AND ? AND JobSheet.EmployeeemployeeID = ?";
+        String query = "SELECT grandTotal, totalTimeTaken FROM Invoice WHERE dateOfInvoice BETWEEN ? AND ?";
+        
+        try {
+            
+            Connection connection = DBConnection.getConnection();
+            
+            if (jobType.equals("All") && mechanic.equals("All")) {
+                PreparedStatement pStatement = connection.prepareStatement(query);
+                pStatement.setString(1, startDate);
+                pStatement.setString(2, endDate);
+                ResultSet rSet = pStatement.executeQuery();
+                
+                while (rSet.next()) {
+                    totalList.add(rSet.getString("grandTotal"));
+                    timeList.add(rSet.getString("totalTimeTaken"));
+                }
+                
+                for (int i = 0; i < totalList.size(); i++) {
+                    totalPrice = totalPrice + Double.parseDouble(totalList.get(i));
+                }
+                
+                for (int i = 0; i < timeList.size(); i++) {
+                    totalTime = totalTime + Double.parseDouble(timeList.get(i));
+                }
+                
+                averagePrice = totalPrice / totalList.size();
+                averageTime = totalTime / timeList.size();
+                
+                priceLabel.setText("Average Price: " + averagePrice);
+                timeLabel.setText("Average Time: " + averageTime);
+                
+            } else if (jobType.equals("All") && !mechanic.equals("All")) {
+                
+                PreparedStatement pStatement = connection.prepareStatement(byMechanicQuery);
+                pStatement.setString(1, startDate);
+                pStatement.setString(2, endDate);
+                pStatement.setString(3, mechanic);
+                ResultSet rSet = pStatement.executeQuery();
+                
+                while (rSet.next()) {
+                    totalList.add(rSet.getString("grandTotal"));
+                    timeList.add(rSet.getString("totalTimeTaken"));
+                }
+                
+                for (int i = 0; i < totalList.size(); i++) {
+                    totalPrice = totalPrice + Double.parseDouble(totalList.get(i));
+                }
+                
+                for (int i = 0; i < timeList.size(); i++) {
+                    totalTime = totalTime + Double.parseDouble(timeList.get(i));
+                }
+                
+                averagePrice = totalPrice / totalList.size();
+                averageTime = totalTime / timeList.size();
+                
+                priceLabel.setText("Average Price: " + averagePrice);
+                timeLabel.setText("Average Time: " + averageTime);
+                
+            } else if (!jobType.equals("All") && mechanic.equals("All")) {
+                
+                PreparedStatement pStatement = connection.prepareStatement(byJobQuery);
+                pStatement.setString(1, startDate);
+                pStatement.setString(2, endDate);
+                pStatement.setString(3, jobType);
+                ResultSet rSet = pStatement.executeQuery();
+                
+                while (rSet.next()) {
+                    totalList.add(rSet.getString("grandTotal"));
+                    timeList.add(rSet.getString("totalTimeTaken"));
+                }
+                
+                for (int i = 0; i < totalList.size(); i++) {
+                    totalPrice = totalPrice + Double.parseDouble(totalList.get(i));
+                }
+                
+                for (int i = 0; i < timeList.size(); i++) {
+                    totalTime = totalTime + Double.parseDouble(timeList.get(i));
+                }
+                
+                averagePrice = totalPrice / totalList.size();
+                averageTime = totalTime / timeList.size();
+                
+                priceLabel.setText("Average Price: " + averagePrice);
+                timeLabel.setText("Average Time: " + averageTime);
+                
+            } else if (!jobType.equals("All") && !mechanic.equals("All")) {
+                
+                PreparedStatement pStatement = connection.prepareStatement(byJobAndMechanicQuery);
+                pStatement.setString(1, startDate);
+                pStatement.setString(2, endDate);
+                pStatement.setString(3, mechanic);
+                pStatement.setString(4, jobType);
+                
+                ResultSet rSet = pStatement.executeQuery();
+                
+                while (rSet.next()) {
+                    totalList.add(rSet.getString("grandTotal"));
+                    timeList.add(rSet.getString("totalTimeTaken"));
+                }
+                
+                for (int i = 0; i < totalList.size(); i++) {
+                    totalPrice = totalPrice + Double.parseDouble(totalList.get(i));
+                }
+                
+                for (int i = 0; i < timeList.size(); i++) {
+                    totalTime = totalTime + Double.parseDouble(timeList.get(i));
+                }
+                
+                averagePrice = totalPrice / totalList.size();
+                averageTime = totalTime / timeList.size();
+                
+                priceLabel.setText("Average Price: " + averagePrice);
+                timeLabel.setText("Average Time: " + averageTime);
+                
+            }
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_generateButtonActionPerformed
+
+    private void startDateFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startDateFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_startDateFieldActionPerformed
+
+    private void printButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_printButtonActionPerformed
+
+    private void jobTypeBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jobTypeBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jobTypeBoxActionPerformed
+
+    private void mechanicBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mechanicBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mechanicBoxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -219,20 +427,21 @@ public class JobReport extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField averageJobDurationField;
-    private javax.swing.JLabel averageJobDurationLabel;
-    private javax.swing.JTextField averagePriceField;
-    private javax.swing.JLabel averagePriceLabel;
     private javax.swing.JButton backButotn;
     private javax.swing.JTextField endDateField;
     private javax.swing.JLabel endDateLabel;
+    private javax.swing.JButton generateButton;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JTextField jobTypeField;
-    private javax.swing.JTextField jobTypeField2;
-    private javax.swing.JLabel jobTypeLabel;
-    private javax.swing.JLabel jobTypeLabel2;
-    private javax.swing.JButton searchButton;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JComboBox<String> jobTypeBox;
+    private java.awt.Label label2;
+    private javax.swing.JComboBox<String> mechanicBox;
+    private javax.swing.JLabel priceLabel;
+    private javax.swing.JButton printButton;
     private javax.swing.JTextField startDateField;
     private javax.swing.JLabel startDateLabel;
+    private javax.swing.JLabel timeLabel;
     // End of variables declaration//GEN-END:variables
 }

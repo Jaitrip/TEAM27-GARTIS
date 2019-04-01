@@ -47,12 +47,13 @@ public class ProduceInvoice {
     
     public Invoice produceInvoice(String jNumber) throws SQLException {
         
-        Invoice invoice = new Invoice("", "", "", "", "", "", "", "");
+        Invoice invoice = new Invoice("", "", "", "", "", "", "", "", "");
         List<String> taskTotalTimes = new LinkedList<String>();
         List<Part> partList = new LinkedList<Part>();
         double labourCost = 0;
         double partCost = 0;
         double grandTotal = 0;
+        double totalHours = 0;
         
         String jobTypeQuery = "SELECT jobtype FROM JobSheet WHERE jobNumber = ?";
         String partQuery = "SELECT price, qty FROM PartsUsed INNER JOIN StockLedger ON StockLedger.partName = PartsUsed.Description WHERE JobSheetjobNumber = ?";
@@ -85,7 +86,6 @@ public class ProduceInvoice {
                 }
 
                 double totalMins = 0;
-                double totalHours = 0;
                 double hours = 0;
                 double mins = 0;
 
@@ -233,7 +233,7 @@ public class ProduceInvoice {
             int n = rand.nextInt(100);
             String invoiceNumber = String.valueOf(n);
 
-            invoice = new Invoice(invoiceNumber, jNumber, dateOfInvoice, newDateDue, String.valueOf(grandTotal), String.valueOf(labourCost), String.valueOf(partCost), "Unpaid");
+            invoice = new Invoice(invoiceNumber, jNumber, dateOfInvoice, newDateDue, String.valueOf(grandTotal), String.valueOf(labourCost), String.valueOf(partCost), "Unpaid", String.valueOf(totalHours));
             
             //connection.commit();
             //connection.setAutoCommit(true);

@@ -5,10 +5,6 @@
  */
 package garits.Job;
 
-
-import garits.Stock.Part;
-import java.util.List;
-
 /**
  *
  * @author jaimik
@@ -23,8 +19,9 @@ public class Invoice {
     private String labourCost;
     private String partCost;
     private String status;
+    private String totalTimeTaken;
 
-    public Invoice(String invoiceNumber, String jobNumber, String dateOfInvoice, String datePaymentDue, String grandTotal, String labourCost, String partCost, String status) {
+    public Invoice(String invoiceNumber, String jobNumber, String dateOfInvoice, String datePaymentDue, String grandTotal, String labourCost, String partCost, String status, String totalTimeTaken) {
         this.invoiceNumber = invoiceNumber;
         this.jobNumber = jobNumber;
         this.dateOfInvoice = dateOfInvoice;
@@ -33,6 +30,7 @@ public class Invoice {
         this.labourCost = labourCost;
         this.partCost = partCost;
         this.status = status;
+        this.totalTimeTaken = totalTimeTaken;
     }
 
     public String getInvoiceNumber() {
@@ -98,6 +96,16 @@ public class Invoice {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    public String getTotalTimeTaken() {
+        return totalTimeTaken;
+    }
+
+    public void setTotalTimeTaken(String totalTimeTaken) {
+        this.totalTimeTaken = totalTimeTaken;
+    }
+    
+    
     
     
     
