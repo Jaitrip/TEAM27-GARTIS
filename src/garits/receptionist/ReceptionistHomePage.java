@@ -5,7 +5,7 @@
  */
 package garits.receptionist;
 
-import garits.receptionist.managejob.ProduceInvoice;
+import garits.receptionist.managejob.PrintInvoice;
 import garits.SignInForm;
 import garits.receptionist.customer.addCustomerRecord;
 import javax.swing.JFrame;
@@ -111,7 +111,7 @@ public class ReceptionistHomePage extends javax.swing.JFrame {
     private void produceInvoiceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_produceInvoiceButtonActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        JFrame frame = new ProduceInvoice();
+        JFrame frame = new PrintInvoice();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);

@@ -15,81 +15,89 @@ import java.util.List;
  */
 public class Invoice {
     
-    private int invoiceNumber;
-    private String customerName;
-    private String vehicleRegistration;
-    private String jobDescription;
-    private double labourCost;
-    private double totalCost;
-    private List<Part> partsUsed;
+    private String invoiceNumber;
+    private String jobNumber;
+    private String dateOfInvoice;
+    private String datePaymentDue;
+    private String grandTotal;
+    private String labourCost;
+    private String partCost;
+    private String status;
 
-    public Invoice(int invoiceNumber, String customerName, String vehicleRegistration, String jobDescription, double labourCost, double totalCost, List<Part> partsUsed) {
+    public Invoice(String invoiceNumber, String jobNumber, String dateOfInvoice, String datePaymentDue, String grandTotal, String labourCost, String partCost, String status) {
         this.invoiceNumber = invoiceNumber;
-        this.customerName = customerName;
-        this.vehicleRegistration = vehicleRegistration;
-        this.jobDescription = jobDescription;
+        this.jobNumber = jobNumber;
+        this.dateOfInvoice = dateOfInvoice;
+        this.datePaymentDue = datePaymentDue;
+        this.grandTotal = grandTotal;
         this.labourCost = labourCost;
-        this.totalCost = totalCost;
-        this.partsUsed = partsUsed;
+        this.partCost = partCost;
+        this.status = status;
     }
 
-    public int getInvoiceNumber() {
+    public String getInvoiceNumber() {
         return invoiceNumber;
     }
 
-    public void setInvoiceNumber(int invoiceNumber) {
+    public void setInvoiceNumber(String invoiceNumber) {
         this.invoiceNumber = invoiceNumber;
     }
 
-    public String getCustomerName() {
-        return customerName;
+    public String getJobNumber() {
+        return jobNumber;
     }
 
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
+    public void setJobNumber(String jobNumber) {
+        this.jobNumber = jobNumber;
     }
 
-    public String getVehicleRegistration() {
-        return vehicleRegistration;
+    public String getDateOfInvoice() {
+        return dateOfInvoice;
     }
 
-    public void setVehicleRegistration(String vehicleRegistration) {
-        this.vehicleRegistration = vehicleRegistration;
+    public void setDateOfInvoice(String dateOfInvoice) {
+        this.dateOfInvoice = dateOfInvoice;
     }
 
-    public String getJobDescription() {
-        return jobDescription;
+    public String getDatePaymentDue() {
+        return datePaymentDue;
     }
 
-    public void setJobDescription(String jobDescription) {
-        this.jobDescription = jobDescription;
+    public void setDatePaymentDue(String datePaymentDue) {
+        this.datePaymentDue = datePaymentDue;
     }
 
-    public double getLabourCost() {
+    public String getGrandTotal() {
+        return grandTotal;
+    }
+
+    public void setGrandTotal(String grandTotal) {
+        this.grandTotal = grandTotal;
+    }
+
+    public String getLabourCost() {
         return labourCost;
     }
 
-    public void setLabourCost(double labourCost) {
+    public void setLabourCost(String labourCost) {
         this.labourCost = labourCost;
     }
 
-    public double getTotalCost() {
-        return totalCost;
+    public String getPartCost() {
+        return partCost;
     }
 
-    public void setTotalCost(double totalCost) {
-        this.totalCost = totalCost;
+    public void setPartCost(String partCost) {
+        this.partCost = partCost;
     }
 
-    public List<Part> getPartsUsed() {
-        return partsUsed;
+    public String getStatus() {
+        return status;
     }
 
-    public void setPartsUsed(List<Part> partsUsed) {
-        this.partsUsed = partsUsed;
+    public void setStatus(String status) {
+        this.status = status;
     }
-    
-    
     
     
     

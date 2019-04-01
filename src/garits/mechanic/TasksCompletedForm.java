@@ -6,6 +6,8 @@
 package garits.mechanic;
 
 import garits.DBConnectivity.DBConnection;
+import garits.Job.Invoice;
+import garits.Job.ProduceInvoice;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -159,7 +161,7 @@ public class TasksCompletedForm extends javax.swing.JFrame {
     private void searchJobTasksButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchJobTasksButtonActionPerformed
         // TODO add your handling code here:
         String jobTaskNumber = jobNumberField.getText();
-        
+
         try {
 
             Connection connection = DBConnection.getConnection();
@@ -195,8 +197,7 @@ public class TasksCompletedForm extends javax.swing.JFrame {
             model.setRowCount(0);
             while (resultSet.next()) {
                 Object o[] = {
-                    resultSet.getString("JobSheetjobNumber"), resultSet.getString("taskID"), resultSet.getString("actualTime"), resultSet.getString("estimatedTime"), resultSet.getString("taskDescription"), resultSet.getString("status"),
-                };
+                    resultSet.getString("JobSheetjobNumber"), resultSet.getString("taskID"), resultSet.getString("actualTime"), resultSet.getString("estimatedTime"), resultSet.getString("taskDescription"), resultSet.getString("status"),};
                 model.addRow(o);
 
             }
@@ -213,11 +214,11 @@ public class TasksCompletedForm extends javax.swing.JFrame {
         int jobRow = jobTaskTable.getSelectedRow();
         String jobNumber = jobTaskTable.getModel().getValueAt(jobRow, 0).toString();
         String taskID = jobTaskTable.getModel().getValueAt(jobRow, 1).toString();
-        
+
         try {
             Connection connection = DBConnection.getConnection();
             connection.setAutoCommit(false);
-            String sqlQuery = "UPDATE JobTask SET actualTime = ?, status = ? WHERE JobSheetjobNumber = ? AND taskID = ?" ;
+            String sqlQuery = "UPDATE JobTask SET actualTime = ?, status = ? WHERE JobSheetjobNumber = ? AND taskID = ?";
             PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
             pStatement.setString(1, timeTakenField.getText());
             pStatement.setString(2, "Completed");
@@ -226,15 +227,14 @@ public class TasksCompletedForm extends javax.swing.JFrame {
             pStatement.executeUpdate();
             System.out.println("updated");
             pStatement.close();
-            
-            
+
             String checkCompleted = "SELECT COUNT(*) FROM JobTask WHERE status = ? AND JobSheetjobNumber = ?";
             PreparedStatement checkStatement = connection.prepareStatement(checkCompleted);
-            
+
             checkStatement.setString(1, "Pending");
             checkStatement.setString(2, jobNumber);
             ResultSet resultSet = checkStatement.executeQuery();
-            
+
             if (resultSet.getString("COUNT(*)").equals("0")) {
                 String updateQuery = "UPDATE JobSheet SET status = ? WHERE jobNumber = ?";
                 PreparedStatement updateStatement = connection.prepareStatement(updateQuery);
@@ -243,8 +243,23 @@ public class TasksCompletedForm extends javax.swing.JFrame {
                 updateStatement.executeUpdate();
                 System.out.println("Updated JobSheet");
                 updateStatement.close();
+
+                ProduceInvoice produceInvoice = new ProduceInvoice();
+                Invoice invoice = produceInvoice.produceInvoice(jobNumber);
+
+                String insertQuery = "INSERT INTO Invoice (invoiceNumber, jobNumber, dateOfInvoice, datePaymentDue, grandTotal, labourCost, partCost, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+                PreparedStatement insertStatement = connection.prepareStatement(insertQuery);
+                insertStatement.setString(1, invoice.getInvoiceNumber());
+                insertStatement.setString(2, invoice.getJobNumber());
+                insertStatement.setString(3, invoice.getDateOfInvoice());
+                insertStatement.setString(4, invoice.getDatePaymentDue());
+                insertStatement.setString(5, invoice.getGrandTotal());
+                insertStatement.setString(6, invoice.getLabourCost());
+                insertStatement.setString(7, invoice.getPartCost());
+                insertStatement.setString(8, invoice.getStatus());
+                insertStatement.executeUpdate();
             }
-            
+
             connection.commit();
             connection.setAutoCommit(true);
             checkStatement.close();
@@ -254,8 +269,8 @@ public class TasksCompletedForm extends javax.swing.JFrame {
             e.printStackTrace();
             System.out.println("Exception");
         }
-        
-        
+
+
     }//GEN-LAST:event_setTaskCompletedButtonActionPerformed
 
     /**
