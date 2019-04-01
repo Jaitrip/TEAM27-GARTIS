@@ -36,64 +36,106 @@ public class Stock extends javax.swing.JFrame {
         checkStockButton = new javax.swing.JButton();
         stockReportButton = new javax.swing.JButton();
         orderPartsButton = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        label1 = new java.awt.Label();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1920, 1080));
 
-        backButton.setText("Back");
+        backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garits/ICONS/back-icon.png"))); // NOI18N
         backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backButtonActionPerformed(evt);
             }
         });
 
+        checkStockButton.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        checkStockButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garits/ICONS/check stock-icon.png"))); // NOI18N
         checkStockButton.setText("Check Stock");
+        checkStockButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        checkStockButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         checkStockButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 checkStockButtonActionPerformed(evt);
             }
         });
 
+        stockReportButton.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        stockReportButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garits/ICONS/Stock-icon.png"))); // NOI18N
         stockReportButton.setText("Stock Report");
+        stockReportButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        stockReportButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         stockReportButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 stockReportButtonActionPerformed(evt);
             }
         });
 
+        orderPartsButton.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        orderPartsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garits/ICONS/parts-icon.png"))); // NOI18N
         orderPartsButton.setText("Order Parts");
+        orderPartsButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        orderPartsButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         orderPartsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 orderPartsButtonActionPerformed(evt);
             }
         });
 
+        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel1.setPreferredSize(new java.awt.Dimension(1920, 100));
+
+        label1.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 36)); // NOI18N
+        label1.setForeground(new java.awt.Color(255, 255, 255));
+        label1.setText("GARITS");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(1733, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(20, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(backButton))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(249, 249, 249)
-                        .addComponent(checkStockButton)
-                        .addGap(61, 61, 61)
-                        .addComponent(stockReportButton)
-                        .addGap(72, 72, 72)
-                        .addComponent(orderPartsButton)))
-                .addContainerGap(258, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(backButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(checkStockButton)
+                .addGap(61, 61, 61)
+                .addComponent(stockReportButton)
+                .addGap(59, 59, 59)
+                .addComponent(orderPartsButton)
+                .addGap(649, 649, 649))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(178, 178, 178)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(orderPartsButton)
-                    .addComponent(checkStockButton)
-                    .addComponent(stockReportButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 238, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(321, 321, 321)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(checkStockButton, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(stockReportButton, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(orderPartsButton, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 434, Short.MAX_VALUE)
                 .addComponent(backButton)
                 .addContainerGap())
         );
@@ -176,6 +218,8 @@ public class Stock extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
     private javax.swing.JButton checkStockButton;
+    private javax.swing.JPanel jPanel1;
+    private java.awt.Label label1;
     private javax.swing.JButton orderPartsButton;
     private javax.swing.JButton stockReportButton;
     // End of variables declaration//GEN-END:variables

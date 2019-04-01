@@ -36,64 +36,102 @@ public class ManageJob extends javax.swing.JFrame {
         acceptJobButton = new javax.swing.JButton();
         monitorProgressButton = new javax.swing.JButton();
         recordPaymentButton = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        label1 = new java.awt.Label();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        backButton.setText("Back");
+        backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garits/ICONS/back-icon.png"))); // NOI18N
         backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backButtonActionPerformed(evt);
             }
         });
 
+        acceptJobButton.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        acceptJobButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garits/ICONS/Task completed-icon.png"))); // NOI18N
         acceptJobButton.setText("Accept Job");
+        acceptJobButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        acceptJobButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         acceptJobButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 acceptJobButtonActionPerformed(evt);
             }
         });
 
+        monitorProgressButton.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        monitorProgressButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garits/ICONS/Monitor-progress-icon.png"))); // NOI18N
         monitorProgressButton.setText("Monitor Progress");
+        monitorProgressButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        monitorProgressButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         monitorProgressButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 monitorProgressButtonActionPerformed(evt);
             }
         });
 
+        recordPaymentButton.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        recordPaymentButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garits/ICONS/record payment-icon.png"))); // NOI18N
         recordPaymentButton.setText("Record Payment");
+        recordPaymentButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        recordPaymentButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         recordPaymentButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 recordPaymentButtonActionPerformed(evt);
             }
         });
 
+        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
+
+        label1.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 36)); // NOI18N
+        label1.setForeground(new java.awt.Color(255, 255, 255));
+        label1.setText("GARITS");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(1733, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(20, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(backButton))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(261, 261, 261)
-                        .addComponent(acceptJobButton)
-                        .addGap(29, 29, 29)
-                        .addComponent(monitorProgressButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(recordPaymentButton)))
-                .addContainerGap(292, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(backButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(acceptJobButton)
+                .addGap(55, 55, 55)
+                .addComponent(monitorProgressButton)
+                .addGap(55, 55, 55)
+                .addComponent(recordPaymentButton)
+                .addGap(660, 660, 660))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(185, 185, 185)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(acceptJobButton)
-                    .addComponent(monitorProgressButton)
-                    .addComponent(recordPaymentButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 231, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(349, 349, 349)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(acceptJobButton, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(monitorProgressButton, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(recordPaymentButton, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 406, Short.MAX_VALUE)
                 .addComponent(backButton)
                 .addContainerGap())
         );
@@ -176,6 +214,8 @@ public class ManageJob extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton acceptJobButton;
     private javax.swing.JButton backButton;
+    private javax.swing.JPanel jPanel1;
+    private java.awt.Label label1;
     private javax.swing.JButton monitorProgressButton;
     private javax.swing.JButton recordPaymentButton;
     // End of variables declaration//GEN-END:variables
