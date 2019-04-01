@@ -164,7 +164,7 @@ public class AcceptJob extends javax.swing.JFrame {
         try {
             
             Date date = new Date();
-            DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
             
             Random rand = new Random();
             int n = rand.nextInt(100);
