@@ -66,7 +66,7 @@ public class ProduceInvoice {
         String payLaterQuery = "SELECT payLater FROM AccountHolder WHERE customerID = ?";
         try {
             
-            connection.setAutoCommit(false);
+            //connection.setAutoCommit(false);
             
             PreparedStatement jobStatement = connection.prepareStatement(jobTypeQuery);
             jobStatement.setString(1, jNumber);
@@ -86,12 +86,13 @@ public class ProduceInvoice {
 
                 double totalMins = 0;
                 double totalHours = 0;
-                double hours;
-                double mins;
+                double hours = 0;
+                double mins = 0;
 
                 for (int i = 0; i < taskTotalTimes.size(); i++) {
 
                     hours = Double.parseDouble(taskTotalTimes.get(i).substring(0, 2));
+                    System.out.println(hours);
                     mins = Double.parseDouble(taskTotalTimes.get(i).substring(3, 5));
 
                     totalMins = totalMins + mins;
@@ -234,8 +235,8 @@ public class ProduceInvoice {
 
             invoice = new Invoice(invoiceNumber, jNumber, dateOfInvoice, newDateDue, String.valueOf(grandTotal), String.valueOf(labourCost), String.valueOf(partCost), "Unpaid");
             
-            connection.commit();
-            connection.setAutoCommit(true);
+            //connection.commit();
+            //connection.setAutoCommit(true);
             connection.close();
             
             

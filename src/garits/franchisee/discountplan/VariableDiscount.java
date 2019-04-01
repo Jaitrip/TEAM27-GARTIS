@@ -59,6 +59,8 @@ public class VariableDiscount extends javax.swing.JFrame {
         partsDiscountField = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
         accountHolderTable = new javax.swing.JTable();
+        repairDiscountField = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -125,13 +127,13 @@ public class VariableDiscount extends javax.swing.JFrame {
 
         VariableDiscountTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Var_ID", "Discount_ID", "MoTDiscount", "serviceDiscount", "sparePartsDiscount"
+                "Var_ID", "Discount_ID", "MoTDiscount", "repairDiscount", "annualServiceDiscount", "sparePartsDiscount"
             }
         ));
         jScrollPane2.setViewportView(VariableDiscountTable);
@@ -206,6 +208,8 @@ public class VariableDiscount extends javax.swing.JFrame {
         ));
         jScrollPane3.setViewportView(accountHolderTable);
 
+        jLabel10.setText("Repair Discount Rate");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -238,20 +242,26 @@ public class VariableDiscount extends javax.swing.JFrame {
                             .addComponent(deleteDiscountPlanButton))
                         .addGap(57, 57, 57))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(partsDiscountField, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel5))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(serviceDiscountField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(motDiscountField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(jLabel10)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                                .addComponent(repairDiscountField, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel9)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(partsDiscountField, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addContainerGap()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel6)
+                                        .addComponent(jLabel5))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(serviceDiscountField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(motDiscountField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGap(18, 18, 18)))
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 712, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -284,7 +294,11 @@ public class VariableDiscount extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
                             .addComponent(partsDiscountField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(51, 51, 51)
+                        .addGap(7, 7, 7)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel10)
+                            .addComponent(repairDiscountField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
                         .addComponent(addDiscountPlanButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(updateDiscountPlan)
@@ -385,7 +399,7 @@ public class VariableDiscount extends javax.swing.JFrame {
             model.setRowCount(0);
             while (resultSet.next()) {
                 Object o[] = {
-                    resultSet.getString("Var_ID"), resultSet.getString("Discount_ID"), resultSet.getString("MoTDiscount"), resultSet.getString("serviceDiscount"), resultSet.getString("sparePartsDiscount")
+                    resultSet.getString("Var_ID"), resultSet.getString("Discount_ID"), resultSet.getString("MoTDiscount"), resultSet.getString("repairDiscount"), resultSet.getString("annualServiceDiscount"), resultSet.getString("sparePartsDiscount")
                 };
                 model.addRow(o);
 
@@ -400,16 +414,18 @@ public class VariableDiscount extends javax.swing.JFrame {
         String motDiscount = motDiscountField.getText();
         String serviceDiscount = serviceDiscountField.getText();
         String partsDiscount = partsDiscountField.getText();
+        String repairDiscount = repairDiscountField.getText();
         int row = VariableDiscountTable.getSelectedRow();
         String discountID = VariableDiscountTable.getModel().getValueAt(row, 1).toString();
 
         try {
             Connection connection = DBConnection.getConnection();
-            String sqlQuery = "UPDATE Variable SET MoTDiscount = ?, serviceDiscount = ?, sparePartsDiscount = ? WHERE Discount_ID =" + discountID;
+            String sqlQuery = "UPDATE Variable SET MoTDiscount = ?, annualServiceDiscount = ?, sparePartsDiscount = ?, repairDiscount = ? WHERE Discount_ID =" + discountID;
             PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
             pStatement.setString(1, motDiscount);
             pStatement.setString(2, serviceDiscount);
             pStatement.setString(3, partsDiscount);
+            pStatement.setString(4, repairDiscount);
             pStatement.executeUpdate();
             System.out.println("Added");
             viewVariablePlansButtonActionPerformed(evt);
@@ -432,21 +448,23 @@ public class VariableDiscount extends javax.swing.JFrame {
         String motDiscount = motDiscountField.getText();
         String serviceDiscount = serviceDiscountField.getText();
         String partsDiscount = partsDiscountField.getText();
+        String repairDiscount = repairDiscountField.getText();
         int row = discountTable.getSelectedRow();
         String discountID = discountTable.getModel().getValueAt(row, 0).toString();
 
         try {
             Connection connection = DBConnection.getConnection();
 
-            String sqlQuery = "INSERT INTO Variable (Var_ID, Discount_ID, MoTDiscount, serviceDiscount, sparePartsDiscount) VALUES (?, ?, ?, ?, ?)";
+            String sqlQuery = "INSERT INTO Variable (Var_ID, Discount_ID, MoTDiscount, repairDiscount, annualServiceDiscount, sparePartsDiscount) VALUES (?, ?, ?, ?, ?, ?)";
 
             PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
 
             pStatement.setString(1, variableID);
             pStatement.setString(2, discountID);
             pStatement.setString(3, motDiscount);
-            pStatement.setString(4, serviceDiscount);
-            pStatement.setString(5, partsDiscount);
+            pStatement.setString(4, repairDiscount);
+            pStatement.setString(5, serviceDiscount);
+            pStatement.setString(6, partsDiscount);
 
             pStatement.executeUpdate();
             System.out.println("Added");
@@ -530,6 +548,7 @@ public class VariableDiscount extends javax.swing.JFrame {
     private javax.swing.JButton flexibleDiscountButton;
     private javax.swing.JButton homeButton;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel9;
@@ -540,6 +559,7 @@ public class VariableDiscount extends javax.swing.JFrame {
     private java.awt.Label label1;
     private javax.swing.JTextField motDiscountField;
     private javax.swing.JTextField partsDiscountField;
+    private javax.swing.JTextField repairDiscountField;
     private javax.swing.JTextField serviceDiscountField;
     private javax.swing.JButton updateDiscountPlan;
     private javax.swing.JButton viewCustomersButton;

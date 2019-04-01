@@ -190,8 +190,9 @@ public class TasksCompletedForm extends javax.swing.JFrame {
         try {
 
             Connection connection = DBConnection.getConnection();
-            String sqlQuery = "SELECT * FROM JobTask";
+            String sqlQuery = "SELECT * FROM JobTask WHERE JobSheetjobNumber = ?";
             PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
+            pStatement.setString(1, jobNumberField.getText());
             ResultSet resultSet = pStatement.executeQuery();
             DefaultTableModel model = (DefaultTableModel) jobTaskTable.getModel();
             model.setRowCount(0);
@@ -226,6 +227,7 @@ public class TasksCompletedForm extends javax.swing.JFrame {
             pStatement.setString(4, taskID);
             pStatement.executeUpdate();
             System.out.println("updated");
+            connection.commit();
             pStatement.close();
 
             String checkCompleted = "SELECT COUNT(*) FROM JobTask WHERE status = ? AND JobSheetjobNumber = ?";
@@ -236,6 +238,7 @@ public class TasksCompletedForm extends javax.swing.JFrame {
             ResultSet resultSet = checkStatement.executeQuery();
 
             if (resultSet.getString("COUNT(*)").equals("0")) {
+                System.out.println("job completed");
                 String updateQuery = "UPDATE JobSheet SET status = ? WHERE jobNumber = ?";
                 PreparedStatement updateStatement = connection.prepareStatement(updateQuery);
                 updateStatement.setString(1, "Completed");
@@ -258,6 +261,7 @@ public class TasksCompletedForm extends javax.swing.JFrame {
                 insertStatement.setString(7, invoice.getPartCost());
                 insertStatement.setString(8, invoice.getStatus());
                 insertStatement.executeUpdate();
+                System.out.println("invoice produced");
             }
 
             connection.commit();
