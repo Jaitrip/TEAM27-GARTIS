@@ -5,8 +5,12 @@
  */
 package garits.franchisee.reports;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
 import garits.DBConnectivity.DBConnection;
 import garits.franchisee.Reports;
+import java.io.FileOutputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -52,6 +56,7 @@ public class VehicleReport extends javax.swing.JFrame {
         generateButton = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         label2 = new java.awt.Label();
+        vehiclesBookedLabel = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
         jPanel1.setPreferredSize(new java.awt.Dimension(1920, 100));
@@ -160,6 +165,8 @@ public class VehicleReport extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        vehiclesBookedLabel.setText("Number of vehicles booked: ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -185,10 +192,12 @@ public class VehicleReport extends javax.swing.JFrame {
                             .addComponent(customerTypeBox, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 686, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(generateButton)
-                        .addGap(50, 50, 50)
-                        .addComponent(printButton)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(vehiclesBookedLabel)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(generateButton)
+                                .addGap(38, 38, 38)
+                                .addComponent(printButton)))
                         .addGap(198, 198, 198)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -220,12 +229,14 @@ public class VehicleReport extends javax.swing.JFrame {
                             .addComponent(jobTypeBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(customerTypeBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(vehiclesBookedLabel)
+                .addGap(178, 178, 178)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(printButton)
                     .addComponent(generateButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                 .addComponent(backButton)
                 .addContainerGap())
         );
@@ -252,6 +263,34 @@ public class VehicleReport extends javax.swing.JFrame {
 
     private void printButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printButtonActionPerformed
         // TODO add your handling code here:
+        try {
+            
+            Document document = new Document();
+            PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("VehicleReport.pdf"));
+            document.open();
+            
+            document.add(new Paragraph("Vehicle Report"));
+            document.add(new Paragraph(""));
+            document.add(new Paragraph(""));
+            document.add(new Paragraph(""));
+            document.add(new Paragraph("Report start date: " + startDateField.getText()));
+            document.add(new Paragraph(""));
+            document.add(new Paragraph("Report end date: " + endDateField.getText()));
+            document.add(new Paragraph(""));
+            document.add(new Paragraph("Job Type: " + jobTypeBox.getSelectedItem().toString()));
+            document.add(new Paragraph(""));
+            document.add(new Paragraph("Customer Type: " + customerTypeBox.getSelectedItem().toString()));
+            document.add(new Paragraph(""));
+            document.add(new Paragraph(""));
+            document.add(new Paragraph(vehiclesBookedLabel.getText()));
+            
+            document.close();
+            writer.close();
+            
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_printButtonActionPerformed
 
     private void generateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateButtonActionPerformed
@@ -276,9 +315,11 @@ public class VehicleReport extends javax.swing.JFrame {
                         resultSet.getString("COUNT(*)")
                     };
                     model.addRow(o);
+                    
+                    vehiclesBookedLabel.setText("Number of vehicles booked: " + resultSet.getString("COUNT(*)") );
 
                 }
-                
+
                 pStatement.close();
                 resultSet.close();
                 connection.close();
@@ -296,6 +337,8 @@ public class VehicleReport extends javax.swing.JFrame {
                         resultSet.getString("COUNT(*)")
                     };
                     model.addRow(o);
+                    
+                    vehiclesBookedLabel.setText("Number of vehicles booked: " + resultSet.getString("COUNT(*)") );
 
                 }
 
@@ -367,5 +410,6 @@ public class VehicleReport extends javax.swing.JFrame {
     private javax.swing.JTable reportTable;
     private javax.swing.JTextField startDateField;
     private javax.swing.JLabel startDateLabel;
+    private javax.swing.JLabel vehiclesBookedLabel;
     // End of variables declaration//GEN-END:variables
 }

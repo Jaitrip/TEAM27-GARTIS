@@ -5,8 +5,12 @@
  */
 package garits.franchisee.reports;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
 import garits.DBConnectivity.DBConnection;
 import garits.franchisee.Reports;
+import java.io.FileOutputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -281,8 +285,8 @@ public class JobReport extends javax.swing.JFrame {
                 averagePrice = totalPrice / totalList.size();
                 averageTime = totalTime / timeList.size();
                 
-                priceLabel.setText("Average Price: " + averagePrice);
-                timeLabel.setText("Average Time: " + averageTime);
+                priceLabel.setText("Average Price: £" + averagePrice);
+                timeLabel.setText("Average Time: " + averageTime + " hours");
                 
             } else if (jobType.equals("All") && !mechanic.equals("All")) {
                 
@@ -308,8 +312,8 @@ public class JobReport extends javax.swing.JFrame {
                 averagePrice = totalPrice / totalList.size();
                 averageTime = totalTime / timeList.size();
                 
-                priceLabel.setText("Average Price: " + averagePrice);
-                timeLabel.setText("Average Time: " + averageTime);
+                priceLabel.setText("Average Price: £" + averagePrice);
+                timeLabel.setText("Average Time: " + averageTime + " hours");
                 
             } else if (!jobType.equals("All") && mechanic.equals("All")) {
                 
@@ -335,8 +339,9 @@ public class JobReport extends javax.swing.JFrame {
                 averagePrice = totalPrice / totalList.size();
                 averageTime = totalTime / timeList.size();
                 
-                priceLabel.setText("Average Price: " + averagePrice);
-                timeLabel.setText("Average Time: " + averageTime);
+                priceLabel.setText("Average Price: £" + averagePrice);
+                timeLabel.setText("Average Time: " + averageTime + " hours");
+
                 
             } else if (!jobType.equals("All") && !mechanic.equals("All")) {
                 
@@ -364,8 +369,8 @@ public class JobReport extends javax.swing.JFrame {
                 averagePrice = totalPrice / totalList.size();
                 averageTime = totalTime / timeList.size();
                 
-                priceLabel.setText("Average Price: " + averagePrice);
-                timeLabel.setText("Average Time: " + averageTime);
+                priceLabel.setText("Average Price: £" + averagePrice);
+                timeLabel.setText("Average Time: " + averageTime + " hours");
                 
             }
             
@@ -380,6 +385,35 @@ public class JobReport extends javax.swing.JFrame {
 
     private void printButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printButtonActionPerformed
         // TODO add your handling code here:
+        try {
+            
+            Document document = new Document();
+            PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("JobReport.pdf"));
+            document.open();
+            
+            document.add(new Paragraph("Job Report"));
+            document.add(new Paragraph(""));
+            document.add(new Paragraph(""));
+            document.add(new Paragraph(""));
+            document.add(new Paragraph("Report start date: " + startDateField.getText()));
+            document.add(new Paragraph(""));
+            document.add(new Paragraph("Report end date: " + endDateField.getText()));
+            document.add(new Paragraph(""));
+            document.add(new Paragraph("Job Type: " + jobTypeBox.getSelectedItem().toString()));
+            document.add(new Paragraph(""));
+            document.add(new Paragraph("Customer Type: " + mechanicBox.getSelectedItem().toString()));
+            document.add(new Paragraph(""));
+            document.add(new Paragraph(""));
+            document.add(new Paragraph(priceLabel.getText()));
+            document.add(new Paragraph(timeLabel.getText()));
+            
+            document.close();
+            writer.close();
+            
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_printButtonActionPerformed
 
     private void jobTypeBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jobTypeBoxActionPerformed
