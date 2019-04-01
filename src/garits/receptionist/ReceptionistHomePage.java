@@ -37,72 +37,123 @@ public class ReceptionistHomePage extends javax.swing.JFrame {
         stockButton = new javax.swing.JButton();
         logOutButton = new javax.swing.JButton();
         addCustomerButton = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        label1 = new java.awt.Label();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1920, 1080));
 
+        manageJobButton.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        manageJobButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garits/ICONS/Task completed-icon.png"))); // NOI18N
         manageJobButton.setText("Manage Job");
+        manageJobButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        manageJobButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         manageJobButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 manageJobButtonActionPerformed(evt);
             }
         });
 
+        produceInvoiceButton.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        produceInvoiceButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garits/ICONS/Finance-Invoice-icon.png"))); // NOI18N
         produceInvoiceButton.setText("Produce Invoice");
+        produceInvoiceButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        produceInvoiceButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         produceInvoiceButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 produceInvoiceButtonActionPerformed(evt);
             }
         });
 
+        stockButton.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        stockButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garits/ICONS/Stock-icon.png"))); // NOI18N
         stockButton.setText("Stock");
+        stockButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        stockButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         stockButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 stockButtonActionPerformed(evt);
             }
         });
 
+        logOutButton.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        logOutButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garits/ICONS/User-Interface-Logout-icon.png"))); // NOI18N
         logOutButton.setText("Log Out");
+        logOutButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        logOutButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         logOutButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 logOutButtonActionPerformed(evt);
             }
         });
 
+        addCustomerButton.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        addCustomerButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garits/ICONS/user-add-icon.png"))); // NOI18N
         addCustomerButton.setText("Add Customer");
+        addCustomerButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        addCustomerButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         addCustomerButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addCustomerButtonActionPerformed(evt);
             }
         });
 
+        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel1.setPreferredSize(new java.awt.Dimension(1920, 100));
+
+        label1.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 36)); // NOI18N
+        label1.setForeground(new java.awt.Color(255, 255, 255));
+        label1.setText("GARITS");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(1733, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(20, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(186, 186, 186)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(addCustomerButton)
                 .addGap(18, 18, 18)
                 .addComponent(manageJobButton)
                 .addGap(18, 18, 18)
-                .addComponent(produceInvoiceButton, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(produceInvoiceButton)
                 .addGap(18, 18, 18)
-                .addComponent(stockButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(stockButton)
                 .addGap(18, 18, 18)
-                .addComponent(logOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(176, Short.MAX_VALUE))
+                .addComponent(logOutButton)
+                .addGap(504, 504, 504))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(187, 187, 187)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(manageJobButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(produceInvoiceButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(stockButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(logOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(addCustomerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(251, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(347, 347, 347)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(manageJobButton)
+                    .addComponent(produceInvoiceButton)
+                    .addComponent(stockButton)
+                    .addComponent(logOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addCustomerButton))
+                .addContainerGap(476, Short.MAX_VALUE))
         );
 
         pack();
@@ -190,6 +241,8 @@ public class ReceptionistHomePage extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addCustomerButton;
+    private javax.swing.JPanel jPanel1;
+    private java.awt.Label label1;
     private javax.swing.JButton logOutButton;
     private javax.swing.JButton manageJobButton;
     private javax.swing.JButton produceInvoiceButton;
