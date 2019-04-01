@@ -292,7 +292,7 @@ public class TasksCompletedForm extends javax.swing.JFrame {
                 ProduceInvoice produceInvoice = new ProduceInvoice();
                 Invoice invoice = produceInvoice.produceInvoice(jobNumber);
 
-                String insertQuery = "INSERT INTO Invoice (invoiceNumber, jobNumber, dateOfInvoice, datePaymentDue, grandTotal, labourCost, partCost, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+                String insertQuery = "INSERT INTO Invoice (invoiceNumber, jobNumber, dateOfInvoice, datePaymentDue, grandTotal, labourCost, partCost, status, totalTimeTaken) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
                 PreparedStatement insertStatement = connection.prepareStatement(insertQuery);
                 insertStatement.setString(1, invoice.getInvoiceNumber());
                 insertStatement.setString(2, invoice.getJobNumber());
@@ -302,6 +302,7 @@ public class TasksCompletedForm extends javax.swing.JFrame {
                 insertStatement.setString(6, invoice.getLabourCost());
                 insertStatement.setString(7, invoice.getPartCost());
                 insertStatement.setString(8, invoice.getStatus());
+                insertStatement.setString(9, invoice.getTotalTimeTaken());
                 insertStatement.executeUpdate();
                 System.out.println("invoice produced");
             }

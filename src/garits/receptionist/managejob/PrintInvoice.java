@@ -103,13 +103,13 @@ public class PrintInvoice extends javax.swing.JFrame {
 
         invoiceTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "invoiceNumber", "jobNumber", "dateOfInvoice", "datePaymentDue", "grandTotal", "labourCost", "partCost", "status"
+                "invoiceNumber", "jobNumber", "dateOfInvoice", "datePaymentDue", "grandTotal", "labourCost", "partCost", "status", "totalTimeTaken"
             }
         ));
         jScrollPane1.setViewportView(invoiceTable);
@@ -175,7 +175,7 @@ public class PrintInvoice extends javax.swing.JFrame {
             model.setRowCount(0);
             while (resultSet.next()) {
                 Object o[] = {
-                    resultSet.getString("invoiceNumber"), resultSet.getString("jobNumber"), resultSet.getString("dateOfInvoice"), resultSet.getString("datePaymentDue"), resultSet.getString("grandTotal"), resultSet.getString("labourCost") , resultSet.getString("partCost") , resultSet.getString("status")
+                    resultSet.getString("invoiceNumber"), resultSet.getString("jobNumber"), resultSet.getString("dateOfInvoice"), resultSet.getString("datePaymentDue"), resultSet.getString("grandTotal"), resultSet.getString("labourCost") , resultSet.getString("partCost") , resultSet.getString("status"), resultSet.getString("totalTimeTaken")
                 };
                 model.addRow(o);
 
