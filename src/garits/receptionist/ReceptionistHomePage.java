@@ -39,9 +39,9 @@ public class ReceptionistHomePage extends javax.swing.JFrame {
         addCustomerButton = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         label1 = new java.awt.Label();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1920, 1080));
 
         manageJobButton.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         manageJobButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garits/ICONS/Task completed-icon.png"))); // NOI18N
@@ -122,6 +122,13 @@ public class ReceptionistHomePage extends javax.swing.JFrame {
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
+        jButton1.setText("Notifications");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -131,22 +138,29 @@ public class ReceptionistHomePage extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(addCustomerButton)
-                .addGap(18, 18, 18)
-                .addComponent(manageJobButton)
-                .addGap(18, 18, 18)
-                .addComponent(produceInvoiceButton)
-                .addGap(18, 18, 18)
-                .addComponent(stockButton)
-                .addGap(18, 18, 18)
-                .addComponent(logOutButton)
-                .addGap(504, 504, 504))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(addCustomerButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(manageJobButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(produceInvoiceButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(stockButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(logOutButton)
+                        .addGap(504, 504, 504))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(707, 707, 707))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(347, 347, 347)
+                .addGap(251, 251, 251)
+                .addComponent(jButton1)
+                .addGap(67, 67, 67)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(manageJobButton)
                     .addComponent(produceInvoiceButton)
@@ -204,6 +218,14 @@ public class ReceptionistHomePage extends javax.swing.JFrame {
         frame.setVisible(true);
     }//GEN-LAST:event_addCustomerButtonActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        JFrame frame = new Notifications();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -241,6 +263,7 @@ public class ReceptionistHomePage extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addCustomerButton;
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private java.awt.Label label1;
     private javax.swing.JButton logOutButton;

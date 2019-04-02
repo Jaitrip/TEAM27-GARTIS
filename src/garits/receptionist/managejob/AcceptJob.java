@@ -43,7 +43,7 @@ public class AcceptJob extends javax.swing.JFrame {
         vehicleRegField = new javax.swing.JTextField();
         backButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jobTypeBox = new javax.swing.JComboBox<>();
+        jobTypeBox = new javax.swing.JComboBox<String>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         acceptJobButton = new javax.swing.JButton();
@@ -68,7 +68,7 @@ public class AcceptJob extends javax.swing.JFrame {
 
         jLabel1.setText("Job Type");
 
-        jobTypeBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MOT", "Repair", "Annual Service" }));
+        jobTypeBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "MOT", "Repair", "Annual Service" }));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

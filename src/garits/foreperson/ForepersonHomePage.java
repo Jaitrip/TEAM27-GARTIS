@@ -191,7 +191,6 @@ public class ForepersonHomePage extends javax.swing.JFrame {
 
     private void notificationsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notificationsActionPerformed
         // TODO add your handling code here:
-        this.dispose();
         JFrame frame = new Notifications();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
