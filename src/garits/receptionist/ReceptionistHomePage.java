@@ -42,6 +42,7 @@ public class ReceptionistHomePage extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setExtendedState(6);
 
         manageJobButton.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         manageJobButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garits/ICONS/Task completed-icon.png"))); // NOI18N
@@ -167,10 +168,10 @@ public class ReceptionistHomePage extends javax.swing.JFrame {
                     .addComponent(stockButton)
                     .addComponent(logOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(addCustomerButton))
-                .addContainerGap(476, Short.MAX_VALUE))
+                .addContainerGap(482, Short.MAX_VALUE))
         );
 
-        pack();
+        setBounds(0, 0, 1920, 1080);
     }// </editor-fold>//GEN-END:initComponents
 
     private void produceInvoiceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_produceInvoiceButtonActionPerformed
