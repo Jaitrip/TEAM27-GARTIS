@@ -164,11 +164,8 @@ public class Notifications extends javax.swing.JFrame {
         
         try {
 
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            String date = simpleDateFormat.format(new Date());
-            
             Connection connection = DBConnection.getConnection();
-            String sqlQuery = "SELECT count(*) FROM Invoice WHERE status='Unpaid' && "+date+">datePaymentDue";
+            String sqlQuery = "SELECT count(*) FROM Invoice WHERE status='Unpaid' & date('now')>datePaymentDue";
             PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
             ResultSet resultSet = pStatement.executeQuery();
             
