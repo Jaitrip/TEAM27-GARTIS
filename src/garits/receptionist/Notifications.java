@@ -37,7 +37,6 @@ public class Notifications extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
@@ -49,8 +48,6 @@ public class Notifications extends javax.swing.JFrame {
                 jLabel1ComponentShown(evt);
             }
         });
-
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         jButton1.setText("Load Notifications");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -82,9 +79,7 @@ public class Notifications extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(65, 65, 65)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -92,11 +87,9 @@ public class Notifications extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton1)
-                .addGap(35, 35, 35)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                .addGap(79, 79, 79)
                 .addComponent(jButton2)
                 .addGap(33, 33, 33))
         );
@@ -159,35 +152,7 @@ public class Notifications extends javax.swing.JFrame {
             e.printStackTrace();
         }
         jLabel1.setText(stockNotification);
-        
-        String latePaymentNotification="There are no late Payments.";
-        
-        try {
-
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            String date = simpleDateFormat.format(new Date());
-            
-            Connection connection = DBConnection.getConnection();
-            String sqlQuery = "SELECT count(*) FROM Invoice WHERE status='Unpaid' && "+date+">datePaymentDue";
-            PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
-            ResultSet resultSet = pStatement.executeQuery();
-            
-            while (resultSet.next()) {
-                  if (Integer.parseInt(resultSet.getString("count(*)"))>0){
-                      latePaymentNotification = "There are " + Integer.parseInt(resultSet.getString("count(*)")) + " payment notifications. Check any late payments.";
-                  }
-            }
-            
-            
-            
-            pStatement.close();
-            resultSet.close();
-            connection.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        jLabel2.setText(latePaymentNotification);
-        
+                
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -234,6 +199,5 @@ public class Notifications extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }
