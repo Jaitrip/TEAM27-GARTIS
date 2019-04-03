@@ -8,6 +8,7 @@ package garits.mechanic;
 import garits.DBConnectivity.DBConnection;
 import garits.Job.Invoice;
 import garits.Job.ProduceInvoice;
+import garits.Job.SaveInvoice;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -304,6 +305,10 @@ public class TasksCompletedForm extends javax.swing.JFrame {
                 insertStatement.setString(8, invoice.getStatus());
                 insertStatement.setString(9, invoice.getTotalTimeTaken());
                 insertStatement.executeUpdate();
+                
+                SaveInvoice saveInvoice = new SaveInvoice();
+                saveInvoice.printInvoice(invoice.getInvoiceNumber(), connection);
+                
                 System.out.println("invoice produced");
             }
 

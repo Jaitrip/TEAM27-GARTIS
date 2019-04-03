@@ -346,27 +346,32 @@ public class PartsUsedForm extends javax.swing.JFrame {
         try {
             
             Connection connection = DBConnection.getConnection();
-            connection.setAutoCommit(false);
             
             int jobRow = jobTable.getSelectedRow();
             String jobNumber = jobTable.getModel().getValueAt(jobRow, 0).toString();
             int partRow = partsTable.getSelectedRow();
             String partCode = partsTable.getModel().getValueAt(partRow, 0).toString();
+            System.out.println(partCode);
             String partName = partsTable.getModel().getValueAt(partRow, 1).toString();
             String qty = partsTable.getModel().getValueAt(partRow, 3).toString();
-            String partNumber = null;
+            String partNumber = "";
             
             String sqlQuery2 = "SELECT partNo FROM Part WHERE StockLedgercode = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery2);
             preparedStatement.setString(1, partCode);
             ResultSet rSet = preparedStatement.executeQuery();
             
+            
             while(rSet.next()) {
                 
                 partNumber = rSet.getString("partNo");
-                System.out.println(partNumber);
-               
+
             }
+            
+            System.out.println(partNumber);
+            
+            connection.setAutoCommit(false);
+            System.out.println(!partNumber.isEmpty());
             
             if (!partNumber.isEmpty()) {
             
@@ -375,9 +380,11 @@ public class PartsUsedForm extends javax.swing.JFrame {
                 pStatement.setString(1, partName);
                 pStatement.setString(2, partNumber);
                 pStatement.setString(3, partQuantity);
-                pStatement.setString(4, partCode);
+                pStatement.setString(4, jobNumber);
                 pStatement.executeUpdate();
                 System.out.println("updated");
+                
+                connection.commit();
                 
                 
                 int qtyUsed = Integer.parseInt(partQuantity);
@@ -391,12 +398,9 @@ public class PartsUsedForm extends javax.swing.JFrame {
                 pStatement2.setString(1, newQty);
                 pStatement2.setString(2, partCode);
                 pStatement2.executeUpdate();
-               
                 
-                
-                
-                
-                
+                connection.commit();
+
             }
             
             connection.commit();

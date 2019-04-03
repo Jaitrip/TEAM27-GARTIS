@@ -5,13 +5,9 @@
  */
 package garits.receptionist.managejob;
 
-import com.itextpdf.text.Chunk;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.PdfWriter;
 import garits.DBConnectivity.DBConnection;
+import garits.Job.SaveInvoice;
 import garits.receptionist.ReceptionistHomePage;
-import java.io.FileOutputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -217,41 +213,20 @@ public class PrintInvoice extends javax.swing.JFrame {
         // TODO add your handling code here:
         int row = invoiceTable.getSelectedRow();
         String invoiceNumber = invoiceTable.getModel().getValueAt(row, 0).toString();
-        String customerQuery = "SELECT firstName, lastName, address, postcode FROM Customer INNER JOIN Vehicle ON Customer.customerID = Vehicle.CustomercustomerID INNER JOIN JobSheet ON Vehicle.registrationNumber = JobSheet.VehicleregistrationNumber INNER JOIN Invoice ON Invoice.jobNumber = JobSheet.jobNumber WHERE Invoice.invoiceNumber = ?";
-        String vehicleQuery = "SELECT registrationNumber, make, model FROM Vehicle INNER JOIN JobSheet ON Vehicle.registrationNumber = JobSheet.VehicleregistrationNumber INNER JOIN Invoice ON Invoice.jobNumber = JobSheet.jobNumber WHERE Invoice.invoiceNumber = ?";
-        String getTasksQuery = "SELECT taskDescription FROM JobTask INNER JOIN JobSheet ON JobTask.JobSheetjobNumber = JobSheet.jobNumber INNER JOIN Invoice ON JobSheet.jobNumber = Invoice.jobNumber WHERE Invoice.invoiceNumber = ?";
-        String getPartsQuery = "SELECT Description, partNo, qty FROM PartsUsed INNER JOIN JobSheet ON PartsUsed.JobSheetjobNumber = JobSheet.jobNumber INNER JOIN Invoice ON Invoice.jobNumber = JobSheet.jobNumber WHERE Invoice.invoiceNumber = ?";
+     
+                
         try {
+            
             Connection connection = DBConnection.getConnection();
-            PreparedStatement customerStatement = connection.prepareStatement(customerQuery);
-            customerStatement.setString(1, invoiceNumber);
-            ResultSet customerDetailsSet = customerStatement.executeQuery();
-            PreparedStatement vehicleStatement = connection.prepareStatement(vehicleQuery);
-            vehicleStatement.setString(1, invoiceNumber);
-            ResultSet vehicleSet = vehicleStatement.executeQuery();
-            Document document = new Document();
-            PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("Invoice" + invoiceNumber + ".pdf"));
-            document.open();
-            while (customerDetailsSet.next()) {
-                document.add(new Paragraph(customerDetailsSet.getString("firstName") + " " + customerDetailsSet.getString("lastName")));
-                document.add(new Paragraph(customerDetailsSet.getString("address")));
-                document.add(new Paragraph(customerDetailsSet.getString("postcode")));
-            }
-            document.add(Chunk.NEWLINE);
-            document.add(Chunk.NEWLINE);
-            document.add(new Paragraph("Invoice Number: " + invoiceNumber));
-            document.add(Chunk.NEWLINE);
-            while (vehicleSet.next()) {
-                document.add(new Paragraph("Registration Number: " + vehicleSet.getString("registrationNumber")));
-                document.add(new Paragraph("Make: " + vehicleSet.getString("make")));
-                document.add(new Paragraph("Model: " + vehicleSet.getString("model")));
-            }
-            document.add(Chunk.NEWLINE);
-            document.close();
-            writer.close();
+            
+            SaveInvoice saveInvoice = new SaveInvoice();
+            
+            saveInvoice.printInvoice(invoiceNumber, connection);
+            
         } catch (Exception e) {
             e.printStackTrace();
         }
+        
     }//GEN-LAST:event_printInvoiceButtonActionPerformed
 
     /**
