@@ -51,12 +51,14 @@ public class BackupForm extends javax.swing.JFrame {
         restoreTextField = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         label1 = new java.awt.Label();
+        homePageButton1 = new javax.swing.JButton();
 
         jTextField2.setToolTipText("enter");
 
         restoreField.setToolTipText("enter");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setExtendedState(6);
         setPreferredSize(new java.awt.Dimension(1920, 1080));
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -126,6 +128,13 @@ public class BackupForm extends javax.swing.JFrame {
         label1.setForeground(new java.awt.Color(255, 255, 255));
         label1.setText("GARITS");
 
+        homePageButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garits/ICONS/HomePage.png"))); // NOI18N
+        homePageButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                homePageButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -133,13 +142,17 @@ public class BackupForm extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(1733, Short.MAX_VALUE))
+                .addGap(71, 71, 71)
+                .addComponent(homePageButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(homePageButton1)
+                    .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
@@ -152,7 +165,7 @@ public class BackupForm extends javax.swing.JFrame {
                 .addComponent(jButton3)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(799, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2)
@@ -174,16 +187,14 @@ public class BackupForm extends javax.swing.JFrame {
                             .addComponent(restoreTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(browseButton1)))
-                .addGap(738, 738, 738))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap(758, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(267, 267, 267)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 280, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -203,7 +214,7 @@ public class BackupForm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(restoreButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 373, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 333, Short.MAX_VALUE)
                 .addComponent(jButton3)
                 .addContainerGap())
         );
@@ -307,6 +318,15 @@ public class BackupForm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_restoreButtonActionPerformed
 
+    private void homePageButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homePageButton1ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        JFrame frame = new AdminHomePage();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
+    }//GEN-LAST:event_homePageButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -347,6 +367,7 @@ public class BackupForm extends javax.swing.JFrame {
     private javax.swing.JTextField backupField;
     private javax.swing.JButton browseButton;
     private javax.swing.JButton browseButton1;
+    private javax.swing.JButton homePageButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
