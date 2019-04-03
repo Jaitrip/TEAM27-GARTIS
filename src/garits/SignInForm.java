@@ -45,7 +45,7 @@ public class SignInForm extends javax.swing.JFrame {
         signInButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        roleComboBox = new javax.swing.JComboBox<String>();
         jPanel1 = new javax.swing.JPanel();
         label1 = new java.awt.Label();
         jLabel3 = new javax.swing.JLabel();
@@ -110,11 +110,11 @@ public class SignInForm extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel2.setText("Password");
 
-        jComboBox1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrator", "Franchisee", "Receptionist", "Mechanic", "Foreman" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        roleComboBox.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        roleComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Administrator", "Franchisee", "Receptionist", "Mechanic", "Foreman" }));
+        roleComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                roleComboBoxActionPerformed(evt);
             }
         });
 
@@ -165,7 +165,7 @@ public class SignInForm extends javax.swing.JFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(passwordField)
                                 .addComponent(usernameField)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(roleComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(46, 46, 46)
                                 .addComponent(signInButton, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -194,7 +194,7 @@ public class SignInForm extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(roleComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(64, 64, 64)
                 .addComponent(signInButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(328, Short.MAX_VALUE))
@@ -204,21 +204,24 @@ public class SignInForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void signInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signInButtonActionPerformed
+        
+        // Get values from text fields.
         Login login = new Login();
         username = usernameField.getText();
         password = String.valueOf(passwordField.getPassword());
-        role = jComboBox1.getSelectedItem().toString();
+        role = roleComboBox.getSelectedItem().toString();
         
         
         JFrame error = new ErrorForm();
         
         try {
-        
+            //Attempt log in
             if (login.isLogin(username, password, role)){
             // LOGIN SUCCESFUL
             this.dispose();
             JFrame menu;
             
+            //Depending on which role they have, a different homepage will be loaded.
             switch(role) {
                 case "Administrator":
                   //RUN ADMIN MENU
@@ -253,6 +256,7 @@ public class SignInForm extends javax.swing.JFrame {
                 System.out.println(role);
                 System.out.println(username);
                 System.out.println(password);
+                
                 // Display error
                 error.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 error.pack();
@@ -266,21 +270,21 @@ public class SignInForm extends javax.swing.JFrame {
     }//GEN-LAST:event_signInButtonActionPerformed
 
     private void usernameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameFieldActionPerformed
+        //get value of username field 
         username = usernameField.getText().toLowerCase();
     }//GEN-LAST:event_usernameFieldActionPerformed
 
     private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
+        //get value of password field
         password = String.valueOf(passwordField.getPassword());
     }//GEN-LAST:event_passwordFieldActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-        role = jComboBox1.getName();
-         
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    private void roleComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roleComboBoxActionPerformed
+        //get role from combo box
+        role = roleComboBox.getName();
+    }//GEN-LAST:event_roleComboBoxActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;
@@ -290,6 +294,7 @@ public class SignInForm extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private java.awt.Label label1;
     private javax.swing.JPasswordField passwordField;
+    private javax.swing.JComboBox<String> roleComboBox;
     private javax.swing.JButton signInButton;
     private javax.swing.JTextField usernameField;
     // End of variables declaration//GEN-END:variables

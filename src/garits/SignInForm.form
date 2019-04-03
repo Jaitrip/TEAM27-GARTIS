@@ -84,7 +84,7 @@
                           <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
                               <Component id="passwordField" alignment="0" max="32767" attributes="0"/>
                               <Component id="usernameField" max="32767" attributes="0"/>
-                              <Component id="jComboBox1" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                              <Component id="roleComboBox" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
@@ -122,7 +122,7 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="passwordField" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-              <Component id="jComboBox1" min="-2" max="-2" attributes="0"/>
+              <Component id="roleComboBox" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
               <Component id="signInButton" min="-2" pref="41" max="-2" attributes="0"/>
               <EmptySpace pref="328" max="32767" attributes="0"/>
@@ -175,7 +175,7 @@
         <Property name="text" type="java.lang.String" value="Password"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="jComboBox1">
+    <Component class="javax.swing.JComboBox" name="roleComboBox">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial" size="18" style="0"/>
@@ -191,7 +191,7 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBox1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="roleComboBoxActionPerformed"/>
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>

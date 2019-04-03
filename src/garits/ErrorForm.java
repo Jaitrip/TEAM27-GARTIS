@@ -7,7 +7,7 @@ package garits;
 
 /**
  *
- * @author Rahul
+ * @author Team 27
  */
 public class ErrorForm extends javax.swing.JFrame {
 
@@ -29,7 +29,7 @@ public class ErrorForm extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        okButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -37,10 +37,10 @@ public class ErrorForm extends javax.swing.JFrame {
 
         jLabel2.setText("Please try again!");
 
-        jButton1.setText("OK");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        okButton.setText("OK");
+        okButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                okButtonActionPerformed(evt);
             }
         });
 
@@ -58,7 +58,7 @@ public class ErrorForm extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel2)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton1)
+                                .addComponent(okButton)
                                 .addGap(27, 27, 27)))
                         .addGap(143, 143, 143))))
         );
@@ -70,17 +70,17 @@ public class ErrorForm extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
                 .addGap(27, 27, 27)
-                .addComponent(jButton1)
+                .addComponent(okButton)
                 .addContainerGap(88, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+    private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
+        //Close the window
         this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_okButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -118,8 +118,8 @@ public class ErrorForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton okButton;
     // End of variables declaration//GEN-END:variables
 }
