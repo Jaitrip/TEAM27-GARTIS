@@ -40,51 +40,81 @@ public class ForepersonHomePage extends javax.swing.JFrame {
         tasksCompletedButton = new javax.swing.JButton();
         partsUsedButton = new javax.swing.JButton();
         notifications = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        label1 = new java.awt.Label();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setExtendedState(6);
+        setFocusCycleRoot(false);
 
+        logOutButton.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        logOutButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garits/ICONS/User-Interface-Logout-icon.png"))); // NOI18N
         logOutButton.setText("Log Out");
+        logOutButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        logOutButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         logOutButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 logOutButtonActionPerformed(evt);
             }
         });
 
+        jobsButton.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jobsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garits/ICONS/jobs-icon.png"))); // NOI18N
         jobsButton.setText("Jobs");
+        jobsButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jobsButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jobsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jobsButtonActionPerformed(evt);
             }
         });
 
+        stockButton.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        stockButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garits/ICONS/Stock-icon.png"))); // NOI18N
         stockButton.setText("Stock");
+        stockButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        stockButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         stockButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 stockButtonActionPerformed(evt);
             }
         });
 
+        produceInvoiceButton.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        produceInvoiceButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garits/ICONS/Finance-Invoice-icon.png"))); // NOI18N
         produceInvoiceButton.setText("Produce Invoice");
+        produceInvoiceButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        produceInvoiceButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         produceInvoiceButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 produceInvoiceButtonActionPerformed(evt);
             }
         });
 
+        tasksCompletedButton.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        tasksCompletedButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garits/ICONS/Task completed-icon.png"))); // NOI18N
         tasksCompletedButton.setText("Tasks Completed");
+        tasksCompletedButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        tasksCompletedButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         tasksCompletedButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tasksCompletedButtonActionPerformed(evt);
             }
         });
 
+        partsUsedButton.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        partsUsedButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garits/ICONS/parts-icon.png"))); // NOI18N
         partsUsedButton.setText("Parts Used");
+        partsUsedButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        partsUsedButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         partsUsedButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 partsUsedButtonActionPerformed(evt);
             }
         });
 
+        notifications.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        notifications.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garits/ICONS/preferences-system-notifications-icon.png"))); // NOI18N
         notifications.setText("Notifications");
         notifications.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -92,47 +122,78 @@ public class ForepersonHomePage extends javax.swing.JFrame {
             }
         });
 
+        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
+
+        label1.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 36)); // NOI18N
+        label1.setForeground(new java.awt.Color(255, 255, 255));
+        label1.setText("GARITS");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(1733, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(20, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(268, 268, 268)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(notifications)
-                    .addGroup(layout.createSequentialGroup()
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(notifications)
+                        .addGap(56, 56, 56))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(partsUsedButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jobsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(29, 29, 29)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(tasksCompletedButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(stockButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(33, 33, 33)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(produceInvoiceButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(logOutButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(264, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jobsButton)
+                                .addGap(43, 43, 43)
+                                .addComponent(stockButton))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(partsUsedButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(tasksCompletedButton)))
+                        .addGap(48, 48, 48)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(logOutButton)
+                            .addComponent(produceInvoiceButton))
+                        .addGap(658, 658, 658))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(86, 86, 86)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(242, 242, 242)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jobsButton)
+                    .addComponent(stockButton)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(produceInvoiceButton, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(19, 19, 19)))
+                .addGap(64, 64, 64)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(tasksCompletedButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(logOutButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(partsUsedButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 373, Short.MAX_VALUE)
                 .addComponent(notifications)
-                .addGap(49, 49, 49)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jobsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(stockButton, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(produceInvoiceButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(52, 52, 52)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(partsUsedButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tasksCompletedButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(logOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(162, Short.MAX_VALUE))
+                .addGap(74, 74, 74))
         );
 
-        pack();
+        setBounds(0, 0, 1920, 1080);
     }// </editor-fold>//GEN-END:initComponents
 
     private void logOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutButtonActionPerformed
@@ -233,7 +294,9 @@ public class ForepersonHomePage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JButton jobsButton;
+    private java.awt.Label label1;
     private javax.swing.JButton logOutButton;
     private javax.swing.JButton notifications;
     private javax.swing.JButton partsUsedButton;

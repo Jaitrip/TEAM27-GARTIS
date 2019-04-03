@@ -13,6 +13,7 @@ public class Login {
     Connection connection;
     
     public Login() {
+        //Connect to the database
         try {
             connection = DBConnection.getConnection();
         } catch (SQLException exception) {
@@ -21,6 +22,7 @@ public class Login {
     }
     
     public boolean isConnected() {
+        //Check the connection is succesfull
         try {
             return !connection.isClosed();
         } catch (SQLException e) {
@@ -30,23 +32,27 @@ public class Login {
     }
     
     public boolean isLogin(String username, String password, String role) throws SQLException {
+        //Statement to check if the user exists in the table
         PreparedStatement pStatement = null;
         ResultSet rSet = null;
         String sqlQuery = "SELECT * FROM Employee WHERE username=? and password=? and role=?";
         
         try {
-            
+            //Prepare statement for execution
             pStatement = connection.prepareStatement(sqlQuery);
             pStatement.setString(1, username);
             pStatement.setString(2, password);
             pStatement.setString(3, role);
             
+            //Execute the log in query
             rSet = pStatement.executeQuery();
             System.out.println("query executed");
             
             if (rSet.next()) {
+                //It was found in the table (Login Succesful)
                 return true;
             } else {
+                //Log in failed
                 System.out.println("no result set");
                 return false;
             }
@@ -58,7 +64,7 @@ public class Login {
             return false;
             
         } finally {
-            
+            //Close result set and prepared statement.
             if (pStatement !=null) {
                 pStatement.close();
             } 

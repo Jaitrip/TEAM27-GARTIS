@@ -6,6 +6,7 @@
 package garits.franchisee;
 
 import garits.franchisee.stock.CheckStock;
+import garits.franchisee.stock.EditThreshold;
 import garits.franchisee.stock.OrderParts;
 import garits.franchisee.stock.SellParts;
 import javax.swing.JFrame;
@@ -36,6 +37,7 @@ public class Stock extends javax.swing.JFrame {
         checkStockButton = new javax.swing.JButton();
         orderPartsButton = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        editThreshold = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -67,6 +69,13 @@ public class Stock extends javax.swing.JFrame {
             }
         });
 
+        editThreshold.setText("Edit Threshold");
+        editThreshold.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editThresholdActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -77,13 +86,15 @@ public class Stock extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(backButton))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(227, 227, 227)
+                        .addGap(171, 171, 171)
                         .addComponent(checkStockButton)
-                        .addGap(69, 69, 69)
+                        .addGap(40, 40, 40)
+                        .addComponent(editThreshold)
+                        .addGap(37, 37, 37)
                         .addComponent(jButton1)
-                        .addGap(62, 62, 62)
+                        .addGap(56, 56, 56)
                         .addComponent(orderPartsButton)))
-                .addContainerGap(309, Short.MAX_VALUE))
+                .addContainerGap(228, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -92,7 +103,8 @@ public class Stock extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(checkStockButton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(orderPartsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(editThreshold, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 182, Short.MAX_VALUE)
                 .addComponent(backButton)
                 .addContainerGap())
@@ -137,6 +149,15 @@ public class Stock extends javax.swing.JFrame {
         frame.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void editThresholdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editThresholdActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        JFrame frame = new EditThreshold();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
+    }//GEN-LAST:event_editThresholdActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -176,6 +197,7 @@ public class Stock extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
     private javax.swing.JButton checkStockButton;
+    private javax.swing.JButton editThreshold;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton orderPartsButton;
     // End of variables declaration//GEN-END:variables
