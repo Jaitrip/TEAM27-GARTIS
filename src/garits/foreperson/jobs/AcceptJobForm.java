@@ -6,6 +6,7 @@
 package garits.foreperson.jobs;
 
 import garits.DBConnectivity.DBConnection;
+import garits.InvalidError;
 import garits.foreperson.JobsPage;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -248,7 +249,10 @@ public class AcceptJobForm extends javax.swing.JFrame {
             resultSet.close();
             connection.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            JFrame frame = new InvalidError();
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.pack();
+            frame.setVisible(true);
         }
     }//GEN-LAST:event_searchJobsButtonActionPerformed
 
@@ -274,7 +278,10 @@ public class AcceptJobForm extends javax.swing.JFrame {
             resultSet.close();
             connection.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            JFrame frame = new InvalidError();
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.pack();
+            frame.setVisible(true);
         }
     }//GEN-LAST:event_refreshButtonActionPerformed
 
@@ -304,7 +311,10 @@ public class AcceptJobForm extends javax.swing.JFrame {
             resultSet.close();
             connection.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            JFrame frame = new InvalidError();
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.pack();
+            frame.setVisible(true);
         }  
     }//GEN-LAST:event_taskRefreshButtonActionPerformed
 
@@ -332,8 +342,10 @@ public class AcceptJobForm extends javax.swing.JFrame {
             connection.close();
 
         } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Exception");
+            JFrame frame = new InvalidError();
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.pack();
+            frame.setVisible(true);
         }   
     }//GEN-LAST:event_addTaskButtonActionPerformed
 

@@ -9,6 +9,7 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 import garits.DBConnectivity.DBConnection;
+import garits.InvalidError;
 import garits.franchisee.Reports;
 import java.io.FileOutputStream;
 import java.sql.Connection;
@@ -289,7 +290,10 @@ public class VehicleReport extends javax.swing.JFrame {
             
             
         } catch (Exception e) {
-            e.printStackTrace();
+            JFrame frame = new InvalidError();
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.pack();
+            frame.setVisible(true);
         }
     }//GEN-LAST:event_printButtonActionPerformed
 
@@ -352,7 +356,10 @@ public class VehicleReport extends javax.swing.JFrame {
 
             
         } catch (Exception e) {
-            e.printStackTrace();
+            JFrame frame = new InvalidError();
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.pack();
+            frame.setVisible(true);
         }
     }//GEN-LAST:event_generateButtonActionPerformed
 

@@ -6,6 +6,7 @@
 package garits.receptionist.managejob;
 
 import garits.DBConnectivity.DBConnection;
+import garits.InvalidError;
 import garits.franchisee.ManageJob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -214,7 +215,10 @@ public class RecordPayment extends javax.swing.JFrame {
             connection.close();
 
         } catch (Exception e) {
-            e.printStackTrace();
+            JFrame frame = new InvalidError();
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.pack();
+            frame.setVisible(true);
         }
     }//GEN-LAST:event_takePaymentButtonActionPerformed
 
@@ -241,7 +245,10 @@ public class RecordPayment extends javax.swing.JFrame {
             resultSet.close();
             connection.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            JFrame frame = new InvalidError();
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.pack();
+            frame.setVisible(true);
         }
     }//GEN-LAST:event_refreshListButtonActionPerformed
 

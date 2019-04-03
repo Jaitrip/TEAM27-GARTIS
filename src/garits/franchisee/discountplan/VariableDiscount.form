@@ -80,7 +80,7 @@
                                       <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace pref="31" max="32767" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="serviceDiscountField" alignment="1" min="-2" pref="140" max="-2" attributes="0"/>
                                       <Component id="motDiscountField" alignment="1" min="-2" pref="140" max="-2" attributes="0"/>

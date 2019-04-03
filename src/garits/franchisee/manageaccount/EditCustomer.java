@@ -6,6 +6,7 @@
 package garits.franchisee.manageaccount;
 
 import garits.DBConnectivity.DBConnection;
+import garits.InvalidError;
 import garits.franchisee.ManageAccount;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -204,7 +205,10 @@ public class EditCustomer extends javax.swing.JFrame {
             connection.close();
 
         } catch (Exception e) {
-            e.printStackTrace();
+            JFrame frame = new InvalidError();
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.pack();
+            frame.setVisible(true);
         }
     }//GEN-LAST:event_updateCustomerButtonActionPerformed
 
@@ -230,7 +234,10 @@ public class EditCustomer extends javax.swing.JFrame {
             resultSet.close();
             connection.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            JFrame frame = new InvalidError();
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.pack();
+            frame.setVisible(true);
         }
     }//GEN-LAST:event_viewCustomersButtonActionPerformed
 

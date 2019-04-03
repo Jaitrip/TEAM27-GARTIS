@@ -6,6 +6,7 @@
 package garits.franchisee.discountplan;
 
 import garits.DBConnectivity.DBConnection;
+import garits.InvalidError;
 import garits.franchisee.DiscountPlan;
 import garits.franchisee.FranchiseeHomePage;
 import java.sql.Connection;
@@ -366,7 +367,10 @@ public class FixedDiscount extends javax.swing.JFrame {
             connection.setAutoCommit(true);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            JFrame frame = new InvalidError();
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.pack();
+            frame.setVisible(true);
         }
     }//GEN-LAST:event_viewCustomersButtonActionPerformed
 
@@ -387,7 +391,10 @@ public class FixedDiscount extends javax.swing.JFrame {
 
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            JFrame frame = new InvalidError();
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.pack();
+            frame.setVisible(true);
         }
     }//GEN-LAST:event_viewFixedPlansButtonActionPerformed
 
@@ -431,7 +438,10 @@ public class FixedDiscount extends javax.swing.JFrame {
             connection.close();
 
         } catch (Exception e) {
-            e.printStackTrace();
+            JFrame frame = new InvalidError();
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.pack();
+            frame.setVisible(true);
         }
 
     }//GEN-LAST:event_addDiscountPlanButtonActionPerformed
@@ -455,7 +465,10 @@ public class FixedDiscount extends javax.swing.JFrame {
             connection.close();
 
         } catch (Exception e) {
-            e.printStackTrace();
+            JFrame frame = new InvalidError();
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.pack();
+            frame.setVisible(true);
         }
     }//GEN-LAST:event_updateDiscountPlanActionPerformed
 
@@ -477,8 +490,10 @@ public class FixedDiscount extends javax.swing.JFrame {
             connection.close();
 
         } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Exception");
+            JFrame frame = new InvalidError();
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.pack();
+            frame.setVisible(true);
         }
 
         viewFixedPlansButtonActionPerformed(evt);

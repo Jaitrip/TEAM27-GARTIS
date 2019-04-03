@@ -5,6 +5,7 @@
  */
 package garits.admin;
 
+import garits.InvalidError;
 import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -208,7 +209,6 @@ public class BackupForm extends javax.swing.JFrame {
         );
 
         backupField.getAccessibleContext().setAccessibleName("");
-        backupField.getAccessibleContext().setAccessibleDescription("");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -238,7 +238,10 @@ public class BackupForm extends javax.swing.JFrame {
             backupField.setText(path);
             
         } catch (Exception e) {
-            e.printStackTrace();
+            JFrame frame = new InvalidError();
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.pack();
+            frame.setVisible(true);
         }
         
         
@@ -256,7 +259,10 @@ public class BackupForm extends javax.swing.JFrame {
             jLabel3.setText("Backed up");
             
         } catch (Exception e) {
-            e.printStackTrace();
+            JFrame frame = new InvalidError();
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.pack();
+            frame.setVisible(true);
         }
     }//GEN-LAST:event_backUpButtonActionPerformed
 
@@ -275,7 +281,10 @@ public class BackupForm extends javax.swing.JFrame {
             restoreTextField.setText(path);
             
         } catch (Exception e) {
-            e.printStackTrace();
+            JFrame frame = new InvalidError();
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.pack();
+            frame.setVisible(true);
         }
     }//GEN-LAST:event_browseButton1ActionPerformed
 
@@ -291,7 +300,10 @@ public class BackupForm extends javax.swing.JFrame {
             jLabel4.setText("Restored");
             
         } catch (Exception e) {
-            e.printStackTrace();
+            JFrame frame = new InvalidError();
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.pack();
+            frame.setVisible(true);
         }
     }//GEN-LAST:event_restoreButtonActionPerformed
 

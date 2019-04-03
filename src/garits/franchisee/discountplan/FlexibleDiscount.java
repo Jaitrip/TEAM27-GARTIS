@@ -6,6 +6,7 @@
 package garits.franchisee.discountplan;
 
 import garits.DBConnectivity.DBConnection;
+import garits.InvalidError;
 import garits.franchisee.FranchiseeHomePage;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -378,7 +379,10 @@ public class FlexibleDiscount extends javax.swing.JFrame {
             connection.setAutoCommit(true);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            JFrame frame = new InvalidError();
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.pack();
+            frame.setVisible(true);
         }
     }//GEN-LAST:event_viewCustomersButtonActionPerformed
 
@@ -405,7 +409,10 @@ public class FlexibleDiscount extends javax.swing.JFrame {
             connection.close();
 
         } catch (Exception e) {
-            e.printStackTrace();
+            JFrame frame = new InvalidError();
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.pack();
+            frame.setVisible(true);
         }
     }//GEN-LAST:event_updateDiscountPlanActionPerformed
 
@@ -427,8 +434,10 @@ public class FlexibleDiscount extends javax.swing.JFrame {
             connection.close();
 
         } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Exception");
+            JFrame frame = new InvalidError();
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.pack();
+            frame.setVisible(true);
         }
 
         viewFlexiblePlansButtonActionPerformed(evt);
@@ -451,7 +460,10 @@ public class FlexibleDiscount extends javax.swing.JFrame {
 
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            JFrame frame = new InvalidError();
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.pack();
+            frame.setVisible(true);
         }
     }//GEN-LAST:event_viewFlexiblePlansButtonActionPerformed
 
@@ -487,7 +499,10 @@ public class FlexibleDiscount extends javax.swing.JFrame {
             connection.close();
             
         } catch (Exception e) {
-            e.printStackTrace();
+            JFrame frame = new InvalidError();
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.pack();
+            frame.setVisible(true);
         }
         
         viewFlexiblePlansButtonActionPerformed(evt);

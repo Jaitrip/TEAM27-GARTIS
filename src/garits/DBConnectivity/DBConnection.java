@@ -6,6 +6,9 @@ import java.sql.SQLException;
 
 
 import static com.sun.corba.se.impl.util.Utility.printStackTrace;
+import garits.InvalidError;
+import garits.foreperson.JobsPage;
+import javax.swing.JFrame;
 
 public class DBConnection  {
 
@@ -14,7 +17,10 @@ public class DBConnection  {
             Class.forName("org.sqlite.JDBC");
             return DriverManager.getConnection("jdbc:sqlite:src/database/GARTISDatabase.sqlite");
         } catch (ClassNotFoundException ex) {
-            ex.printStackTrace();
+            JFrame frame = new InvalidError();
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.pack();
+            frame.setVisible(true);
         }
         return null;
     }
