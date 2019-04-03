@@ -5,8 +5,15 @@
  */
 package garits.receptionist.stock;
 
+import garits.DBConnectivity.DBConnection;
+import garits.InvalidError;
+import garits.Stock.PartsOrder;
 import garits.receptionist.Stock;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javax.swing.JFrame;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -31,9 +38,12 @@ public class OrderParts extends javax.swing.JFrame {
     private void initComponents() {
 
         backButton = new javax.swing.JButton();
-        printButton = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         label1 = new java.awt.Label();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        partsOrderTable = new javax.swing.JTable();
+        viewPartsOrderButton = new javax.swing.JButton();
+        saveOrderButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setExtendedState(6);
@@ -44,8 +54,6 @@ public class OrderParts extends javax.swing.JFrame {
                 backButtonActionPerformed(evt);
             }
         });
-
-        printButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garits/ICONS/Print small-icon.png"))); // NOI18N
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
         jPanel1.setPreferredSize(new java.awt.Dimension(1920, 100));
@@ -71,29 +79,67 @@ public class OrderParts extends javax.swing.JFrame {
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
+        partsOrderTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "partNo", "partName", "reorderThreshold", "price"
+            }
+        ));
+        jScrollPane1.setViewportView(partsOrderTable);
+
+        viewPartsOrderButton.setText("View Parts To Be Ordered");
+        viewPartsOrderButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewPartsOrderButtonActionPerformed(evt);
+            }
+        });
+
+        saveOrderButton.setText("Save Parts Order");
+        saveOrderButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveOrderButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(backButton)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(printButton)
-                .addGap(89, 89, 89))
-            .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(saveOrderButton)
+                        .addGap(45, 45, 45)
+                        .addComponent(viewPartsOrderButton))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(backButton))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(22, 22, 22)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1631, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 837, Short.MAX_VALUE)
-                .addComponent(printButton)
-                .addGap(18, 18, 18)
+                .addGap(40, 40, 40)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 635, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(viewPartsOrderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(saveOrderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(126, 126, 126)
                 .addComponent(backButton)
                 .addContainerGap())
         );
@@ -109,6 +155,58 @@ public class OrderParts extends javax.swing.JFrame {
         frame.pack();
         frame.setVisible(true);
     }//GEN-LAST:event_backButtonActionPerformed
+
+    private void viewPartsOrderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewPartsOrderButtonActionPerformed
+        // TODO add your handling code here:
+        try {
+            
+            Connection connection = DBConnection.getConnection();
+            String sqlQuery = "SELECT partNo, Part.partName, reorderThreshold, price FROM Part INNER JOIN StockLedger ON  Part.StockLedgercode = StockLedger.code WHERE quantity <= reorderThreshold";
+            PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
+            ResultSet resultSet = pStatement.executeQuery();
+            DefaultTableModel model = (DefaultTableModel) partsOrderTable.getModel();
+            model.setRowCount(0);
+            while (resultSet.next()) {
+                Object o[] = {
+                    resultSet.getString("partNo"), resultSet.getString("partName"), resultSet.getString("reorderThreshold"), resultSet.getString("price")
+                };
+                model.addRow(o);
+
+            }
+            
+            pStatement.close();
+            resultSet.close();
+            connection.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            JFrame frame = new InvalidError();
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.pack();
+            frame.setVisible(true);
+        }
+    }//GEN-LAST:event_viewPartsOrderButtonActionPerformed
+
+    private void saveOrderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveOrderButtonActionPerformed
+        // TODO add your handling code here:
+        
+        try {
+            
+            Connection connection = DBConnection.getConnection();
+            
+            PartsOrder partsOrder = new PartsOrder();
+            
+            partsOrder.saveOrder(connection);
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+            JFrame frame = new InvalidError();
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.pack();
+            frame.setVisible(true);
+        }
+        
+        
+    }//GEN-LAST:event_saveOrderButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -149,7 +247,10 @@ public class OrderParts extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private java.awt.Label label1;
-    private javax.swing.JButton printButton;
+    private javax.swing.JTable partsOrderTable;
+    private javax.swing.JButton saveOrderButton;
+    private javax.swing.JButton viewPartsOrderButton;
     // End of variables declaration//GEN-END:variables
 }
