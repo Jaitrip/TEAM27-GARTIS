@@ -40,7 +40,6 @@ public class AdminHomePage extends javax.swing.JFrame {
         jToolBar1.setRollover(true);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1920, 1080));
         setSize(new java.awt.Dimension(1920, 1080));
 
         databaseButton.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -123,7 +122,7 @@ public class AdminHomePage extends javax.swing.JFrame {
                 .addGap(283, 283, 283)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(logOutButton)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(databaseButton)
                         .addComponent(usersButton)))
                 .addContainerGap(540, Short.MAX_VALUE))
