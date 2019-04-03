@@ -19,12 +19,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author shazidtipu
  */
-public class EditThreshold extends javax.swing.JFrame {
+public class NewPart extends javax.swing.JFrame {
 
     /**
      * Creates new form ReceptionistCheckStock
      */
-    public EditThreshold() {
+    public NewPart() {
         initComponents();
     }
 
@@ -39,13 +39,19 @@ public class EditThreshold extends javax.swing.JFrame {
 
         backButton = new javax.swing.JButton();
         enterPartNumberLabel = new javax.swing.JLabel();
-        enterPartNumberField = new javax.swing.JTextField();
-        updateButton = new javax.swing.JButton();
+        partNumber = new javax.swing.JTextField();
+        addPartButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         viewPartsButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         threshold = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        partName = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        quantity = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        price = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,10 +64,10 @@ public class EditThreshold extends javax.swing.JFrame {
 
         enterPartNumberLabel.setText("Enter Part Number");
 
-        updateButton.setText("Update");
-        updateButton.addActionListener(new java.awt.event.ActionListener() {
+        addPartButton.setText("Add Part");
+        addPartButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                updateButtonActionPerformed(evt);
+                addPartButtonActionPerformed(evt);
             }
         });
 
@@ -85,7 +91,13 @@ public class EditThreshold extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("New Threshold : ");
+        jLabel1.setText("Threshold : ");
+
+        jLabel2.setText("Part Name:");
+
+        jLabel3.setText("Quantity");
+
+        jLabel4.setText("Price");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -99,16 +111,20 @@ public class EditThreshold extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(26, 26, 26)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(enterPartNumberField, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(partNumber, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
                             .addComponent(enterPartNumberLabel)
-                            .addComponent(viewPartsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(threshold, javax.swing.GroupLayout.Alignment.TRAILING)))
+                            .addComponent(threshold, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(viewPartsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(partName)
+                            .addComponent(jLabel3)
+                            .addComponent(quantity)
+                            .addComponent(price)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
-                        .addComponent(updateButton))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(jLabel1)))
+                        .addGap(49, 49, 49)
+                        .addComponent(addPartButton)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 631, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -118,19 +134,31 @@ public class EditThreshold extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addComponent(enterPartNumberLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(enterPartNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(partNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
+                .addGap(12, 12, 12)
+                .addComponent(partName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(threshold, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(updateButton)
-                .addGap(81, 81, 81)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(quantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(price, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addComponent(addPartButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addComponent(viewPartsButton)
-                .addGap(107, 107, 107)
+                .addGap(18, 18, 18)
                 .addComponent(backButton)
                 .addContainerGap())
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
+            .addComponent(jScrollPane1)
         );
 
         pack();
@@ -145,30 +173,47 @@ public class EditThreshold extends javax.swing.JFrame {
         frame.setVisible(true);
     }//GEN-LAST:event_backButtonActionPerformed
 
-    private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
+    private void addPartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPartButtonActionPerformed
         // TODO add your handling code here:
-        String code = enterPartNumberField.getText();
+        String code = partNumber.getText();
+        String pName = partName.getText();
         String newThreshold = threshold.getText();
-        System.out.println("Button clicked");
-        try {
-            Connection connection = DBConnection.getConnection();
-            String sqlQuery = "UPDATE StockLedger SET reorderThreshold = ?  WHERE  code = ?";
-            PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
-            pStatement.setString(1, newThreshold );
-            pStatement.setString(2, code );
-            pStatement.executeUpdate();
-            
-            pStatement.close();
-            connection.close();
-            
-        } catch (Exception e) {
+        String qty = quantity.getText();
+        String partPrice = price.getText();
+        
+        if("".equals(code) | "".equals(pName) | "".equals(newThreshold) | "".equals(qty) | "".equals(partPrice) ){
             JFrame frame = new InvalidError();
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.pack();
             frame.setVisible(true);
+        } else {
+
+            System.out.println("Button clicked");
+            try {
+                Connection connection = DBConnection.getConnection();
+                String sqlQuery = "INSERT INTO StockLedger VALUES (?,?,?,?,?)";
+                PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
+                pStatement.setString(1, code );
+                pStatement.setString(2, pName );
+                pStatement.setString(3, newThreshold );
+                pStatement.setString(4, qty );
+                pStatement.setString(5, partPrice );
+
+
+                pStatement.executeUpdate();
+
+                pStatement.close();
+                connection.close();
+
+            } catch (Exception e) {
+                JFrame frame = new InvalidError();
+                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame.pack();
+                frame.setVisible(true);
+            }
         }
         viewPartsButtonActionPerformed(evt);
-    }//GEN-LAST:event_updateButtonActionPerformed
+    }//GEN-LAST:event_addPartButtonActionPerformed
 
     private void viewPartsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewPartsButtonActionPerformed
         // TODO add your handling code here:
@@ -218,14 +263,46 @@ public class EditThreshold extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EditThreshold.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NewPart.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EditThreshold.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NewPart.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EditThreshold.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NewPart.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EditThreshold.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NewPart.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -262,20 +339,26 @@ public class EditThreshold extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EditThreshold().setVisible(true);
+                new NewPart().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addPartButton;
     private javax.swing.JButton backButton;
-    private javax.swing.JTextField enterPartNumberField;
     private javax.swing.JLabel enterPartNumberLabel;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextField partName;
+    private javax.swing.JTextField partNumber;
+    private javax.swing.JTextField price;
+    private javax.swing.JTextField quantity;
     private javax.swing.JTextField threshold;
-    private javax.swing.JButton updateButton;
     private javax.swing.JButton viewPartsButton;
     // End of variables declaration//GEN-END:variables
 }
