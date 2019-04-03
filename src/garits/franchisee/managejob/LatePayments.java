@@ -5,11 +5,19 @@
  */
 package garits.franchisee.managejob;
 
+import garits.Customer.FinalLatePaymentLetter;
+import garits.Customer.FirstLatePaymentLetter;
+import garits.Customer.SecondLatePaymentLetter;
 import garits.DBConnectivity.DBConnection;
 import garits.franchisee.ManageJob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 
@@ -35,10 +43,19 @@ public class LatePayments extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        label1 = new java.awt.Label();
         backButton = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        label2 = new java.awt.Label();
+        jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        invoiceTable = new javax.swing.JTable();
+        viewLatePayments = new javax.swing.JButton();
+        printReminderLetterButton = new javax.swing.JButton();
+
+        label1.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 36)); // NOI18N
+        label1.setForeground(new java.awt.Color(255, 255, 255));
+        label1.setText("GARITS");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,31 +66,61 @@ public class LatePayments extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel1.setPreferredSize(new java.awt.Dimension(1920, 100));
+
+        label2.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 36)); // NOI18N
+        label2.setForeground(new java.awt.Color(255, 255, 255));
+        label2.setText("GARITS");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(1349, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(20, Short.MAX_VALUE))
+        );
+
+        jLabel1.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        jLabel1.setText("Late Payments:");
+
+        invoiceTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Customer ID", "Name", "Address", "Invoice No", "Amount", "Payment Date", "No. of Reminders", "Actions taken"
+                "invoiceNumber", "jobNumber", "dateOfInvoice", "datePaymentDue", "grandTotal", "labourCost", "partCost", "status", "totalTimeTaken"
             }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class, java.lang.Integer.class, java.lang.Object.class
-            };
+        ));
+        jScrollPane1.setViewportView(invoiceTable);
 
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
+        viewLatePayments.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        viewLatePayments.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garits/ICONS/view-icon.png"))); // NOI18N
+        viewLatePayments.setText("View Late Payments");
+        viewLatePayments.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewLatePaymentsActionPerformed(evt);
             }
         });
-        jScrollPane1.setViewportView(jTable1);
 
-        jButton1.setText("Load");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        printReminderLetterButton.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        printReminderLetterButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garits/ICONS/view-icon.png"))); // NOI18N
+        printReminderLetterButton.setText("Print Reminder Letter");
+        printReminderLetterButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                printReminderLetterButtonActionPerformed(evt);
             }
         });
 
@@ -82,26 +129,39 @@ public class LatePayments extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1536, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(backButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1))
+                        .addComponent(backButton))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 847, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(103, Short.MAX_VALUE))
+                        .addGap(16, 16, 16)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(printReminderLetterButton)
+                                .addGap(76, 76, 76)
+                                .addComponent(viewLatePayments))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel1)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1490, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 495, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(backButton)
-                    .addComponent(jButton1))
+                    .addComponent(viewLatePayments)
+                    .addComponent(printReminderLetterButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                .addComponent(backButton)
                 .addContainerGap())
         );
 
@@ -117,21 +177,27 @@ public class LatePayments extends javax.swing.JFrame {
         frame.setVisible(true);
     }//GEN-LAST:event_backButtonActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void viewLatePaymentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewLatePaymentsActionPerformed
+        // TODO add your handling code here:
         try {
+            
+            Date date = new Date();
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+
             Connection connection = DBConnection.getConnection();
-            String sqlQuery = "SELECT * from Payment inner join Customer on payment.customerID and customer.customerID";
+            String sqlQuery = "SELECT * FROM Invoice WHERE datePaymentDue < ? AND status = ?;";
             PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
+            pStatement.setString(1, df.format(date));
+            pStatement.setString(2, "Unpaid");
             ResultSet resultSet = pStatement.executeQuery();
-            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            DefaultTableModel model = (DefaultTableModel) invoiceTable.getModel();
             model.setRowCount(0);
             while (resultSet.next()) {
                 Object o[] = {
-                    resultSet.getString("customerID"), resultSet.getString("firstName")+" "+resultSet.getString("lastName"), resultSet.getString("address"), resultSet.getString("INVOICENUMBER******"), resultSet.getString("amount"), resultSet.getString("dateTaken"), resultSet.getString("NUMBER OF REMINDERS*****"), resultSet.getString("ACTIONS TAKEN****")
+                    resultSet.getString("invoiceNumber"), resultSet.getString("jobNumber"), resultSet.getString("dateOfInvoice"), resultSet.getString("datePaymentDue"), resultSet.getString("grandTotal"), resultSet.getString("labourCost"), resultSet.getString("partCost"), resultSet.getString("status"), resultSet.getString("totalTimeTaken")
                 };
                 model.addRow(o);
-                
-                        
+
             }
             pStatement.close();
             resultSet.close();
@@ -139,7 +205,52 @@ public class LatePayments extends javax.swing.JFrame {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_viewLatePaymentsActionPerformed
+
+    private void printReminderLetterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printReminderLetterButtonActionPerformed
+        // TODO add your handling code here:
+        
+        int row = invoiceTable.getSelectedRow();
+        String invoiceNumber = invoiceTable.getModel().getValueAt(row, 0).toString();
+        String dateOfPayment = invoiceTable.getModel().getValueAt(row, 3).toString();
+        
+        try {
+            
+            Connection connection = DBConnection.getConnection();
+            
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+            
+            Date paymentDate = sdf.parse(dateOfPayment);
+            Date todayDate = new Date();
+            Date date = sdf.parse(sdf.format(todayDate));
+            
+            long diffrenceInMill = Math.abs(todayDate.getTime() - paymentDate.getTime());
+            long diffrence = TimeUnit.DAYS.convert(diffrenceInMill, TimeUnit.MILLISECONDS);
+            System.out.println(diffrence);
+            
+            if (diffrence > 30 && diffrence < 60) {
+                
+                FirstLatePaymentLetter latePayment = new FirstLatePaymentLetter();
+                latePayment.saveFirstLetter(invoiceNumber, connection);
+                
+                
+            } else if (diffrence > 60 && diffrence < 90) {
+                
+                SecondLatePaymentLetter latePayment = new SecondLatePaymentLetter();
+                latePayment.saveSecondLetter(invoiceNumber, connection);
+                
+            } else if (diffrence > 90) {
+                
+                FinalLatePaymentLetter latePayment = new FinalLatePaymentLetter();
+                latePayment.saveFinalLetter(invoiceNumber, connection);
+                
+            }
+            
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+        
+    }//GEN-LAST:event_printReminderLetterButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -179,8 +290,15 @@ public class LatePayments extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JTable invoiceTable;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private java.awt.Label label1;
+    private java.awt.Label label2;
+    private javax.swing.JButton printReminderLetterButton;
+    private javax.swing.JButton viewInvoiceButton;
+    private javax.swing.JButton viewInvoiceButton1;
+    private javax.swing.JButton viewLatePayments;
     // End of variables declaration//GEN-END:variables
 }
