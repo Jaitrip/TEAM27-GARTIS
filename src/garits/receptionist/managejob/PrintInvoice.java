@@ -5,8 +5,13 @@
  */
 package garits.receptionist.managejob;
 
+import com.itextpdf.text.Chunk;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
 import garits.DBConnectivity.DBConnection;
 import garits.receptionist.ReceptionistHomePage;
+import java.io.FileOutputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -43,6 +48,7 @@ public class PrintInvoice extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         invoiceTable = new javax.swing.JTable();
         viewInvoiceButton = new javax.swing.JButton();
+        printInvoiceButton = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
         jPanel1.setPreferredSize(new java.awt.Dimension(1920, 100));
@@ -124,6 +130,15 @@ public class PrintInvoice extends javax.swing.JFrame {
             }
         });
 
+        printInvoiceButton.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        printInvoiceButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garits/ICONS/view-icon.png"))); // NOI18N
+        printInvoiceButton.setText("Print Invoice Button");
+        printInvoiceButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                printInvoiceButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -132,14 +147,15 @@ public class PrintInvoice extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton2)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1)
+                        .addContainerGap(1850, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(viewInvoiceButton)))
-                .addContainerGap())
+                        .addComponent(printInvoiceButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(viewInvoiceButton)
+                        .addGap(12, 12, 12))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -147,9 +163,15 @@ public class PrintInvoice extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 733, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(viewInvoiceButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(viewInvoiceButton)
+                        .addGap(91, 91, 91))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(printInvoiceButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jButton2)
                 .addContainerGap())
         );
@@ -178,7 +200,7 @@ public class PrintInvoice extends javax.swing.JFrame {
             model.setRowCount(0);
             while (resultSet.next()) {
                 Object o[] = {
-                    resultSet.getString("invoiceNumber"), resultSet.getString("jobNumber"), resultSet.getString("dateOfInvoice"), resultSet.getString("datePaymentDue"), resultSet.getString("grandTotal"), resultSet.getString("labourCost") , resultSet.getString("partCost") , resultSet.getString("status"), resultSet.getString("totalTimeTaken")
+                    resultSet.getString("invoiceNumber"), resultSet.getString("jobNumber"), resultSet.getString("dateOfInvoice"), resultSet.getString("datePaymentDue"), resultSet.getString("grandTotal"), resultSet.getString("labourCost"), resultSet.getString("partCost"), resultSet.getString("status"), resultSet.getString("totalTimeTaken")
                 };
                 model.addRow(o);
 
@@ -190,6 +212,47 @@ public class PrintInvoice extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }//GEN-LAST:event_viewInvoiceButtonActionPerformed
+
+    private void printInvoiceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printInvoiceButtonActionPerformed
+        // TODO add your handling code here:
+        int row = invoiceTable.getSelectedRow();
+        String invoiceNumber = invoiceTable.getModel().getValueAt(row, 0).toString();
+        String customerQuery = "SELECT firstName, lastName, address, postcode FROM Customer INNER JOIN Vehicle ON Customer.customerID = Vehicle.CustomercustomerID INNER JOIN JobSheet ON Vehicle.registrationNumber = JobSheet.VehicleregistrationNumber INNER JOIN Invoice ON Invoice.jobNumber = JobSheet.jobNumber WHERE Invoice.invoiceNumber = ?";
+        String vehicleQuery = "SELECT registrationNumber, make, model FROM Vehicle INNER JOIN JobSheet ON Vehicle.registrationNumber = JobSheet.VehicleregistrationNumber INNER JOIN Invoice ON Invoice.jobNumber = JobSheet.jobNumber WHERE Invoice.invoiceNumber = ?";
+        String getTasksQuery = "SELECT taskDescription FROM JobTask INNER JOIN JobSheet ON JobTask.JobSheetjobNumber = JobSheet.jobNumber INNER JOIN Invoice ON JobSheet.jobNumber = Invoice.jobNumber WHERE Invoice.invoiceNumber = ?";
+        String getPartsQuery = "SELECT Description, partNo, qty FROM PartsUsed INNER JOIN JobSheet ON PartsUsed.JobSheetjobNumber = JobSheet.jobNumber INNER JOIN Invoice ON Invoice.jobNumber = JobSheet.jobNumber WHERE Invoice.invoiceNumber = ?";
+        try {
+            Connection connection = DBConnection.getConnection();
+            PreparedStatement customerStatement = connection.prepareStatement(customerQuery);
+            customerStatement.setString(1, invoiceNumber);
+            ResultSet customerDetailsSet = customerStatement.executeQuery();
+            PreparedStatement vehicleStatement = connection.prepareStatement(vehicleQuery);
+            vehicleStatement.setString(1, invoiceNumber);
+            ResultSet vehicleSet = vehicleStatement.executeQuery();
+            Document document = new Document();
+            PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("Invoice" + invoiceNumber + ".pdf"));
+            document.open();
+            while (customerDetailsSet.next()) {
+                document.add(new Paragraph(customerDetailsSet.getString("firstName") + " " + customerDetailsSet.getString("lastName")));
+                document.add(new Paragraph(customerDetailsSet.getString("address")));
+                document.add(new Paragraph(customerDetailsSet.getString("postcode")));
+            }
+            document.add(Chunk.NEWLINE);
+            document.add(Chunk.NEWLINE);
+            document.add(new Paragraph("Invoice Number: " + invoiceNumber));
+            document.add(Chunk.NEWLINE);
+            while (vehicleSet.next()) {
+                document.add(new Paragraph("Registration Number: " + vehicleSet.getString("registrationNumber")));
+                document.add(new Paragraph("Make: " + vehicleSet.getString("make")));
+                document.add(new Paragraph("Model: " + vehicleSet.getString("model")));
+            }
+            document.add(Chunk.NEWLINE);
+            document.close();
+            writer.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_printInvoiceButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -237,6 +300,7 @@ public class PrintInvoice extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private java.awt.Label label1;
     private java.awt.Label label2;
+    private javax.swing.JButton printInvoiceButton;
     private javax.swing.JButton viewInvoiceButton;
     // End of variables declaration//GEN-END:variables
 }
