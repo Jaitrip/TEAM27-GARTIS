@@ -6,6 +6,7 @@
 package garits.mechanic;
 
 import garits.DBConnectivity.DBConnection;
+import garits.InvalidError;
 import garits.Job.Invoice;
 import garits.Job.ProduceInvoice;
 import garits.Job.SaveInvoice;
@@ -224,7 +225,10 @@ public class TasksCompletedForm extends javax.swing.JFrame {
             resultSet.close();
             connection.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            JFrame frame = new InvalidError();
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.pack();
+            frame.setVisible(true);
         }
     }//GEN-LAST:event_searchJobTasksButtonActionPerformed
 
@@ -249,7 +253,10 @@ public class TasksCompletedForm extends javax.swing.JFrame {
             resultSet.close();
             connection.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            JFrame frame = new InvalidError();
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.pack();
+            frame.setVisible(true);
         }
     }//GEN-LAST:event_refreshTasksButtonActionPerformed
 
@@ -318,8 +325,10 @@ public class TasksCompletedForm extends javax.swing.JFrame {
             connection.close();
 
         } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Exception");
+            JFrame frame = new InvalidError();
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.pack();
+            frame.setVisible(true);
         }
 
 

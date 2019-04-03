@@ -6,6 +6,7 @@
 package garits.receptionist.managejob;
 
 import garits.DBConnectivity.DBConnection;
+import garits.InvalidError;
 import garits.Job.SaveInvoice;
 import garits.receptionist.ReceptionistHomePage;
 import java.sql.Connection;
@@ -205,7 +206,10 @@ public class PrintInvoice extends javax.swing.JFrame {
             resultSet.close();
             connection.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            JFrame frame = new InvalidError();
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.pack();
+            frame.setVisible(true);
         }
     }//GEN-LAST:event_viewInvoiceButtonActionPerformed
 
@@ -224,7 +228,10 @@ public class PrintInvoice extends javax.swing.JFrame {
             saveInvoice.printInvoice(invoiceNumber, connection);
             
         } catch (Exception e) {
-            e.printStackTrace();
+            JFrame frame = new InvalidError();
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.pack();
+            frame.setVisible(true);
         }
         
     }//GEN-LAST:event_printInvoiceButtonActionPerformed

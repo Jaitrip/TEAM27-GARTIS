@@ -7,6 +7,7 @@ package garits.foreperson.jobs;
 
 import garits.mechanic.*;
 import garits.DBConnectivity.DBConnection;
+import garits.InvalidError;
 import garits.SignInForm;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -271,8 +272,10 @@ public class PartsUsedForm extends javax.swing.JFrame {
             resultSet.close();
             connection.close();
         } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Exception");
+            JFrame frame = new InvalidError();
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.pack();
+            frame.setVisible(true);
         }
     }//GEN-LAST:event_searchPartsButtonActionPerformed
 
@@ -303,8 +306,10 @@ public class PartsUsedForm extends javax.swing.JFrame {
             resultSet.close();
             connection.close();
         } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Exception");
+            JFrame frame = new InvalidError();
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.pack();
+            frame.setVisible(true);
         }
 
     }//GEN-LAST:event_searchJobsButtonActionPerformed
@@ -331,7 +336,10 @@ public class PartsUsedForm extends javax.swing.JFrame {
             resultSet.close();
             connection.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            JFrame frame = new InvalidError();
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.pack();
+            frame.setVisible(true);
         }
     }//GEN-LAST:event_viewPartsButtonActionPerformed
 
@@ -402,8 +410,10 @@ public class PartsUsedForm extends javax.swing.JFrame {
            
 
         } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Exception");
+            JFrame frame = new InvalidError();
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.pack();
+            frame.setVisible(true);
         }
     }//GEN-LAST:event_addPartButtonActionPerformed
 

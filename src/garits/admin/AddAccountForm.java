@@ -7,6 +7,7 @@ package garits.admin;
 
 import garits.Control.User;
 import garits.DBConnectivity.DBConnection;
+import garits.InvalidError;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -328,7 +329,10 @@ public class AddAccountForm extends javax.swing.JFrame {
         try {
             addAccount.isAddAccount(employeeID, role, firstName, lastName, password, username);
         } catch (SQLException e) {
-            e.printStackTrace();
+            JFrame frame = new InvalidError();
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.pack();
+            frame.setVisible(true);
         }
         viewButtonActionPerformed(evt);
     }//GEN-LAST:event_addUserButtonActionPerformed
@@ -355,7 +359,10 @@ public class AddAccountForm extends javax.swing.JFrame {
             resultSet.close();
             connection.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            JFrame frame = new InvalidError();
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.pack();
+            frame.setVisible(true);
         }
     }//GEN-LAST:event_viewButtonActionPerformed
 
@@ -382,8 +389,10 @@ public class AddAccountForm extends javax.swing.JFrame {
             connection.close();
 
         } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Exception");
+            JFrame frame = new InvalidError();
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.pack();
+            frame.setVisible(true);
         }
         viewButtonActionPerformed(evt);
     }//GEN-LAST:event_updateButtonActionPerformed
@@ -403,8 +412,10 @@ public class AddAccountForm extends javax.swing.JFrame {
             connection.close();
 
         } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Exception");
+            JFrame frame = new InvalidError();
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.pack();
+            frame.setVisible(true);
         }
         viewButtonActionPerformed(evt);
     }//GEN-LAST:event_jButton1ActionPerformed

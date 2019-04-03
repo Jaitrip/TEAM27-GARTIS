@@ -6,6 +6,7 @@
 package garits.receptionist.managejob;
 
 import garits.DBConnectivity.DBConnection;
+import garits.InvalidError;
 import garits.receptionist.ManageJob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -43,7 +44,7 @@ public class AcceptJob extends javax.swing.JFrame {
         vehicleRegField = new javax.swing.JTextField();
         backButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jobTypeBox = new javax.swing.JComboBox<>();
+        jobTypeBox = new javax.swing.JComboBox<String>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         acceptJobButton = new javax.swing.JButton();
@@ -75,7 +76,7 @@ public class AcceptJob extends javax.swing.JFrame {
         jLabel1.setText("Job Type");
 
         jobTypeBox.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jobTypeBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MOT", "Repair", "Annual Service" }));
+        jobTypeBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "MOT", "Repair", "Annual Service" }));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -226,7 +227,10 @@ public class AcceptJob extends javax.swing.JFrame {
             connection.close();
 
         } catch (Exception e) {
-            e.printStackTrace();
+            JFrame frame = new InvalidError();
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.pack();
+            frame.setVisible(true);
         }
     }//GEN-LAST:event_acceptJobButtonActionPerformed
 
@@ -251,7 +255,10 @@ public class AcceptJob extends javax.swing.JFrame {
             resultSet.close();
             connection.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            JFrame frame = new InvalidError();
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.pack();
+            frame.setVisible(true);
         }
     }//GEN-LAST:event_refreshButtonActionPerformed
 

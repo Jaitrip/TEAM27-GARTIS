@@ -6,6 +6,7 @@
 package garits.admin;
 
 import garits.DBConnectivity.DBConnection;
+import garits.InvalidError;
 import static java.awt.Event.DELETE;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -141,7 +142,10 @@ public class RemoveAccountForm extends javax.swing.JFrame {
             removeAccount.removeAccount(employeeID);
             System.out.println("User removed");
         } catch(Exception e) {
-            e.printStackTrace();
+            JFrame frame = new InvalidError();
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.pack();
+            frame.setVisible(true);
         }
 
     }

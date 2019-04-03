@@ -13,6 +13,7 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import garits.DBConnectivity.DBConnection;
+import garits.InvalidError;
 import garits.receptionist.Stock;
 import java.io.FileOutputStream;
 import java.sql.Connection;
@@ -198,7 +199,10 @@ public class StockReport extends javax.swing.JFrame {
 
         } catch (Exception e) {
 
-            e.printStackTrace();
+            JFrame frame = new InvalidError();
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.pack();
+            frame.setVisible(true);
 
         }
     }//GEN-LAST:event_generateReportButtonActionPerformed
@@ -285,7 +289,10 @@ public class StockReport extends javax.swing.JFrame {
             writer.close();
 
         } catch (Exception e) {
-            e.printStackTrace();
+            JFrame frame = new InvalidError();
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.pack();
+            frame.setVisible(true);
         }
     }//GEN-LAST:event_printReportButtonActionPerformed
 

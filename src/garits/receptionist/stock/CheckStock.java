@@ -6,6 +6,7 @@
 package garits.receptionist.stock;
 
 import garits.DBConnectivity.DBConnection;
+import garits.InvalidError;
 import garits.receptionist.Stock;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -191,7 +192,10 @@ public class CheckStock extends javax.swing.JFrame {
                         
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            JFrame frame = new InvalidError();
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.pack();
+            frame.setVisible(true);
         }
     }//GEN-LAST:event_searchButtonActionPerformed
 
@@ -218,7 +222,10 @@ public class CheckStock extends javax.swing.JFrame {
             resultSet.close();
             connection.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            JFrame frame = new InvalidError();
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.pack();
+            frame.setVisible(true);
         }
     
     }//GEN-LAST:event_viewPartsButtonActionPerformed

@@ -7,6 +7,7 @@ package garits.foreperson.stock;
 
 import garits.foreperson.stock.*;
 import garits.DBConnectivity.DBConnection;
+import garits.InvalidError;
 import garits.receptionist.Stock;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -161,7 +162,10 @@ public class EditThreshold extends javax.swing.JFrame {
             connection.close();
             
         } catch (Exception e) {
-            e.printStackTrace();
+            JFrame frame = new InvalidError();
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.pack();
+            frame.setVisible(true);
         }
         viewPartsButtonActionPerformed(evt);
     }//GEN-LAST:event_updateButtonActionPerformed
@@ -189,7 +193,10 @@ public class EditThreshold extends javax.swing.JFrame {
             resultSet.close();
             connection.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            JFrame frame = new InvalidError();
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.pack();
+            frame.setVisible(true);
         }
     
     }//GEN-LAST:event_viewPartsButtonActionPerformed

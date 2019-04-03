@@ -12,10 +12,12 @@ package garits.admin;
 import garits.DBConnectivity.DBConnection;
 
 import garits.DBConnectivity.DBConnection;
+import garits.InvalidError;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JFrame;
 
 public class RemoveAccount {
     
@@ -25,7 +27,10 @@ public class RemoveAccount {
         try {
             connection = DBConnection.getConnection();
         } catch (SQLException exception) {
-            exception.printStackTrace();
+            JFrame frame = new InvalidError();
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.pack();
+            frame.setVisible(true);
         }
     }
     
@@ -33,7 +38,10 @@ public class RemoveAccount {
         try {
             return !connection.isClosed();
         } catch (SQLException e) {
-            e.printStackTrace();
+            JFrame frame = new InvalidError();
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.pack();
+            frame.setVisible(true);
             return false;
         }
     }
@@ -52,8 +60,10 @@ public class RemoveAccount {
             
            
         } catch (Exception exception) {
-            System.out.println("Exception");
-            exception.printStackTrace();
+            JFrame frame = new InvalidError();
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.pack();
+            frame.setVisible(true);
             
             
         } finally {

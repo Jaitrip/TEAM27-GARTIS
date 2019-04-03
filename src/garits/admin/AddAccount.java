@@ -6,11 +6,13 @@
 package garits.admin;
 
 import garits.DBConnectivity.DBConnection;
+import garits.InvalidError;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JFrame;
 
 public class AddAccount {
     
@@ -52,8 +54,10 @@ public class AddAccount {
             
            
         } catch (Exception exception) {
-            System.out.println("Exception");
-            exception.printStackTrace();
+            JFrame frame = new InvalidError();
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.pack();
+            frame.setVisible(true);
             
             
         } finally {
