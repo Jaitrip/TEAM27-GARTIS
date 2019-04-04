@@ -434,7 +434,7 @@ public class addCustomerRecord extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        // TODO add your handling code here:
+        //Go back to the receptionist home page
         this.dispose();
         JFrame frame = new ReceptionistHomePage();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -445,15 +445,18 @@ public class addCustomerRecord extends javax.swing.JFrame {
     private void addCustomerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCustomerButtonActionPerformed
         // TODO add your handling code here
         try {
-
+            //create random ID
             Random rand = new Random();
             int n = rand.nextInt(100);
             String id = String.valueOf(n);
             
+            //Get current date
             Date date = new Date();
             DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
             
+            //connect to the database
             Connection connection = DBConnection.getConnection();
+            //execute query to insert new customer using input from textfields
             String sqlQuery = "INSERT INTO Customer (customerID, date, firstName, lastName, address, postcode, telephoneNumber, telephoneNumber2, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
             pStatement.setString(1, id);
@@ -470,6 +473,7 @@ public class addCustomerRecord extends javax.swing.JFrame {
             connection.close();
             
         } catch (Exception e) {
+            //show an error if it was unsuccesful
             JFrame frame = new InvalidError();
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.pack();
@@ -478,7 +482,7 @@ public class addCustomerRecord extends javax.swing.JFrame {
     }//GEN-LAST:event_addCustomerButtonActionPerformed
 
     private void addCorprateCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCorprateCustomerActionPerformed
-        // TODO add your handling code here:
+        // Go to corporate customer page
         JFrame frame = new addCorprateCustomer();
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.pack();
@@ -486,10 +490,11 @@ public class addCustomerRecord extends javax.swing.JFrame {
     }//GEN-LAST:event_addCorprateCustomerActionPerformed
 
     private void addVehicleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addVehicleButtonActionPerformed
-        // TODO add your handling code here:
+        // add a new vehicle
         try {
-            
+            //connect to the database
             Connection connection = DBConnection.getConnection();
+            //Execute query to add a new vehicle
             String sqlQuery = "INSERT INTO Vehicle (registrationNumber, make, model, engineSerial, chassisNumber, colour, MoTRenewalDate, CustomercustomerID) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
             pStatement.setString(1, registrationNumberField.getText());
@@ -501,10 +506,12 @@ public class addCustomerRecord extends javax.swing.JFrame {
             pStatement.setString(7, MoTRenewalDate.getText());
             pStatement.setString(8, customerID2Field.getText());
             pStatement.executeUpdate();
+            //close the connection
             pStatement.close();
             connection.close();
             
         } catch (Exception e) {
+            //show an error if the query was not successful
             JFrame frame = new InvalidError();
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.pack();
@@ -516,11 +523,13 @@ public class addCustomerRecord extends javax.swing.JFrame {
     private void refreshListButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshListButtonActionPerformed
         // TODO add your handling code here:
         try {
-
+            //connect to the database
             Connection connection = DBConnection.getConnection();
+            //query to show all customers
             String sqlQuery = "SELECT * FROM Customer";
             PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
             ResultSet resultSet = pStatement.executeQuery();
+            //populate the table with customers
             DefaultTableModel model = (DefaultTableModel) customerTable.getModel();
             model.setRowCount(0);
             while (resultSet.next()) {
@@ -530,10 +539,12 @@ public class addCustomerRecord extends javax.swing.JFrame {
                 model.addRow(o);
 
             }
+            //close connection
             pStatement.close();
             resultSet.close();
             connection.close();
         } catch (Exception e) {
+            //show an error if it was unsuccessful
             JFrame frame = new InvalidError();
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.pack();
@@ -544,11 +555,13 @@ public class addCustomerRecord extends javax.swing.JFrame {
     private void refreshVehicleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshVehicleButtonActionPerformed
         // TODO add your handling code here:
         try {
-
+            //connect to the database
             Connection connection = DBConnection.getConnection();
+            //execute query to get all vehicles
             String sqlQuery = "SELECT * FROM Vehicle";
             PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
             ResultSet resultSet = pStatement.executeQuery();
+            //populate the table of vehicles
             DefaultTableModel model = (DefaultTableModel) vehicleTable.getModel();
             model.setRowCount(0);
             while (resultSet.next()) {
@@ -558,10 +571,12 @@ public class addCustomerRecord extends javax.swing.JFrame {
                 model.addRow(o);
 
             }
+            //close the connection
             pStatement.close();
             resultSet.close();
             connection.close();
         } catch (Exception e) {
+            //show error if unsuccessful
             JFrame frame = new InvalidError();
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.pack();
@@ -574,19 +589,24 @@ public class addCustomerRecord extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         try {
+            //connect to the database
             Connection connection = DBConnection.getConnection();
+            //get input
             int row = customerTable.getSelectedRow();
             String customerID = customerTable.getModel().getValueAt(row, 0).toString();
             
+            //execute query to delete the customer with inputted customer ID
             String sqlQuery = "DELETE FROM Customer WHERE customerID = ?";
             PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
             pStatement.setString(1, customerID);
             pStatement.executeUpdate();
             System.out.println("deleted");
+            //close connection
             pStatement.close();
             connection.close();
 
         } catch (Exception e) {
+            //show an error if it didn't work
             JFrame frame = new InvalidError();
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.pack();
@@ -598,19 +618,23 @@ public class addCustomerRecord extends javax.swing.JFrame {
     private void deleteVehicleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteVehicleButtonActionPerformed
         // TODO add your handling code here:
         try {
+            //connect to the database
             Connection connection = DBConnection.getConnection();
+            //get inputted row
             int row = vehicleTable.getSelectedRow();
             String registrationNumber = vehicleTable.getModel().getValueAt(row, 0).toString();
             
+            //execute quey to delete the vehicle with the input reg number
             String sqlQuery = "DELETE FROM Vehicle WHERE registrationNumber= ?";
             PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
             pStatement.setString(1, registrationNumber);
             pStatement.executeUpdate();
             System.out.println("deleted");
+            //close the connection
             pStatement.close();
             connection.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            //show an error if it does not work
             JFrame frame = new InvalidError();
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.pack();

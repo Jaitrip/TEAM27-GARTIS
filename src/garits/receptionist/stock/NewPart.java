@@ -231,7 +231,7 @@ public class NewPart extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        // TODO add your handling code here:
+        // Go back to the Stock menu
         this.dispose();
         JFrame frame = new Stock();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -240,14 +240,16 @@ public class NewPart extends javax.swing.JFrame {
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void addPartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPartButtonActionPerformed
-        // TODO add your handling code here:
+        // Get input form text fields
         String code = partNumber.getText();
         String pName = partName.getText();
         String newThreshold = threshold.getText();
         String qty = quantity.getText();
         String partPrice = price.getText();
         
+        //All fields must be entered to run the query
         if("".equals(code) | "".equals(pName) | "".equals(newThreshold) | "".equals(qty) | "".equals(partPrice) ){
+            //If all any are empty then it should throw an error
             JFrame frame = new InvalidError();
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.pack();
@@ -256,7 +258,9 @@ public class NewPart extends javax.swing.JFrame {
 
             System.out.println("Button clicked");
             try {
+                //Connect to the database
                 Connection connection = DBConnection.getConnection();
+                //Execute a query to insert the new data into the table
                 String sqlQuery = "INSERT INTO StockLedger VALUES (?,?,?,?,?)";
                 PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
                 pStatement.setString(1, code );
@@ -267,29 +271,33 @@ public class NewPart extends javax.swing.JFrame {
 
 
                 pStatement.executeUpdate();
-
+                
+                //close the connection when you are done
                 pStatement.close();
                 connection.close();
 
             } catch (Exception e) {
+                //Show an error if the query did not execute succesfully
                 JFrame frame = new InvalidError();
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.pack();
                 frame.setVisible(true);
             }
         }
+        //Refresh the table of parts after inserting new data
         viewPartsButtonActionPerformed(evt);
     }//GEN-LAST:event_addPartButtonActionPerformed
 
     private void viewPartsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewPartsButtonActionPerformed
-        // TODO add your handling code here:
         
         try {
-            
+            //Connect to the Database
             Connection connection = DBConnection.getConnection();
+            //Execute query to show all items in StockLedger table
             String sqlQuery = "SELECT * FROM StockLedger";
             PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
             ResultSet resultSet = pStatement.executeQuery();
+            //Populate the table with the information
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
             model.setRowCount(0);
             while (resultSet.next()) {
@@ -300,10 +308,12 @@ public class NewPart extends javax.swing.JFrame {
                 
                         
             }
+            //Close the connection
             pStatement.close();
             resultSet.close();
             connection.close();
         } catch (Exception e) {
+            //Show an error if it was unable to display all the values
             JFrame frame = new InvalidError();
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.pack();
@@ -313,7 +323,7 @@ public class NewPart extends javax.swing.JFrame {
     }//GEN-LAST:event_viewPartsButtonActionPerformed
 
     private void homePageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homePageButtonActionPerformed
-        // TODO add your handling code here:
+        // Jump to homepage
         this.dispose();
         JFrame frame = new FranchiseeHomePage();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -322,7 +332,7 @@ public class NewPart extends javax.swing.JFrame {
     }//GEN-LAST:event_homePageButtonActionPerformed
 
     private void logOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutButtonActionPerformed
-        // TODO add your handling code here:
+        // Log out of Garits
         this.dispose();
         JFrame frame = new SignInForm();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

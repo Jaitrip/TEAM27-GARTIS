@@ -148,7 +148,7 @@ public class OrderParts extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        // TODO add your handling code here:
+        // Go back to the Stock menu
         this.dispose();
         JFrame frame = new Stock();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -159,11 +159,13 @@ public class OrderParts extends javax.swing.JFrame {
     private void viewPartsOrderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewPartsOrderButtonActionPerformed
         // TODO add your handling code here:
         try {
-            
+            //Connect to the database
             Connection connection = DBConnection.getConnection();
+            //Execute Query to get information about parts
             String sqlQuery = "SELECT partNo, Part.partName, reorderThreshold, price FROM Part INNER JOIN StockLedger ON  Part.StockLedgercode = StockLedger.code WHERE quantity <= reorderThreshold";
             PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
             ResultSet resultSet = pStatement.executeQuery();
+            //Populate the table with the results
             DefaultTableModel model = (DefaultTableModel) partsOrderTable.getModel();
             model.setRowCount(0);
             while (resultSet.next()) {
@@ -173,11 +175,12 @@ public class OrderParts extends javax.swing.JFrame {
                 model.addRow(o);
 
             }
-            
+            //Close the connections
             pStatement.close();
             resultSet.close();
             connection.close();
         } catch (Exception e) {
+            //Show an error if the query fails
             e.printStackTrace();
             JFrame frame = new InvalidError();
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -190,15 +193,17 @@ public class OrderParts extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         try {
-            
+            //connect to the database
             Connection connection = DBConnection.getConnection();
             
+            //Run parts order
             PartsOrder partsOrder = new PartsOrder();
             
+            //Save the parts order
             partsOrder.saveOrder(connection);
             
         } catch (Exception e) {
-            e.printStackTrace();
+            // Show an error to the user if the query was unsuccessful
             JFrame frame = new InvalidError();
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.pack();

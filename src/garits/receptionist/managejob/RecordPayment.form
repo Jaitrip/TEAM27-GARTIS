@@ -48,7 +48,7 @@
                               </Group>
                               <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="takePaymentButton" alignment="0" pref="175" max="32767" attributes="0"/>
+                                  <Component id="takePaymentButton" alignment="0" max="32767" attributes="0"/>
                                   <Component id="amountField" alignment="0" max="32767" attributes="0"/>
                                   <Component id="paymentComboBox" alignment="0" max="32767" attributes="0"/>
                               </Group>

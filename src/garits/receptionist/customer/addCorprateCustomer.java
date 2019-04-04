@@ -232,18 +232,21 @@ public class addCorprateCustomer extends javax.swing.JFrame {
     private void addCustomerButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCustomerButton1ActionPerformed
         // TODO add your handling code here
         try {
-
+            //connect to the database
             Connection connection = DBConnection.getConnection();
+            //Execute query to insert new corporate customer
             String sqlQuery = "INSERT INTO CorprateCustomer (customerID, contactRole, companyName) VALUES (?, ?, ?)";
             PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
             pStatement.setString(1, customerIDField.getText());
             pStatement.setString(2, contactRoleField.getText());
             pStatement.setString(3, companyNameField.getText());
             pStatement.executeUpdate();
+            //close the connection
             pStatement.close();
             connection.close();
 
         } catch (Exception e) {
+            //show an error if it was unsuccessful
             JFrame frame = new InvalidError();
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.pack();
@@ -254,11 +257,13 @@ public class addCorprateCustomer extends javax.swing.JFrame {
     private void refreshListButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshListButtonActionPerformed
         // TODO add your handling code here:
         try {
-
+            //connect to the database
             Connection connection = DBConnection.getConnection();
+            //execute query to get all corporate customers
             String sqlQuery = "SELECT * FROM CorprateCustomer";
             PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
             ResultSet resultSet = pStatement.executeQuery();
+            //display all corporate customers in a table
             DefaultTableModel model = (DefaultTableModel) customerTable.getModel();
             model.setRowCount(0);
             while (resultSet.next()) {
@@ -268,10 +273,12 @@ public class addCorprateCustomer extends javax.swing.JFrame {
                 model.addRow(o);
 
             }
+            //close the connection
             pStatement.close();
             resultSet.close();
             connection.close();
         } catch (Exception e) {
+            //show an error if the query was unsuccessful
             JFrame frame = new InvalidError();
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.pack();
@@ -283,10 +290,12 @@ public class addCorprateCustomer extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         try {
+            //connect to the database
             Connection connection = DBConnection.getConnection();
             int row = customerTable.getSelectedRow();
             String customerID = customerTable.getModel().getValueAt(row, 0).toString();
 
+            //execute delete query with inputted customer ID
             String sqlQuery = "DELETE FROM CorprateCustomer WHERE customerID=" + customerID ;
             PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
             pStatement.executeUpdate();
@@ -295,11 +304,13 @@ public class addCorprateCustomer extends javax.swing.JFrame {
             connection.close();
 
         } catch (Exception e) {
+            //show an error if the query was unsuccessful
             JFrame frame = new InvalidError();
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.pack();
             frame.setVisible(true);
         }
+        //refresh the table to show updated changes
         refreshListButtonActionPerformed(evt);
     }//GEN-LAST:event_deleteCustomerButtonActionPerformed
 

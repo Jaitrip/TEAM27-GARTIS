@@ -168,11 +168,14 @@ public class ReplenishStock extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         try {
-
+            //Attempt to Get all data from the StockLedger table and output it to the table
             Connection connection = DBConnection.getConnection();
             String sqlQuery = "SELECT * FROM StockLedger";
             PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
+            //Execute Query
             ResultSet resultSet = pStatement.executeQuery();
+            
+            //Populate the table in the GUI
             DefaultTableModel model = (DefaultTableModel) partTable.getModel();
             model.setRowCount(0);
             while (resultSet.next()) {
@@ -182,10 +185,13 @@ public class ReplenishStock extends javax.swing.JFrame {
                 model.addRow(o);
 
             }
+            //End the connection when you're finished using it
             pStatement.close();
             resultSet.close();
             connection.close();
         } catch (Exception e) {
+            
+            // Show an error to the user if the query was unsuccessful
             JFrame frame = new InvalidError();
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.pack();
@@ -197,10 +203,11 @@ public class ReplenishStock extends javax.swing.JFrame {
     }//GEN-LAST:event_viewPartsButtonActionPerformed
 
     private void updateStockButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateStockButtonActionPerformed
-        // TODO add your handling code here:
         
+        //Get text from the input
         double updateQty = Double.parseDouble(addQuantityField.getText());
         
+        //get info from the table which has been selected
         int partRow = partTable.getSelectedRow();
         String code = partTable.getModel().getValueAt(partRow, 0).toString();
         double currentQty = Double.parseDouble(partTable.getModel().getValueAt(partRow, 3).toString());
@@ -208,9 +215,10 @@ public class ReplenishStock extends javax.swing.JFrame {
         double newQty = currentQty + updateQty;
         
         try {
-            
+            //Connect to the DB
             Connection connection = DBConnection.getConnection();
             
+            //Run Update query to amend the quantity in the StockLedger table
             String sqlQuery = "UPDATE StockLedger SET quantity=? WHERE code=?";
             PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
             pStatement.setString(1, String.valueOf(newQty));
@@ -219,9 +227,14 @@ public class ReplenishStock extends javax.swing.JFrame {
             pStatement.close();
             
         } catch (Exception e) {
-            e.printStackTrace();
+            // Show an error to the user if the query was unsuccessful
+            JFrame frame = new InvalidError();
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.pack();
+            frame.setVisible(true);
         }
         
+        //Update the table for the user
         viewPartsButtonActionPerformed(evt);
         
         
@@ -230,7 +243,7 @@ public class ReplenishStock extends javax.swing.JFrame {
     }//GEN-LAST:event_updateStockButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        // TODO add your handling code here:
+        // Go back to the Stock menu
         this.dispose();
         JFrame frame = new Stock();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -204,7 +204,7 @@ public class EditThreshold extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        // TODO add your handling code here:
+        // Go back to the stock menu
         this.dispose();
         JFrame frame = new Stock();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -213,27 +213,32 @@ public class EditThreshold extends javax.swing.JFrame {
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
-        // TODO add your handling code here:
+        // Get data from text fields
         String code = enterPartNumberField.getText();
         String newThreshold = threshold.getText();
         System.out.println("Button clicked");
         try {
+            //connect to the database
             Connection connection = DBConnection.getConnection();
+            //Execute update query to amend the StockLedger table
             String sqlQuery = "UPDATE StockLedger SET reorderThreshold = ?  WHERE  code = ?";
             PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
             pStatement.setString(1, newThreshold );
             pStatement.setString(2, code );
             pStatement.executeUpdate();
             
+            //Close the connection once the query is complete
             pStatement.close();
             connection.close();
             
         } catch (Exception e) {
+            //If the update fails, show an error.
             JFrame frame = new InvalidError();
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.pack();
             frame.setVisible(true);
         }
+        //Show the changes on the table in the gui
         viewPartsButtonActionPerformed(evt);
     }//GEN-LAST:event_updateButtonActionPerformed
 
@@ -241,11 +246,13 @@ public class EditThreshold extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         try {
-            
+            //Connect to the database
             Connection connection = DBConnection.getConnection();
+            //Execute the Query
             String sqlQuery = "SELECT * FROM StockLedger";
             PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
             ResultSet resultSet = pStatement.executeQuery();
+            //Populate the table with the results of the query
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
             model.setRowCount(0);
             while (resultSet.next()) {
@@ -256,10 +263,12 @@ public class EditThreshold extends javax.swing.JFrame {
                 
                         
             }
+            //Close the connection
             pStatement.close();
             resultSet.close();
             connection.close();
         } catch (Exception e) {
+            //If the query was unsuccessful then show an error
             JFrame frame = new InvalidError();
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.pack();
@@ -269,7 +278,7 @@ public class EditThreshold extends javax.swing.JFrame {
     }//GEN-LAST:event_viewPartsButtonActionPerformed
 
     private void homePageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homePageButtonActionPerformed
-        // TODO add your handling code here:
+        // Jump to the home page
         this.dispose();
         JFrame frame = new FranchiseeHomePage();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -278,7 +287,7 @@ public class EditThreshold extends javax.swing.JFrame {
     }//GEN-LAST:event_homePageButtonActionPerformed
 
     private void logOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutButtonActionPerformed
-        // TODO add your handling code here:
+        // Log out of Garits
         this.dispose();
         JFrame frame = new SignInForm();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

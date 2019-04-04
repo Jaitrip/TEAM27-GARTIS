@@ -141,7 +141,7 @@ public class ManageJob extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void acceptJobButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptJobButtonActionPerformed
-        // TODO add your handling code here:
+        // Go to accept job
         this.dispose();
         JFrame frame = new AcceptJob();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -150,7 +150,7 @@ public class ManageJob extends javax.swing.JFrame {
     }//GEN-LAST:event_acceptJobButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        // TODO add your handling code here:
+        // go back
         this.dispose();
         JFrame frame = new ReceptionistHomePage();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -159,7 +159,7 @@ public class ManageJob extends javax.swing.JFrame {
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void monitorProgressButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_monitorProgressButtonActionPerformed
-        // TODO add your handling code here:
+        // go to monitor progress
         this.dispose();
         JFrame frame = new MonitorProgress();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -168,7 +168,7 @@ public class ManageJob extends javax.swing.JFrame {
     }//GEN-LAST:event_monitorProgressButtonActionPerformed
 
     private void recordPaymentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_recordPaymentButtonActionPerformed
-        // TODO add your handling code here:
+        // go to record payment
         this.dispose();
         JFrame frame = new RecordPayment();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

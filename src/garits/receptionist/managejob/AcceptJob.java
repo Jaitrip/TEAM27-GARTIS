@@ -195,7 +195,7 @@ public class AcceptJob extends javax.swing.JFrame {
     }//GEN-LAST:event_vehicleRegFieldActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        // TODO add your handling code here:
+        // Go back to the Manage Job page
         this.dispose();
         JFrame frame = new ManageJob();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -207,14 +207,18 @@ public class AcceptJob extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             
+            //Get current date
             Date date = new Date();
             DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
             
+            //Generate random number for jobNumber
             Random rand = new Random();
             int n = rand.nextInt(100);
             String jobNumber = String.valueOf(n);
             
+            //connect to the database
             Connection connection = DBConnection.getConnection();
+            //execute query to insert new data for a job
             String sqlQuery = "INSERT INTO JobSheet (jobNumber, dateBookedIn, jobType, status, VehicleregistrationNumber) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
             pStatement.setString(1, jobNumber);
@@ -223,10 +227,12 @@ public class AcceptJob extends javax.swing.JFrame {
             pStatement.setString(4, "Pending");
             pStatement.setString(5, vehicleRegField.getText());
             pStatement.executeUpdate();
+            //Close the connection
             pStatement.close();
             connection.close();
 
         } catch (Exception e) {
+            //Show an error if the query was unsuccessful
             JFrame frame = new InvalidError();
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.pack();
@@ -237,11 +243,13 @@ public class AcceptJob extends javax.swing.JFrame {
     private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
         // TODO add your handling code here:
         try {
-
+            //Connect to the database
             Connection connection = DBConnection.getConnection();
+            //Execute query to show all info from the JobSheet
             String sqlQuery = "SELECT * FROM JobSheet";
             PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
             ResultSet resultSet = pStatement.executeQuery();
+            //Populate a table showing all the jobs
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
             model.setRowCount(0);
             while (resultSet.next()) {
@@ -251,10 +259,12 @@ public class AcceptJob extends javax.swing.JFrame {
                 model.addRow(o);
 
             }
+            //close the connection
             pStatement.close();
             resultSet.close();
             connection.close();
         } catch (Exception e) {
+            //Show an error if the query was not successful
             JFrame frame = new InvalidError();
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.pack();

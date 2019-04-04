@@ -183,7 +183,7 @@ public class StockReport extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        // TODO add your handling code here:
+        // Go to the previous page
         this.dispose();
         JFrame frame = new Stock();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -192,18 +192,20 @@ public class StockReport extends javax.swing.JFrame {
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void generateReportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateReportButtonActionPerformed
-        // TODO add your handling code here:
-
+        
+        //GET All reports from the database
+        
         String reportQuery = "SELECT partNo, Part.partName, manufacturer, vehicleType, startYear, endYear, price, reorderThreshold, quantity FROM Part INNER JOIN StockLedger ON Part.StockLedgercode = StockLedger.code";
         double totalStockValue = 0;
 
         try {
-
+            //Connect to the database
             Connection connection = DBConnection.getConnection();
 
             PreparedStatement reportStatement = connection.prepareStatement(reportQuery);
             ResultSet resultSet = reportStatement.executeQuery();
-
+            
+            //Populate table with information from the Query
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
             model.setRowCount(0);
             while (resultSet.next()) {
@@ -215,11 +217,12 @@ public class StockReport extends javax.swing.JFrame {
                 totalStockValue = totalStockValue + Double.parseDouble(resultSet.getString("price"));
 
             }
-
+            
+            //Output info about the report
             stockValueLabel.setText("Total Stock Value: £" + totalStockValue);
 
         } catch (Exception e) {
-
+            //Show error page if the query was not succesful
             JFrame frame = new InvalidError();
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.pack();
@@ -230,6 +233,8 @@ public class StockReport extends javax.swing.JFrame {
 
     private void printReportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printReportButtonActionPerformed
         // TODO add your handling code here:
+        
+        //Create query to print report to PDF
         
         String reportQuery = "SELECT partNo, Part.partName, manufacturer, vehicleType, startYear, endYear, price, reorderThreshold, quantity FROM Part INNER JOIN StockLedger ON Part.StockLedgercode = StockLedger.code";
         
@@ -242,11 +247,13 @@ public class StockReport extends javax.swing.JFrame {
             
             Date date = new Date();
             DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-
+            
+            //Create PDF Document
             Document document = new Document();
             PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("StockReport" + df.format(date) + ".pdf"));
             document.open();
-
+            
+            //Add content to the PDF
             document.add(new Paragraph("Stock Report"));
             
             document.add(Chunk.NEWLINE);
@@ -310,6 +317,7 @@ public class StockReport extends javax.swing.JFrame {
             writer.close();
 
         } catch (Exception e) {
+            //Show error box if the query was unsuccesful
             JFrame frame = new InvalidError();
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.pack();
@@ -318,7 +326,8 @@ public class StockReport extends javax.swing.JFrame {
     }//GEN-LAST:event_printReportButtonActionPerformed
 
     private void homePageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homePageButtonActionPerformed
-        // TODO add your handling code here:
+        
+        // Go back to the home page
         this.dispose();
         JFrame frame = new ReceptionistHomePage();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -327,7 +336,7 @@ public class StockReport extends javax.swing.JFrame {
     }//GEN-LAST:event_homePageButtonActionPerformed
 
     private void logOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutButtonActionPerformed
-        // TODO add your handling code here:
+        // Log out of the system
         this.dispose();
         JFrame frame = new SignInForm();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

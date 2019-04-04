@@ -100,7 +100,7 @@ public class Notifications extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel1ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jLabel1ComponentShown
-        // TODO add your handling code here:
+        // Show any notifications when loaded:
         String stockNotification="There are no parts that need to be reordered";
         
         try {
@@ -131,7 +131,7 @@ public class Notifications extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel1ComponentShown
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        // Show any loaded notifications
         String stockNotification="There are no parts that need to be reordered";
         
         

@@ -224,10 +224,11 @@ public class RecordPayment extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void takePaymentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_takePaymentButtonActionPerformed
-        // TODO add your handling code here
+        // Get current date
         Date date = new Date();
         DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
         
+        //Randomise the Payment Number
         Random rand = new Random();
         int n = rand.nextInt(100);
         String paymentNumber = String.valueOf(n);
@@ -236,10 +237,11 @@ public class RecordPayment extends javax.swing.JFrame {
         String invoiceNumber = invoiceTable.getModel().getValueAt(row, 0).toString();
         
         try {
-            
+            //Connect to the database
             Connection connection = DBConnection.getConnection();
             connection.setAutoCommit(false);
             
+            //Execute insert query to add a new payment
             String sqlQuery = "INSERT INTO Payment (paymentNumber, invoiceNumber, amount, paymentType,  dateTaken) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
             pStatement.setString(1, paymentNumber);
@@ -255,12 +257,14 @@ public class RecordPayment extends javax.swing.JFrame {
             updateStatement.setString(2, invoiceNumber);
             updateStatement.executeUpdate();
             
+            //Close the connection
             connection.commit();
             connection.setAutoCommit(true);
             pStatement.close();
             connection.close();
 
         } catch (Exception e) {
+            //Show an error if it was not successful
             JFrame frame = new InvalidError();
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.pack();
@@ -274,11 +278,13 @@ public class RecordPayment extends javax.swing.JFrame {
     private void refreshListButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshListButtonActionPerformed
         // TODO add your handling code here:
         try {
-            
+            //Connect to the database
             Connection connection = DBConnection.getConnection();
+            //Execute query to get all payments
             String sqlQuery = "SELECT * FROM Payment";
             PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
             ResultSet resultSet = pStatement.executeQuery();
+            //Display all payments in the table
             DefaultTableModel model = (DefaultTableModel) paymentTable.getModel();
             model.setRowCount(0);
             while (resultSet.next()) {
@@ -288,10 +294,12 @@ public class RecordPayment extends javax.swing.JFrame {
                 model.addRow(o);
 
             }
+            //close the connection
             pStatement.close();
             resultSet.close();
             connection.close();
         } catch (Exception e) {
+            //show an error if the query was not successful
             JFrame frame = new InvalidError();
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.pack();
@@ -300,7 +308,7 @@ public class RecordPayment extends javax.swing.JFrame {
     }//GEN-LAST:event_refreshListButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        // TODO add your handling code here:
+        // Go back one page
         this.dispose();
         JFrame frame = new ManageJob();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -309,13 +317,15 @@ public class RecordPayment extends javax.swing.JFrame {
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void viewInvoiceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewInvoiceButtonActionPerformed
-        // TODO add your handling code here:
+        // View all invoices
         try {
-
+            //connect to the database
             Connection connection = DBConnection.getConnection();
+            //Execute query to get all invoices
             String sqlQuery = "SELECT * FROM Invoice";
             PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
             ResultSet resultSet = pStatement.executeQuery();
+            //display all results in a table
             DefaultTableModel model = (DefaultTableModel) invoiceTable.getModel();
             model.setRowCount(0);
             while (resultSet.next()) {
@@ -325,10 +335,12 @@ public class RecordPayment extends javax.swing.JFrame {
                 model.addRow(o);
 
             }
+            //close connection
             pStatement.close();
             resultSet.close();
             connection.close();
         } catch (Exception e) {
+            //Show an error if the connection was not successful
             JFrame frame = new InvalidError();
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.pack();

@@ -165,7 +165,7 @@ public class CheckStock extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        // TODO add your handling code here:
+        // Go back to the stock menu
         this.dispose();
         JFrame frame = new Stock();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -174,15 +174,18 @@ public class CheckStock extends javax.swing.JFrame {
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
-        // TODO add your handling code here:
+        // Get values from text field
         String code = enterPartNumberField.getText();
         System.out.println("Button clicked");
         try {
+            //Connect to the database
             Connection connection = DBConnection.getConnection();
+            //Execute Query to find Part with the entered code
             String sqlQuery = "SELECT * FROM StockLedger WHERE code = ?";
             PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
             pStatement.setString(1, code );
             ResultSet resultSet = pStatement.executeQuery();
+            //Populate the table with parts matching the same partNumber
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
             model.setRowCount(0);
             while (resultSet.next()) {
@@ -194,6 +197,7 @@ public class CheckStock extends javax.swing.JFrame {
                         
             }
         } catch (Exception e) {
+            //Show an error if the query was unsuccessful
             JFrame frame = new InvalidError();
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.pack();
@@ -205,11 +209,13 @@ public class CheckStock extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         try {
-            
+            //Connect to the database
             Connection connection = DBConnection.getConnection();
+            //Show all parts from the stock table query is executed
             String sqlQuery = "SELECT * FROM StockLedger";
             PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
             ResultSet resultSet = pStatement.executeQuery();
+            //Populate the table with the results of the query
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
             model.setRowCount(0);
             while (resultSet.next()) {
@@ -220,10 +226,12 @@ public class CheckStock extends javax.swing.JFrame {
                 
                         
             }
+            //close the connection
             pStatement.close();
             resultSet.close();
             connection.close();
         } catch (Exception e) {
+            //Show an error if the query was unsuccesful
             JFrame frame = new InvalidError();
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.pack();

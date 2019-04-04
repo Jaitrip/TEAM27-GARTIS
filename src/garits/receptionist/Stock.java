@@ -41,8 +41,8 @@ public class Stock extends javax.swing.JFrame {
         orderPartsButton = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         label1 = new java.awt.Label();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        editThresholdButton = new javax.swing.JButton();
+        newPartButton = new javax.swing.JButton();
         replenishStockButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -112,17 +112,17 @@ public class Stock extends javax.swing.JFrame {
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
-        jButton1.setText("Edit Threshold");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        editThresholdButton.setText("Edit Threshold");
+        editThresholdButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                editThresholdButtonActionPerformed(evt);
             }
         });
 
-        jButton2.setText("New Part");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        newPartButton.setText("New Part");
+        newPartButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                newPartButtonActionPerformed(evt);
             }
         });
 
@@ -139,7 +139,7 @@ public class Stock extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 16, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -150,11 +150,11 @@ public class Stock extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(checkStockButton)
                         .addGap(53, 53, 53)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(newPartButton, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(41, 41, 41)
                         .addComponent(replenishStockButton, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(41, 41, 41)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(editThresholdButton, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(53, 53, 53)
                         .addComponent(stockReportButton)
                         .addGap(58, 58, 58)
@@ -177,8 +177,8 @@ public class Stock extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(checkStockButton))))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(editThresholdButton, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(newPartButton, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(replenishStockButton, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 448, Short.MAX_VALUE)
                 .addComponent(backButton)
@@ -189,7 +189,7 @@ public class Stock extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        // TODO add your handling code here:
+        // go back
         this.dispose();
         JFrame frame = new ReceptionistHomePage();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -198,7 +198,7 @@ public class Stock extends javax.swing.JFrame {
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void checkStockButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkStockButtonActionPerformed
-        // TODO add your handling code here:
+        // go to check stock
         this.dispose();
         JFrame frame = new CheckStock();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -207,7 +207,7 @@ public class Stock extends javax.swing.JFrame {
     }//GEN-LAST:event_checkStockButtonActionPerformed
 
     private void stockReportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stockReportButtonActionPerformed
-        // TODO add your handling code here:
+        // go to stock reports
         this.dispose();
         JFrame frame = new StockReport();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -216,7 +216,7 @@ public class Stock extends javax.swing.JFrame {
     }//GEN-LAST:event_stockReportButtonActionPerformed
 
     private void orderPartsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orderPartsButtonActionPerformed
-        // TODO add your handling code here:
+        // go to order parts
         this.dispose();
         JFrame frame = new OrderParts();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -224,26 +224,26 @@ public class Stock extends javax.swing.JFrame {
         frame.setVisible(true);
     }//GEN-LAST:event_orderPartsButtonActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+    private void editThresholdButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editThresholdButtonActionPerformed
+        // go to edit threshold
         this.dispose();
         JFrame frame = new EditThreshold();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_editThresholdButtonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+    private void newPartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newPartButtonActionPerformed
+        // go to new parts
         this.dispose();
         JFrame frame = new NewPart();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_newPartButtonActionPerformed
 
     private void replenishStockButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_replenishStockButtonActionPerformed
-        // TODO add your handling code here:
+        // go to replenish stock
         this.dispose();
         JFrame frame = new ReplenishStock();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -290,10 +290,10 @@ public class Stock extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
     private javax.swing.JButton checkStockButton;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton editThresholdButton;
     private javax.swing.JPanel jPanel1;
     private java.awt.Label label1;
+    private javax.swing.JButton newPartButton;
     private javax.swing.JButton orderPartsButton;
     private javax.swing.JButton replenishStockButton;
     private javax.swing.JButton stockReportButton;

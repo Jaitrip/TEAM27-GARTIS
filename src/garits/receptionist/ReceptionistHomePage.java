@@ -177,7 +177,7 @@ public class ReceptionistHomePage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void produceInvoiceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_produceInvoiceButtonActionPerformed
-        // TODO add your handling code here:
+        // Go to produce invoice
         this.dispose();
         JFrame frame = new PrintInvoice();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -186,7 +186,7 @@ public class ReceptionistHomePage extends javax.swing.JFrame {
     }//GEN-LAST:event_produceInvoiceButtonActionPerformed
 
     private void stockButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stockButtonActionPerformed
-        // TODO add your handling code here:
+        // go to stock menu
         this.dispose();
         JFrame frame = new Stock();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -195,7 +195,7 @@ public class ReceptionistHomePage extends javax.swing.JFrame {
     }//GEN-LAST:event_stockButtonActionPerformed
 
     private void logOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutButtonActionPerformed
-        // TODO add your handling code here:
+        // log out of garits
         this.dispose();
         JFrame frame = new SignInForm();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -204,7 +204,7 @@ public class ReceptionistHomePage extends javax.swing.JFrame {
     }//GEN-LAST:event_logOutButtonActionPerformed
 
     private void manageJobButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageJobButtonActionPerformed
-        // TODO add your handling code here:
+        // go to manage job
         this.dispose();
         JFrame frame = new ManageJob();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -213,7 +213,7 @@ public class ReceptionistHomePage extends javax.swing.JFrame {
     }//GEN-LAST:event_manageJobButtonActionPerformed
 
     private void addCustomerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCustomerButtonActionPerformed
-        // TODO add your handling code here:
+        // go to add customer
         this.dispose();
         JFrame frame = new addCustomerRecord();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -222,7 +222,7 @@ public class ReceptionistHomePage extends javax.swing.JFrame {
     }//GEN-LAST:event_addCustomerButtonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        // see new notifications
         JFrame frame = new Notifications();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();

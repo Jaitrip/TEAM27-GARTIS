@@ -62,7 +62,7 @@
                   </Group>
                   <Component id="backButton" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="24" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -96,7 +96,7 @@
                   <Component id="label1" min="-2" pref="162" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="homePageButton" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="1009" max="32767" attributes="0"/>
+                  <EmptySpace pref="998" max="32767" attributes="0"/>
                   <Component id="logOutButton" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="551" max="-2" attributes="0"/>
               </Group>

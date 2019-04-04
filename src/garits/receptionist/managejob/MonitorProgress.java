@@ -187,7 +187,7 @@ public class MonitorProgress extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        // TODO add your handling code here:
+        // Go back to the manage job page
         this.dispose();
         JFrame frame = new ManageJob();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -196,13 +196,15 @@ public class MonitorProgress extends javax.swing.JFrame {
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
-        // TODO add your handling code here:
+        // refresh any new jobs added in to the database
         try {
-
+            //connect to the database
             Connection connection = DBConnection.getConnection();
+            //Execute query to get all data from the JobSheet table
             String sqlQuery = "SELECT * FROM JobSheet";
             PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
             ResultSet resultSet = pStatement.executeQuery();
+            //Populate the table with the values
             DefaultTableModel model = (DefaultTableModel) jobSheetTable.getModel();
             model.setRowCount(0);
             while (resultSet.next()) {
@@ -212,10 +214,12 @@ public class MonitorProgress extends javax.swing.JFrame {
                 model.addRow(o);
 
             }
+            //Close the connection
             pStatement.close();
             resultSet.close();
             connection.close();
         } catch (Exception e) {
+            //Show an error if the query was unsuccessful
             JFrame frame = new InvalidError();
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.pack();
@@ -226,13 +230,14 @@ public class MonitorProgress extends javax.swing.JFrame {
     private void viewJobsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewJobsButtonActionPerformed
         // TODO add your handling code here:
         try {
-
+            //Connect to the database
             Connection connection = DBConnection.getConnection();
             String sqlQuery = "SELECT * FROM JobSheet";
             PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
             ResultSet resultSet = pStatement.executeQuery();
             DefaultTableModel model = (DefaultTableModel) jobSheetTable.getModel();
             model.setRowCount(0);
+            //Populate the table with the values
             while (resultSet.next()) {
                 Object o[] = {
                     resultSet.getString("jobNumber"), resultSet.getString("dateBookedIn"), resultSet.getString("jobType"), resultSet.getString("workDescription"), resultSet.getString("status"), resultSet.getString("VehicleregistrationNumber"), resultSet.getString("InvoiceinvoiceNumber"), resultSet.getString("EmployeeemployeeID")
@@ -240,10 +245,12 @@ public class MonitorProgress extends javax.swing.JFrame {
                 model.addRow(o);
 
             }
+            //close the connection
             pStatement.close();
             resultSet.close();
             connection.close();
         } catch (Exception e) {
+            //show an error if the query didnt work
             JFrame frame = new InvalidError();
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.pack();
@@ -252,15 +259,18 @@ public class MonitorProgress extends javax.swing.JFrame {
     }//GEN-LAST:event_viewJobsButtonActionPerformed
 
     private void searchJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchJobActionPerformed
-        // TODO add your handling code here:
+        // Get values from text field
         String jobID = enterJobNumberField.getText();
         System.out.println("Button clicked");
         try {
+            //connect to the database
             Connection connection = DBConnection.getConnection();
+            //Execute query to find Jobs with a specific job number
             String sqlQuery = "SELECT * FROM JobSheet WHERE jobNumber = ?";
             PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
             pStatement.setString(1, jobID);
             ResultSet resultSet = pStatement.executeQuery();
+            //Populate the table with the results of the query
             DefaultTableModel model = (DefaultTableModel) jobSheetTable.getModel();
             model.setRowCount(0);
             while (resultSet.next()) {
@@ -270,8 +280,9 @@ public class MonitorProgress extends javax.swing.JFrame {
                 model.addRow(o);
 
             }
-
+            
         } catch (Exception e) {
+            //Show an error if the query was unsuccessful
             JFrame frame = new InvalidError();
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.pack();
