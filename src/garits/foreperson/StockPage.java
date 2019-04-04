@@ -46,7 +46,6 @@ public class StockPage extends javax.swing.JFrame {
         replenishStockButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setExtendedState(6);
         getContentPane().setLayout(null);
 
         jButton1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -95,7 +94,7 @@ public class StockPage extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton4);
-        jButton4.setBounds(6, 768, 64, 60);
+        jButton4.setBounds(10, 730, 64, 60);
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
         jPanel1.setName(""); // NOI18N
@@ -158,7 +157,7 @@ public class StockPage extends javax.swing.JFrame {
         getContentPane().add(replenishStockButton);
         replenishStockButton.setBounds(620, 540, 144, 29);
 
-        setBounds(0, 0, 1472, 856);
+        setBounds(0, 0, 1400, 822);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -266,7 +265,6 @@ public class StockPage extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JPanel jPanel1;
     private java.awt.Label label1;
     private javax.swing.JButton replenishStockButton;

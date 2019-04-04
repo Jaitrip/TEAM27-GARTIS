@@ -141,9 +141,9 @@ public class OrderParts extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(viewPartsOrderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(saveOrderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(126, 126, 126)
+                .addGap(81, 81, 81)
                 .addComponent(backButton)
-                .addContainerGap())
+                .addGap(51, 51, 51))
         );
 
         setBounds(0, 0, 1920, 1080);

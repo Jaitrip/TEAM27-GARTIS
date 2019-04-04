@@ -103,16 +103,16 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="viewInvoiceButton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="91" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="157" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="printInvoiceButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jButton2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
-              <Component id="jButton2" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

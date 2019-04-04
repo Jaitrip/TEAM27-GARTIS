@@ -66,9 +66,9 @@
                   <Component id="viewPartsOrderButton" alignment="3" min="-2" pref="57" max="-2" attributes="0"/>
                   <Component id="saveOrderButton" alignment="3" min="-2" pref="57" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="126" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
               <Component id="backButton" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

@@ -23,40 +23,47 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-              <Component id="viewPartsButton" min="-2" pref="143" max="-2" attributes="0"/>
-          </Group>
           <Component id="jPanel2" alignment="1" pref="1400" max="32767" attributes="0"/>
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="backButton" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                              <Component id="partNumber" max="32767" attributes="0"/>
-                              <Component id="enterPartNumberLabel" min="-2" max="-2" attributes="0"/>
-                              <Component id="threshold" alignment="1" max="32767" attributes="0"/>
-                              <Component id="partName" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="quantity" alignment="0" max="32767" attributes="0"/>
-                              <Component id="price" alignment="0" min="-2" pref="143" max="-2" attributes="0"/>
+                          <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <Component id="viewPartsButton" min="-2" pref="143" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-                              <Component id="addPartButton" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                                      <Component id="partNumber" max="32767" attributes="0"/>
+                                      <Component id="enterPartNumberLabel" min="-2" max="-2" attributes="0"/>
+                                      <Component id="threshold" alignment="1" max="32767" attributes="0"/>
+                                      <Component id="partName" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="quantity" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="price" alignment="0" min="-2" pref="143" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                                      <Component id="addPartButton" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="jScrollPane1" min="-2" pref="984" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="267" max="32767" attributes="0"/>
-                      <Component id="jScrollPane1" min="-2" pref="984" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -239,7 +246,7 @@
                   <Component id="label2" min="-2" pref="162" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                   <Component id="homePageButton" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="1009" max="32767" attributes="0"/>
                   <Component id="logOutButton" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>

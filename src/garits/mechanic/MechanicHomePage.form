@@ -3,9 +3,6 @@
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
-    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[1920, 1080]"/>
-    </Property>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -30,8 +27,8 @@
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="443" max="-2" attributes="0"/>
               <Component id="pickupJobButton" min="-2" pref="161" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
               <Component id="partsUsedButton" min="-2" pref="161" max="-2" attributes="0"/>
@@ -39,7 +36,7 @@
               <Component id="tasksCompletedButton" min="-2" pref="161" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
               <Component id="logOutButton" min="-2" pref="161" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="536" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -51,7 +48,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="pickupJobButton" min="-2" pref="157" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="partsUsedButton" max="32767" attributes="0"/>
+                      <Component id="partsUsedButton" pref="161" max="32767" attributes="0"/>
                       <Component id="logOutButton" alignment="0" max="32767" attributes="0"/>
                       <Component id="tasksCompletedButton" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
