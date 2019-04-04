@@ -7,7 +7,9 @@ package garits.foreperson;
 
 import garits.foreperson.jobs.AcceptJobForm;
 import garits.foreperson.jobs.MonitorProgressForm;
+import garits.foreperson.jobs.PartsUsedForm;
 import garits.foreperson.jobs.PickUpJobForm;
+import garits.foreperson.jobs.TasksCompletedForm;
 import javax.swing.JFrame;
 
 /**
@@ -38,9 +40,12 @@ public class JobsPage extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         label1 = new java.awt.Label();
+        tasksCompletedButton6 = new javax.swing.JButton();
+        partsUsedButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setExtendedState(6);
+        getContentPane().setLayout(null);
 
         jButton1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garits/ICONS/accept job big-icon.png"))); // NOI18N
@@ -52,6 +57,8 @@ public class JobsPage extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton1);
+        jButton1.setBounds(277, 564, 144, 161);
 
         jButton2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garits/ICONS/Monitor-progress-icon.png"))); // NOI18N
@@ -63,6 +70,8 @@ public class JobsPage extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton2);
+        jButton2.setBounds(753, 564, 144, 161);
 
         jButton3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garits/ICONS/Pickup Job-icon.png"))); // NOI18N
@@ -74,6 +83,8 @@ public class JobsPage extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton3);
+        jButton3.setBounds(516, 564, 144, 161);
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garits/ICONS/back-icon.png"))); // NOI18N
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -81,6 +92,8 @@ public class JobsPage extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton4);
+        jButton4.setBounds(27, 725, 64, 60);
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
         jPanel1.setPreferredSize(new java.awt.Dimension(1920, 100));
@@ -106,41 +119,36 @@ public class JobsPage extends javax.swing.JFrame {
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1400, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(341, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(118, 118, 118)
-                .addComponent(jButton3)
-                .addGap(117, 117, 117)
-                .addComponent(jButton2)
-                .addContainerGap(341, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jButton4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 216, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton3)
-                        .addContainerGap(346, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 258, Short.MAX_VALUE)
-                        .addComponent(jButton4)
-                        .addGap(31, 31, 31))))
-        );
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(0, 0, 1422, 100);
+
+        tasksCompletedButton6.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        tasksCompletedButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garits/ICONS/Task completed-icon.png"))); // NOI18N
+        tasksCompletedButton6.setText("Tasks Completed");
+        tasksCompletedButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        tasksCompletedButton6.setPreferredSize(new java.awt.Dimension(161, 157));
+        tasksCompletedButton6.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        tasksCompletedButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tasksCompletedButton6ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(tasksCompletedButton6);
+        tasksCompletedButton6.setBounds(990, 570, 161, 160);
+
+        partsUsedButton.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        partsUsedButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garits/ICONS/parts-icon.png"))); // NOI18N
+        partsUsedButton.setText("Parts Used");
+        partsUsedButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        partsUsedButton.setPreferredSize(new java.awt.Dimension(161, 157));
+        partsUsedButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        partsUsedButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                partsUsedButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(partsUsedButton);
+        partsUsedButton.setBounds(630, 370, 161, 157);
 
         setBounds(0, 0, 1422, 875);
     }// </editor-fold>//GEN-END:initComponents
@@ -180,6 +188,24 @@ public class JobsPage extends javax.swing.JFrame {
         frame.pack();
         frame.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void tasksCompletedButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tasksCompletedButton6ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        JFrame frame = new TasksCompletedForm();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
+    }//GEN-LAST:event_tasksCompletedButton6ActionPerformed
+
+    private void partsUsedButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_partsUsedButtonActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        JFrame frame = new PartsUsedForm();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
+    }//GEN-LAST:event_partsUsedButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -223,5 +249,7 @@ public class JobsPage extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JPanel jPanel1;
     private java.awt.Label label1;
+    private javax.swing.JButton partsUsedButton;
+    private javax.swing.JButton tasksCompletedButton6;
     // End of variables declaration//GEN-END:variables
 }

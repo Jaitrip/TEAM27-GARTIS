@@ -5,8 +5,29 @@
  */
 package garits.franchisee.reports;
 
+import garits.receptionist.stock.*;
+import com.itextpdf.text.Chunk;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+import garits.DBConnectivity.DBConnection;
+import garits.InvalidError;
+import garits.SignInForm;
 import garits.franchisee.Reports;
+import garits.receptionist.ReceptionistHomePage;
+import garits.receptionist.Stock;
+import java.io.FileOutputStream;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JFrame;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -15,7 +36,7 @@ import javax.swing.JFrame;
 public class StockReport extends javax.swing.JFrame {
 
     /**
-     * Creates new form FranchiseeStockReport
+     * Creates new form ReceptionistStockReport
      */
     public StockReport() {
         initComponents();
@@ -30,66 +51,155 @@ public class StockReport extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel5 = new javax.swing.JLabel();
         backButton = new javax.swing.JButton();
-        startDateLabel = new javax.swing.JLabel();
-        endDateLabel = new javax.swing.JLabel();
-        searchButton = new javax.swing.JButton();
-        startDateField = new javax.swing.JTextField();
-        endDateField = new javax.swing.JTextField();
+        jPanel1 = new javax.swing.JPanel();
+        label1 = new java.awt.Label();
+        homePageButton = new javax.swing.JButton();
+        logOutButton = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        stockValueLabel = new javax.swing.JLabel();
+        generateReportButton = new javax.swing.JButton();
+        printReportButton = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+
+        jLabel5.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel5.setText("Edit Customer Account");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setExtendedState(6);
 
-        backButton.setText("Back");
+        backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garits/ICONS/back-icon.png"))); // NOI18N
         backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backButtonActionPerformed(evt);
             }
         });
 
-        startDateLabel.setText("Start Date");
+        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel1.setPreferredSize(new java.awt.Dimension(1920, 100));
 
-        endDateLabel.setText("End Date");
+        label1.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 36)); // NOI18N
+        label1.setForeground(new java.awt.Color(255, 255, 255));
+        label1.setText("GARITS");
 
-        searchButton.setText("Search");
+        homePageButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garits/ICONS/HomePage.png"))); // NOI18N
+        homePageButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                homePageButtonActionPerformed(evt);
+            }
+        });
+
+        logOutButton.setText("Log Out");
+        logOutButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logOutButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(homePageButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1009, Short.MAX_VALUE)
+                .addComponent(logOutButton)
+                .addGap(551, 551, 551))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(homePageButton)
+                    .addComponent(logOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(20, Short.MAX_VALUE))
+        );
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "partNo", "partName", "manufacturer", "vehicleType", "startYear", "endYear", "price", "reorderThreshold", "quantity"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        stockValueLabel.setText("Total Stock Value: ");
+
+        generateReportButton.setText("Generate Report");
+        generateReportButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                generateReportButtonActionPerformed(evt);
+            }
+        });
+
+        printReportButton.setText("Print Report");
+        printReportButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                printReportButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel6.setText("Stock Report");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(backButton)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(backButton))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(89, 89, 89)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(searchButton)
-                            .addComponent(startDateField)
-                            .addComponent(endDateField, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
-                            .addComponent(startDateLabel)
-                            .addComponent(endDateLabel))))
-                .addContainerGap(800, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(stockValueLabel)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(printReportButton, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(27, 27, 27)
+                                    .addComponent(generateReportButton, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1381, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(127, 127, 127)
-                .addComponent(startDateLabel)
-                .addGap(18, 18, 18)
-                .addComponent(startDateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(65, 65, 65)
-                .addComponent(endDateLabel)
-                .addGap(18, 18, 18)
-                .addComponent(endDateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
-                .addComponent(searchButton)
-                .addGap(61, 61, 61)
-                .addComponent(backButton)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel6)
+                .addGap(29, 29, 29)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(stockValueLabel))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(generateReportButton, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(printReportButton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addComponent(backButton))
         );
 
-        pack();
+        setBounds(0, 0, 1400, 822);
     }// </editor-fold>//GEN-END:initComponents
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
@@ -100,6 +210,150 @@ public class StockReport extends javax.swing.JFrame {
         frame.pack();
         frame.setVisible(true);
     }//GEN-LAST:event_backButtonActionPerformed
+
+    private void generateReportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateReportButtonActionPerformed
+        // TODO add your handling code here:
+
+        String reportQuery = "SELECT partNo, Part.partName, manufacturer, vehicleType, startYear, endYear, price, reorderThreshold, quantity FROM Part INNER JOIN StockLedger ON Part.StockLedgercode = StockLedger.code";
+        double totalStockValue = 0;
+
+        try {
+
+            Connection connection = DBConnection.getConnection();
+
+            PreparedStatement reportStatement = connection.prepareStatement(reportQuery);
+            ResultSet resultSet = reportStatement.executeQuery();
+
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            model.setRowCount(0);
+            while (resultSet.next()) {
+                Object o[] = {
+                    resultSet.getString("partNo"), resultSet.getString("partName"), resultSet.getString("manufacturer"), resultSet.getString("vehicleType"), resultSet.getString("startYear"), resultSet.getString("endYear"), resultSet.getString("price"), resultSet.getString("reorderThreshold"), resultSet.getString("quantity")
+                };
+                model.addRow(o);
+
+                totalStockValue = totalStockValue + Double.parseDouble(resultSet.getString("price"));
+
+            }
+
+            stockValueLabel.setText("Total Stock Value: £" + totalStockValue);
+
+        } catch (Exception e) {
+
+            JFrame frame = new InvalidError();
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.pack();
+            frame.setVisible(true);
+
+        }
+    }//GEN-LAST:event_generateReportButtonActionPerformed
+
+    private void printReportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printReportButtonActionPerformed
+        // TODO add your handling code here:
+        
+        String reportQuery = "SELECT partNo, Part.partName, manufacturer, vehicleType, startYear, endYear, price, reorderThreshold, quantity FROM Part INNER JOIN StockLedger ON Part.StockLedgercode = StockLedger.code";
+        
+        try {
+            
+            Connection connection = DBConnection.getConnection();
+
+            PreparedStatement reportStatement = connection.prepareStatement(reportQuery);
+            ResultSet resultSet = reportStatement.executeQuery();
+            
+            Date date = new Date();
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+
+            Document document = new Document();
+            PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("StockReport" + df.format(date) + ".pdf"));
+            document.open();
+
+            document.add(new Paragraph("Stock Report"));
+            
+            document.add(Chunk.NEWLINE);
+            
+            document.add(new Paragraph("Report Date: " + df.format(date)));
+            
+            document.add(Chunk.NEWLINE);
+            
+            PdfPTable table = new PdfPTable(9);
+            
+            PdfPCell partNoCell = new PdfPCell(new Phrase("Part Number"));
+            table.addCell(partNoCell);
+            
+            PdfPCell partNameCell = new PdfPCell(new Phrase("Part Name"));
+            table.addCell(partNameCell);
+                    
+            PdfPCell manuCell = new PdfPCell(new Phrase("Manufacturer"));
+            table.addCell(manuCell);
+            
+            PdfPCell typeCell = new PdfPCell(new Phrase("Vehicle Type"));
+            table.addCell(typeCell);
+            
+            PdfPCell startCell = new PdfPCell(new Phrase("Start Year"));
+            table.addCell(startCell);
+            
+            PdfPCell endCell = new PdfPCell(new Phrase("End Year"));
+            table.addCell(endCell);
+            
+            PdfPCell priceCell = new PdfPCell(new Phrase("Price"));
+            table.addCell(priceCell);
+            
+            PdfPCell reorderCell = new PdfPCell(new Phrase("Reorder Threshold"));
+            table.addCell(reorderCell);
+            
+            PdfPCell qtyCell = new PdfPCell(new Phrase("Quantity"));
+            table.addCell(qtyCell);
+            
+            table.setHeaderRows(1);
+            
+            while(resultSet.next()) {
+                
+                table.addCell(resultSet.getString("partNo"));
+                table.addCell(resultSet.getString("partName"));
+                table.addCell(resultSet.getString("manufacturer"));
+                table.addCell(resultSet.getString("vehicleType"));
+                table.addCell(resultSet.getString("startYear"));
+                table.addCell(resultSet.getString("endYear"));
+                table.addCell(resultSet.getString("price"));
+                table.addCell(resultSet.getString("quantity"));
+                
+            }
+
+            document.add(table);
+            
+            document.add(Chunk.NEWLINE);
+            
+            document.add(new Paragraph(stockValueLabel.getText()));
+            
+
+            document.close();
+            writer.close();
+
+        } catch (Exception e) {
+            JFrame frame = new InvalidError();
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.pack();
+            frame.setVisible(true);
+        }
+    }//GEN-LAST:event_printReportButtonActionPerformed
+
+    private void homePageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homePageButtonActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        JFrame frame = new ReceptionistHomePage();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
+    }//GEN-LAST:event_homePageButtonActionPerformed
+
+    private void logOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutButtonActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        JFrame frame = new SignInForm();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
+    }//GEN-LAST:event_logOutButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -128,6 +382,8 @@ public class StockReport extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -139,10 +395,16 @@ public class StockReport extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
-    private javax.swing.JTextField endDateField;
-    private javax.swing.JLabel endDateLabel;
-    private javax.swing.JButton searchButton;
-    private javax.swing.JTextField startDateField;
-    private javax.swing.JLabel startDateLabel;
+    private javax.swing.JButton generateReportButton;
+    private javax.swing.JButton homePageButton;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
+    private java.awt.Label label1;
+    private javax.swing.JButton logOutButton;
+    private javax.swing.JButton printReportButton;
+    private javax.swing.JLabel stockValueLabel;
     // End of variables declaration//GEN-END:variables
 }

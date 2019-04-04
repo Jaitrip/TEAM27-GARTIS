@@ -83,10 +83,11 @@ public class addCustomerRecord extends javax.swing.JFrame {
         addCorprateCustomer = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         label1 = new java.awt.Label();
+        deleteCustomerButton = new javax.swing.JButton();
+        deleteVehicleButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setExtendedState(6);
-        setPreferredSize(new java.awt.Dimension(1920, 1080));
 
         backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garits/ICONS/back-icon.png"))); // NOI18N
         backButton.addActionListener(new java.awt.event.ActionListener() {
@@ -241,6 +242,26 @@ public class addCustomerRecord extends javax.swing.JFrame {
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
+        deleteCustomerButton.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        deleteCustomerButton.setText("Delete Customer Record");
+        deleteCustomerButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        deleteCustomerButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        deleteCustomerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteCustomerButtonActionPerformed(evt);
+            }
+        });
+
+        deleteVehicleButton.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        deleteVehicleButton.setText("Delete Vehicle Record");
+        deleteVehicleButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        deleteVehicleButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        deleteVehicleButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteVehicleButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -279,8 +300,10 @@ public class addCustomerRecord extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(addCustomerButton)
-                                        .addGap(79, 79, 79)
+                                        .addGap(27, 27, 27)
                                         .addComponent(addCorprateCustomer)
+                                        .addGap(26, 26, 26)
+                                        .addComponent(deleteCustomerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(refreshListButton))
                                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 980, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -308,6 +331,8 @@ public class addCustomerRecord extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(addVehicleButton)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(deleteVehicleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(refreshVehicleButton))
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 980, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -353,11 +378,13 @@ public class addCustomerRecord extends javax.swing.JFrame {
                             .addComponent(jLabel10)
                             .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(addCorprateCustomer)
-                    .addComponent(addCustomerButton)
-                    .addComponent(refreshListButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(addCustomerButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(addCorprateCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(refreshListButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(deleteCustomerButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -394,9 +421,10 @@ public class addCustomerRecord extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(refreshVehicleButton)
-                            .addComponent(addVehicleButton))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(refreshVehicleButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(addVehicleButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(deleteVehicleButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(backButton)))
                 .addContainerGap())
@@ -423,7 +451,7 @@ public class addCustomerRecord extends javax.swing.JFrame {
             String id = String.valueOf(n);
             
             Date date = new Date();
-            DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
             
             Connection connection = DBConnection.getConnection();
             String sqlQuery = "INSERT INTO Customer (customerID, date, firstName, lastName, address, postcode, telephoneNumber, telephoneNumber2, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -542,6 +570,55 @@ public class addCustomerRecord extends javax.swing.JFrame {
      
     }//GEN-LAST:event_refreshVehicleButtonActionPerformed
 
+    private void deleteCustomerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteCustomerButtonActionPerformed
+        // TODO add your handling code here:
+
+        try {
+            Connection connection = DBConnection.getConnection();
+            int row = customerTable.getSelectedRow();
+            String customerID = customerTable.getModel().getValueAt(row, 0).toString();
+            
+            String sqlQuery = "DELETE FROM Customer WHERE customerID = ?";
+            PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
+            pStatement.setString(1, customerID);
+            pStatement.executeUpdate();
+            System.out.println("deleted");
+            pStatement.close();
+            connection.close();
+
+        } catch (Exception e) {
+            JFrame frame = new InvalidError();
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.pack();
+            frame.setVisible(true);
+        }
+        refreshListButtonActionPerformed(evt);
+    }//GEN-LAST:event_deleteCustomerButtonActionPerformed
+
+    private void deleteVehicleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteVehicleButtonActionPerformed
+        // TODO add your handling code here:
+        try {
+            Connection connection = DBConnection.getConnection();
+            int row = vehicleTable.getSelectedRow();
+            String registrationNumber = vehicleTable.getModel().getValueAt(row, 0).toString();
+            
+            String sqlQuery = "DELETE FROM Vehicle WHERE registrationNumber= ?";
+            PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
+            pStatement.setString(1, registrationNumber);
+            pStatement.executeUpdate();
+            System.out.println("deleted");
+            pStatement.close();
+            connection.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            JFrame frame = new InvalidError();
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.pack();
+            frame.setVisible(true);
+        }
+        refreshVehicleButtonActionPerformed(evt);
+    }//GEN-LAST:event_deleteVehicleButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -603,6 +680,8 @@ public class addCustomerRecord extends javax.swing.JFrame {
     private javax.swing.JTextField colourField;
     private javax.swing.JTextField customerID2Field;
     private javax.swing.JTable customerTable;
+    private javax.swing.JButton deleteCustomerButton;
+    private javax.swing.JButton deleteVehicleButton;
     private javax.swing.JTextField emailField;
     private javax.swing.JTextField engineSerialField;
     private javax.swing.JTextField firstNameField;

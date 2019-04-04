@@ -30,23 +30,16 @@ public class ManageJob extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        viewJobSheetButton = new javax.swing.JButton();
         printInvoiceButton = new javax.swing.JButton();
         latePayments = new javax.swing.JButton();
         printReminders = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         label3 = new java.awt.Label();
+        addStandardTaskButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setExtendedState(6);
-
-        viewJobSheetButton.setText("View Job Sheet");
-        viewJobSheetButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                viewJobSheetButtonActionPerformed(evt);
-            }
-        });
 
         printInvoiceButton.setText("Print Invoice");
         printInvoiceButton.addActionListener(new java.awt.event.ActionListener() {
@@ -89,7 +82,7 @@ public class ManageJob extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(581, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -99,37 +92,45 @@ public class ManageJob extends javax.swing.JFrame {
                 .addContainerGap(46, Short.MAX_VALUE))
         );
 
+        addStandardTaskButton.setText("Add Standard Tasks");
+        addStandardTaskButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addStandardTaskButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(viewJobSheetButton)
-                .addGap(28, 28, 28)
-                .addComponent(printInvoiceButton)
-                .addGap(27, 27, 27)
-                .addComponent(latePayments)
-                .addGap(26, 26, 26)
-                .addComponent(printReminders)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addComponent(backButton)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(55, 55, 55)
+                        .addComponent(backButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(86, 86, 86)
+                        .addComponent(printInvoiceButton)
+                        .addGap(27, 27, 27)
+                        .addComponent(latePayments)
+                        .addGap(26, 26, 26)
+                        .addComponent(printReminders)
+                        .addGap(18, 18, 18)
+                        .addComponent(addStandardTaskButton)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
+                .addGap(88, 88, 88)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(viewJobSheetButton, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(printInvoiceButton, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(latePayments, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(printReminders, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 139, Short.MAX_VALUE)
+                    .addComponent(printReminders, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addStandardTaskButton, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 130, Short.MAX_VALUE)
                 .addComponent(backButton)
                 .addContainerGap(55, Short.MAX_VALUE))
         );
@@ -145,15 +146,6 @@ public class ManageJob extends javax.swing.JFrame {
         frame.pack();
         frame.setVisible(true);
     }//GEN-LAST:event_backButtonActionPerformed
-
-    private void viewJobSheetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewJobSheetButtonActionPerformed
-        // TODO add your handling code here:
-        this.dispose();
-        JFrame frame = new ViewJobSheet();
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
-    }//GEN-LAST:event_viewJobSheetButtonActionPerformed
 
     private void printInvoiceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printInvoiceButtonActionPerformed
         // TODO add your handling code here:
@@ -181,6 +173,15 @@ public class ManageJob extends javax.swing.JFrame {
         frame.pack();
         frame.setVisible(true);
     }//GEN-LAST:event_printRemindersActionPerformed
+
+    private void addStandardTaskButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addStandardTaskButtonActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        JFrame frame = new AddStandardTasks();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
+    }//GEN-LAST:event_addStandardTaskButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -219,12 +220,12 @@ public class ManageJob extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addStandardTaskButton;
     private javax.swing.JButton backButton;
     private javax.swing.JPanel jPanel3;
     private java.awt.Label label3;
     private javax.swing.JButton latePayments;
     private javax.swing.JButton printInvoiceButton;
     private javax.swing.JButton printReminders;
-    private javax.swing.JButton viewJobSheetButton;
     // End of variables declaration//GEN-END:variables
 }

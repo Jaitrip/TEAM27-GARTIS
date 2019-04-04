@@ -290,8 +290,10 @@ public class BackupForm extends javax.swing.JFrame {
             File file = fileChooser.getSelectedFile();
             path = file.getAbsolutePath();
             restoreTextField.setText(path);
+ 
             
         } catch (Exception e) {
+            e.printStackTrace();
             JFrame frame = new InvalidError();
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.pack();
@@ -301,7 +303,7 @@ public class BackupForm extends javax.swing.JFrame {
 
     private void restoreButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restoreButtonActionPerformed
         // TODO add your handling code here:
-        Path targetDirectory = Paths.get("src/database/GARTISDatabase.sqlite");
+        Path targetDirectory = Paths.get("/Users/jaimik/Documents/GARITS-3/src/GARTISDatabase.sqlite");
         Path sourceFile = Paths.get(restoreTextField.getText());
         
         try {
@@ -311,6 +313,7 @@ public class BackupForm extends javax.swing.JFrame {
             jLabel4.setText("Restored");
             
         } catch (Exception e) {
+            e.printStackTrace();
             JFrame frame = new InvalidError();
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.pack();

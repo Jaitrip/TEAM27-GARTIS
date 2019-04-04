@@ -172,14 +172,19 @@ public class Notifications extends javax.swing.JFrame {
         
         try {
 
+            Date date = new Date();
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+
             Connection connection = DBConnection.getConnection();
-            String sqlQuery = "SELECT count(*) FROM Invoice WHERE status='Unpaid' & date('now')>datePaymentDue";
+            String sqlQuery = "SELECT COUNT(*) FROM Invoice WHERE datePaymentDue < ? AND status = ?;";
             PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
+            pStatement.setString(1, df.format(date));
+            pStatement.setString(2, "Unpaid");
             ResultSet resultSet = pStatement.executeQuery();
             
             while (resultSet.next()) {
-                  if (Integer.parseInt(resultSet.getString("count(*)"))>0){
-                      latePaymentNotification = "There are " + Integer.parseInt(resultSet.getString("count(*)")) + " payment notifications. Check any late payments.";
+                  if (Integer.parseInt(resultSet.getString("COUNT(*)")) > 0){
+                      latePaymentNotification = "There are " + Integer.parseInt(resultSet.getString("COUNT(*)")) + " payment notifications. Check any late payments.";
                   }
             }
             

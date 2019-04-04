@@ -5,9 +5,13 @@
  */
 package garits.foreperson.jobs;
 
+import garits.mechanic.*;
 import garits.DBConnectivity.DBConnection;
 import garits.InvalidError;
-import garits.foreperson.ForepersonHomePage;
+import garits.Job.Invoice;
+import garits.Job.ProduceInvoice;
+import garits.Job.SaveInvoice;
+import garits.foreperson.JobsPage;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -37,97 +41,42 @@ public class TasksCompletedForm extends javax.swing.JFrame {
     private void initComponents() {
 
         jRadioButtonMenuItem1 = new javax.swing.JRadioButtonMenuItem();
-        backButton = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jobNumberField = new javax.swing.JTextField();
+        backButton = new javax.swing.JButton();
         searchJobTasksButton = new javax.swing.JButton();
-        timeTakenField = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        setTaskCompletedButton = new javax.swing.JButton();
-        refreshTasksButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jobTaskTable = new javax.swing.JTable();
-        jPanel7 = new javax.swing.JPanel();
-        label6 = new java.awt.Label();
+        refreshTasksButton = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        timeTakenField = new javax.swing.JTextField();
+        setTaskCompletedButton = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        label1 = new java.awt.Label();
 
         jRadioButtonMenuItem1.setSelected(true);
         jRadioButtonMenuItem1.setText("jRadioButtonMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setExtendedState(6);
 
-        backButton.setText("Back");
+        jLabel1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel1.setText("Job Number");
+
+        backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garits/ICONS/back-icon.png"))); // NOI18N
         backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backButtonActionPerformed(evt);
             }
         });
 
-        jLabel1.setText("Job Number");
-
+        searchJobTasksButton.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        searchJobTasksButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garits/ICONS/search-icon.png"))); // NOI18N
         searchJobTasksButton.setText("Search Job Tasks");
         searchJobTasksButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchJobTasksButtonActionPerformed(evt);
             }
         });
-
-        jLabel2.setText("Time Taken");
-
-        setTaskCompletedButton.setText("Set Task Completed");
-        setTaskCompletedButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                setTaskCompletedButtonActionPerformed(evt);
-            }
-        });
-
-        refreshTasksButton.setText("Refresh Tasks");
-        refreshTasksButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                refreshTasksButtonActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jobNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(searchJobTasksButton)
-                            .addComponent(jLabel2)
-                            .addComponent(timeTakenField, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(setTaskCompletedButton)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addComponent(refreshTasksButton)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jobNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(searchJobTasksButton)
-                .addGap(40, 40, 40)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(timeTakenField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(setTaskCompletedButton)
-                .addGap(72, 72, 72)
-                .addComponent(refreshTasksButton)
-                .addContainerGap(43, Short.MAX_VALUE))
-        );
 
         jobTaskTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -142,27 +91,48 @@ public class TasksCompletedForm extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jobTaskTable);
 
-        jPanel7.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel7.setPreferredSize(new java.awt.Dimension(1920, 100));
+        refreshTasksButton.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        refreshTasksButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garits/ICONS/Refresh job list small-icon.png"))); // NOI18N
+        refreshTasksButton.setText("Refresh Tasks");
+        refreshTasksButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshTasksButtonActionPerformed(evt);
+            }
+        });
 
-        label6.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 36)); // NOI18N
-        label6.setForeground(new java.awt.Color(255, 255, 255));
-        label6.setText("GARITS");
+        jLabel2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel2.setText("Time Taken");
 
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
+        setTaskCompletedButton.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        setTaskCompletedButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garits/ICONS/set task comleted-icon.png"))); // NOI18N
+        setTaskCompletedButton.setText("Set Task Completed");
+        setTaskCompletedButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                setTaskCompletedButtonActionPerformed(evt);
+            }
+        });
+
+        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel1.setMinimumSize(new java.awt.Dimension(1920, 100));
+
+        label1.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 36)); // NOI18N
+        label1.setForeground(new java.awt.Color(255, 255, 255));
+        label1.setText("GARITS");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addComponent(label6, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(1733, Short.MAX_VALUE))
         );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(label6, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
@@ -170,33 +140,60 @@ public class TasksCompletedForm extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 1346, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(26, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(backButton)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1011, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(30, Short.MAX_VALUE))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(refreshTasksButton)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(backButton))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(26, 26, 26)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                                .addComponent(jLabel2)
+                                .addComponent(timeTakenField, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(setTaskCompletedButton)
+                                .addComponent(jLabel1)
+                                .addComponent(jobNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(searchJobTasksButton))
+                            .addGap(63, 63, 63)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1282, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(backButton))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, Short.MAX_VALUE)
-                .addComponent(backButton)
-                .addContainerGap(46, Short.MAX_VALUE))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(39, 39, 39)
+                                .addComponent(jLabel1)
+                                .addGap(18, 18, 18)
+                                .addComponent(jobNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(36, 36, 36)
+                                        .addComponent(searchJobTasksButton))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(102, 102, 102)
+                                        .addComponent(jLabel2)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(timeTakenField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(25, 25, 25)
+                                .addComponent(setTaskCompletedButton))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 658, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(refreshTasksButton)
+                        .addGap(0, 220, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         pack();
@@ -205,7 +202,7 @@ public class TasksCompletedForm extends javax.swing.JFrame {
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        JFrame frame = new ForepersonHomePage();
+        JFrame frame = new JobsPage();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
@@ -214,7 +211,7 @@ public class TasksCompletedForm extends javax.swing.JFrame {
     private void searchJobTasksButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchJobTasksButtonActionPerformed
         // TODO add your handling code here:
         String jobTaskNumber = jobNumberField.getText();
-        
+
         try {
 
             Connection connection = DBConnection.getConnection();
@@ -246,15 +243,15 @@ public class TasksCompletedForm extends javax.swing.JFrame {
         try {
 
             Connection connection = DBConnection.getConnection();
-            String sqlQuery = "SELECT * FROM JobTask";
+            String sqlQuery = "SELECT * FROM JobTask WHERE JobSheetjobNumber = ?";
             PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
+            pStatement.setString(1, jobNumberField.getText());
             ResultSet resultSet = pStatement.executeQuery();
             DefaultTableModel model = (DefaultTableModel) jobTaskTable.getModel();
             model.setRowCount(0);
             while (resultSet.next()) {
                 Object o[] = {
-                    resultSet.getString("JobSheetjobNumber"), resultSet.getString("taskID"), resultSet.getString("actualTime"), resultSet.getString("estimatedTime"), resultSet.getString("taskDescription"), resultSet.getString("status"),
-                };
+                    resultSet.getString("JobSheetjobNumber"), resultSet.getString("taskID"), resultSet.getString("actualTime"), resultSet.getString("estimatedTime"), resultSet.getString("taskDescription"), resultSet.getString("status"),};
                 model.addRow(o);
 
             }
@@ -274,10 +271,11 @@ public class TasksCompletedForm extends javax.swing.JFrame {
         int jobRow = jobTaskTable.getSelectedRow();
         String jobNumber = jobTaskTable.getModel().getValueAt(jobRow, 0).toString();
         String taskID = jobTaskTable.getModel().getValueAt(jobRow, 1).toString();
-        
+
         try {
             Connection connection = DBConnection.getConnection();
-            String sqlQuery = "UPDATE JobTask SET actualTime = ?, status = ? WHERE JobSheetjobNumber = ? AND taskID = ?" ;
+            connection.setAutoCommit(false);
+            String sqlQuery = "UPDATE JobTask SET actualTime = ?, status = ? WHERE JobSheetjobNumber = ? AND taskID = ?";
             PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
             pStatement.setString(1, timeTakenField.getText());
             pStatement.setString(2, "Completed");
@@ -285,7 +283,51 @@ public class TasksCompletedForm extends javax.swing.JFrame {
             pStatement.setString(4, taskID);
             pStatement.executeUpdate();
             System.out.println("updated");
+            connection.commit();
             pStatement.close();
+
+            String checkCompleted = "SELECT COUNT(*) FROM JobTask WHERE status = ? AND JobSheetjobNumber = ?";
+            PreparedStatement checkStatement = connection.prepareStatement(checkCompleted);
+
+            checkStatement.setString(1, "Pending");
+            checkStatement.setString(2, jobNumber);
+            ResultSet resultSet = checkStatement.executeQuery();
+
+            if (resultSet.getString("COUNT(*)").equals("0")) {
+                System.out.println("job completed");
+                String updateQuery = "UPDATE JobSheet SET status = ? WHERE jobNumber = ?";
+                PreparedStatement updateStatement = connection.prepareStatement(updateQuery);
+                updateStatement.setString(1, "Completed");
+                updateStatement.setString(2, jobNumber);
+                updateStatement.executeUpdate();
+                System.out.println("Updated JobSheet");
+                updateStatement.close();
+
+                ProduceInvoice produceInvoice = new ProduceInvoice();
+                Invoice invoice = produceInvoice.produceInvoice(jobNumber);
+
+                String insertQuery = "INSERT INTO Invoice (invoiceNumber, jobNumber, dateOfInvoice, datePaymentDue, grandTotal, labourCost, partCost, status, totalTimeTaken) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                PreparedStatement insertStatement = connection.prepareStatement(insertQuery);
+                insertStatement.setString(1, invoice.getInvoiceNumber());
+                insertStatement.setString(2, invoice.getJobNumber());
+                insertStatement.setString(3, invoice.getDateOfInvoice());
+                insertStatement.setString(4, invoice.getDatePaymentDue());
+                insertStatement.setString(5, invoice.getGrandTotal());
+                insertStatement.setString(6, invoice.getLabourCost());
+                insertStatement.setString(7, invoice.getPartCost());
+                insertStatement.setString(8, invoice.getStatus());
+                insertStatement.setString(9, invoice.getTotalTimeTaken());
+                insertStatement.executeUpdate();
+                
+                SaveInvoice saveInvoice = new SaveInvoice();
+                saveInvoice.printInvoice(invoice.getInvoiceNumber(), connection);
+                
+                System.out.println("invoice produced");
+            }
+
+            connection.commit();
+            connection.setAutoCommit(true);
+            checkStatement.close();
             connection.close();
 
         } catch (Exception e) {
@@ -294,8 +336,8 @@ public class TasksCompletedForm extends javax.swing.JFrame {
             frame.pack();
             frame.setVisible(true);
         }
-        
-        
+
+
     }//GEN-LAST:event_setTaskCompletedButtonActionPerformed
 
     /**
@@ -341,96 +383,11 @@ public class TasksCompletedForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel12;
-    private javax.swing.JPanel jPanel13;
-    private javax.swing.JPanel jPanel14;
-    private javax.swing.JPanel jPanel15;
-    private javax.swing.JPanel jPanel16;
-    private javax.swing.JPanel jPanel17;
-    private javax.swing.JPanel jPanel18;
-    private javax.swing.JPanel jPanel19;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel20;
-    private javax.swing.JPanel jPanel21;
-    private javax.swing.JPanel jPanel22;
-    private javax.swing.JPanel jPanel23;
-    private javax.swing.JPanel jPanel24;
-    private javax.swing.JPanel jPanel25;
-    private javax.swing.JPanel jPanel26;
-    private javax.swing.JPanel jPanel27;
-    private javax.swing.JPanel jPanel28;
-    private javax.swing.JPanel jPanel29;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel30;
-    private javax.swing.JPanel jPanel31;
-    private javax.swing.JPanel jPanel32;
-    private javax.swing.JPanel jPanel33;
-    private javax.swing.JPanel jPanel34;
-    private javax.swing.JPanel jPanel35;
-    private javax.swing.JPanel jPanel36;
-    private javax.swing.JPanel jPanel37;
-    private javax.swing.JPanel jPanel38;
-    private javax.swing.JPanel jPanel39;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel40;
-    private javax.swing.JPanel jPanel41;
-    private javax.swing.JPanel jPanel42;
-    private javax.swing.JPanel jPanel43;
-    private javax.swing.JPanel jPanel44;
-    private javax.swing.JPanel jPanel45;
-    private javax.swing.JPanel jPanel46;
-    private javax.swing.JPanel jPanel47;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jobNumberField;
     private javax.swing.JTable jobTaskTable;
     private java.awt.Label label1;
-    private java.awt.Label label10;
-    private java.awt.Label label11;
-    private java.awt.Label label12;
-    private java.awt.Label label13;
-    private java.awt.Label label14;
-    private java.awt.Label label15;
-    private java.awt.Label label16;
-    private java.awt.Label label17;
-    private java.awt.Label label18;
-    private java.awt.Label label19;
-    private java.awt.Label label2;
-    private java.awt.Label label20;
-    private java.awt.Label label21;
-    private java.awt.Label label22;
-    private java.awt.Label label23;
-    private java.awt.Label label24;
-    private java.awt.Label label25;
-    private java.awt.Label label26;
-    private java.awt.Label label27;
-    private java.awt.Label label28;
-    private java.awt.Label label29;
-    private java.awt.Label label3;
-    private java.awt.Label label30;
-    private java.awt.Label label31;
-    private java.awt.Label label32;
-    private java.awt.Label label33;
-    private java.awt.Label label34;
-    private java.awt.Label label35;
-    private java.awt.Label label36;
-    private java.awt.Label label37;
-    private java.awt.Label label38;
-    private java.awt.Label label39;
-    private java.awt.Label label4;
-    private java.awt.Label label40;
-    private java.awt.Label label41;
-    private java.awt.Label label42;
-    private java.awt.Label label43;
-    private java.awt.Label label44;
-    private java.awt.Label label45;
-    private java.awt.Label label46;
-    private java.awt.Label label5;
-    private java.awt.Label label6;
     private javax.swing.JButton refreshTasksButton;
     private javax.swing.JButton searchJobTasksButton;
     private javax.swing.JButton setTaskCompletedButton;

@@ -7,7 +7,7 @@ package garits.receptionist.managejob;
 
 import garits.DBConnectivity.DBConnection;
 import garits.InvalidError;
-import garits.franchisee.ManageJob;
+import garits.receptionist.ManageJob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

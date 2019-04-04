@@ -415,26 +415,20 @@ public class FixedDiscount extends javax.swing.JFrame {
             connection.setAutoCommit(false);
 
             String sqlQuery = "INSERT INTO Fixed (Fixed_ID, Discount_ID, Fixed_Rate) VALUES (?, ?, ?)";
-            String sqlQuery2 = "UPDATE AccountHolder SET discountPlan = ? WHERE customerID =" + customerID;
 
             PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
-            PreparedStatement pStatement2 = connection.prepareStatement(sqlQuery2);
 
             pStatement.setString(1, fixedID);
             pStatement.setString(2, discountID);
             pStatement.setString(3, fixedRate);
 
-            pStatement2.setString(1, "Fixed");
-
             pStatement.executeUpdate();
-            pStatement2.executeUpdate();
             System.out.println("Added");
             connection.commit();
             connection.setAutoCommit(true);
             viewFixedPlansButtonActionPerformed(evt);
 
             pStatement.close();
-            pStatement2.close();
             connection.close();
 
         } catch (Exception e) {
@@ -482,8 +476,9 @@ public class FixedDiscount extends javax.swing.JFrame {
             String fixedID = fixedDiscountTable.getModel().getValueAt(row, 0).toString();
             System.out.println(fixedID);
 
-            String sqlQuery = "DELETE FROM Fixed WHERE Fixed_ID =" + fixedID;
+            String sqlQuery = "DELETE FROM Fixed WHERE Fixed_ID = ?";
             PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
+            pStatement.setString(1, fixedID);
             pStatement.executeUpdate();
             System.out.println("Deleted");
             pStatement.close();

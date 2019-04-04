@@ -5,11 +5,12 @@
  */
 package garits.foreperson;
 
-import garits.foreperson.stock.CheckStockForm;
+import garits.foreperson.stock.CheckStock;
 import garits.foreperson.stock.EditThreshold;
 import garits.foreperson.stock.NewPart;
-import garits.foreperson.stock.OrderPartsForm;
-import garits.foreperson.stock.StockReportForm;
+import garits.foreperson.stock.OrderParts;
+import garits.foreperson.stock.ReplenishStock;
+import garits.foreperson.stock.StockReport;
 import javax.swing.JFrame;
 
 /**
@@ -42,10 +43,11 @@ public class StockPage extends javax.swing.JFrame {
         label1 = new java.awt.Label();
         editThresholdButton = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        replenishStockButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setExtendedState(6);
-        setPreferredSize(new java.awt.Dimension(1920, 1080));
+        getContentPane().setLayout(null);
 
         jButton1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garits/ICONS/check stock-icon.png"))); // NOI18N
@@ -57,6 +59,8 @@ public class StockPage extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton1);
+        jButton1.setBounds(212, 351, 144, 161);
 
         jButton2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garits/ICONS/Report-icon.png"))); // NOI18N
@@ -68,6 +72,8 @@ public class StockPage extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton2);
+        jButton2.setBounds(830, 351, 144, 161);
 
         jButton3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garits/ICONS/parts-icon.png"))); // NOI18N
@@ -79,6 +85,8 @@ public class StockPage extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton3);
+        jButton3.setBounds(1034, 351, 144, 161);
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garits/ICONS/back-icon.png"))); // NOI18N
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -86,6 +94,8 @@ public class StockPage extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton4);
+        jButton4.setBounds(6, 768, 64, 60);
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
         jPanel1.setName(""); // NOI18N
@@ -102,7 +112,7 @@ public class StockPage extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(1285, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -111,6 +121,9 @@ public class StockPage extends javax.swing.JFrame {
                 .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(20, Short.MAX_VALUE))
         );
+
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(0, 0, 1472, 100);
 
         editThresholdButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garits/ICONS/parts-icon.png"))); // NOI18N
         editThresholdButton.setText("Edit Threshold");
@@ -121,6 +134,8 @@ public class StockPage extends javax.swing.JFrame {
                 editThresholdButtonActionPerformed(evt);
             }
         });
+        getContentPane().add(editThresholdButton);
+        editThresholdButton.setBounds(615, 351, 144, 158);
 
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garits/ICONS/record payment-icon.png"))); // NOI18N
         jButton5.setText("Add Parts");
@@ -131,45 +146,17 @@ public class StockPage extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton5);
+        jButton5.setBounds(414, 351, 144, 161);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1450, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(191, Short.MAX_VALUE)
-                        .addComponent(jButton1)
-                        .addGap(58, 58, 58)
-                        .addComponent(jButton5)
-                        .addGap(57, 57, 57)
-                        .addComponent(editThresholdButton)
-                        .addGap(71, 71, 71)
-                        .addComponent(jButton2)
-                        .addGap(60, 60, 60)
-                        .addComponent(jButton3))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(73, 73, 73)
-                        .addComponent(jButton4)))
-                .addContainerGap(208, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 181, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(editThresholdButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 243, Short.MAX_VALUE)
-                .addComponent(jButton4)
-                .addGap(58, 58, 58))
-        );
+        replenishStockButton.setText("Replenish Stock");
+        replenishStockButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                replenishStockButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(replenishStockButton);
+        replenishStockButton.setBounds(620, 540, 144, 29);
 
         setBounds(0, 0, 1472, 856);
     }// </editor-fold>//GEN-END:initComponents
@@ -177,7 +164,7 @@ public class StockPage extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        JFrame frame = new CheckStockForm();
+        JFrame frame = new CheckStock();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
@@ -195,7 +182,7 @@ public class StockPage extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        JFrame frame = new OrderPartsForm();
+        JFrame frame = new OrderParts();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
@@ -204,7 +191,7 @@ public class StockPage extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        JFrame frame = new StockReportForm();
+        JFrame frame = new StockReport();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
@@ -227,6 +214,15 @@ public class StockPage extends javax.swing.JFrame {
         frame.pack();
         frame.setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void replenishStockButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_replenishStockButtonActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        JFrame frame = new ReplenishStock();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
+    }//GEN-LAST:event_replenishStockButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -270,7 +266,9 @@ public class StockPage extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JPanel jPanel1;
     private java.awt.Label label1;
+    private javax.swing.JButton replenishStockButton;
     // End of variables declaration//GEN-END:variables
 }

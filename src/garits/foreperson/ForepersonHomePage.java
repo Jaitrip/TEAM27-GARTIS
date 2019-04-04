@@ -5,7 +5,7 @@
  */
 package garits.foreperson;
 
-import garits.foreperson.jobs.ProduceInvoiceForm;
+import garits.foreperson.jobs.ProduceInvoice;
 import garits.foreperson.jobs.PartsUsedForm;
 import garits.foreperson.jobs.TasksCompletedForm;
 import garits.SignInForm;
@@ -224,7 +224,7 @@ public class ForepersonHomePage extends javax.swing.JFrame {
     private void produceInvoiceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_produceInvoiceButtonActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        JFrame frame = new ProduceInvoiceForm();
+        JFrame frame = new ProduceInvoice();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);

@@ -11,6 +11,10 @@ import garits.foreperson.JobsPage;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Random;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 
@@ -36,24 +40,29 @@ public class AcceptJobForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        vehicleRegLabel = new javax.swing.JLabel();
+        vehicleRegField = new javax.swing.JTextField();
         backButton = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jobTypeBox = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        acceptJobButton = new javax.swing.JButton();
         refreshButton = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        taskTable = new javax.swing.JTable();
-        taskRefreshButton = new javax.swing.JButton();
-        addTaskButton = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         label1 = new java.awt.Label();
-        jPanel2 = new javax.swing.JPanel();
-        searchJobsButton = new javax.swing.JButton();
-        jobSearchField = new javax.swing.JTextField();
-        jobNumberLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setExtendedState(6);
-        setPreferredSize(new java.awt.Dimension(1920, 1080));
+        setSize(new java.awt.Dimension(1920, 1080));
+
+        vehicleRegLabel.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        vehicleRegLabel.setText("Vehicle Reg.");
+
+        vehicleRegField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                vehicleRegFieldActionPerformed(evt);
+            }
+        });
 
         backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garits/ICONS/back-icon.png"))); // NOI18N
         backButton.addActionListener(new java.awt.event.ActionListener() {
@@ -61,6 +70,12 @@ public class AcceptJobForm extends javax.swing.JFrame {
                 backButtonActionPerformed(evt);
             }
         });
+
+        jLabel1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel1.setText("Job Type");
+
+        jobTypeBox.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jobTypeBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MOT", "Repair", "Annual Service" }));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -75,6 +90,15 @@ public class AcceptJobForm extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        acceptJobButton.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        acceptJobButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garits/ICONS/accept job-icon.png"))); // NOI18N
+        acceptJobButton.setText("Accept Job");
+        acceptJobButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                acceptJobButtonActionPerformed(evt);
+            }
+        });
+
         refreshButton.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         refreshButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garits/ICONS/Refresh job list small-icon.png"))); // NOI18N
         refreshButton.setText("Refresh List");
@@ -84,39 +108,7 @@ public class AcceptJobForm extends javax.swing.JFrame {
             }
         });
 
-        taskTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "taskID", "taskDescription", "taskDuration"
-            }
-        ));
-        jScrollPane2.setViewportView(taskTable);
-
-        taskRefreshButton.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        taskRefreshButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garits/ICONS/Refresh job list small-icon.png"))); // NOI18N
-        taskRefreshButton.setText("Refresh List");
-        taskRefreshButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                taskRefreshButtonActionPerformed(evt);
-            }
-        });
-
-        addTaskButton.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        addTaskButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garits/ICONS/add parts-icon.png"))); // NOI18N
-        addTaskButton.setText("Add Task");
-        addTaskButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addTaskButtonActionPerformed(evt);
-            }
-        });
-
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel1.setPreferredSize(new java.awt.Dimension(1920, 100));
 
         label1.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 36)); // NOI18N
         label1.setForeground(new java.awt.Color(255, 255, 255));
@@ -129,7 +121,7 @@ public class AcceptJobForm extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(1733, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -139,93 +131,67 @@ public class AcceptJobForm extends javax.swing.JFrame {
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
-        searchJobsButton.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        searchJobsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garits/ICONS/search-icon.png"))); // NOI18N
-        searchJobsButton.setText("Search Jobs");
-        searchJobsButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchJobsButtonActionPerformed(evt);
-            }
-        });
-
-        jobSearchField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jobSearchFieldActionPerformed(evt);
-            }
-        });
-
-        jobNumberLabel.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jobNumberLabel.setText("Search Jobs:");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(61, 61, 61)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jobNumberLabel)
-                    .addComponent(jobSearchField, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(searchJobsButton))
-                .addContainerGap(48, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jobNumberLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jobSearchField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(searchJobsButton)
-                .addGap(0, 14, Short.MAX_VALUE))
-        );
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(45, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(backButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(taskRefreshButton)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(addTaskButton)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(refreshButton))
-                        .addComponent(jScrollPane2)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1133, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(38, Short.MAX_VALUE))
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1497, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(backButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(acceptJobButton)
+                            .addComponent(vehicleRegLabel)
+                            .addComponent(vehicleRegField, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1)
+                            .addComponent(jobTypeBox, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(86, 86, 86)
+                        .addComponent(refreshButton)
+                        .addGap(145, 145, 145)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(backButton)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(addTaskButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 753, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(244, 244, 244)
+                        .addComponent(vehicleRegLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(vehicleRegField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jobTypeBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(121, 121, 121)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(acceptJobButton)
                             .addComponent(refreshButton))
-                        .addGap(32, 32, 32)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                        .addComponent(taskRefreshButton))
-                    .addComponent(backButton))
-                .addContainerGap(58, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
-        setBounds(0, 0, 1519, 983);
+        pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void vehicleRegFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vehicleRegFieldActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_vehicleRegFieldActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
@@ -236,43 +202,44 @@ public class AcceptJobForm extends javax.swing.JFrame {
         frame.setVisible(true);
     }//GEN-LAST:event_backButtonActionPerformed
 
-    private void searchJobsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchJobsButtonActionPerformed
+    private void acceptJobButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptJobButtonActionPerformed
         // TODO add your handling code here:
         try {
-
+            
+            Date date = new Date();
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            
+            Random rand = new Random();
+            int n = rand.nextInt(100);
+            String jobNumber = String.valueOf(n);
+            
             Connection connection = DBConnection.getConnection();
-            String sqlQuery = "SELECT * FROM JobSheet WHERE jobNumber = ?";
+            String sqlQuery = "INSERT INTO JobSheet (jobNumber, dateBookedIn, jobType, status, VehicleregistrationNumber) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
-            pStatement.setString(1, jobSearchField.getText());
-            ResultSet resultSet = pStatement.executeQuery();
-            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-            model.setRowCount(0);
-            while (resultSet.next()) {
-                Object o[] = {
-                    resultSet.getString("jobNumber"), resultSet.getString("dateBookedIn"), resultSet.getString("jobType"), resultSet.getString("workDescription"), resultSet.getString("status"), resultSet.getString("VehicleregistrationNumber"), resultSet.getString("InvoiceinvoiceNumber"), resultSet.getString("EmployeeemployeeID")
-                };
-                model.addRow(o);
-
-            }
+            pStatement.setString(1, jobNumber);
+            pStatement.setString(2, df.format(date));
+            pStatement.setString(3, jobTypeBox.getSelectedItem().toString());
+            pStatement.setString(4, "Pending");
+            pStatement.setString(5, vehicleRegField.getText());
+            pStatement.executeUpdate();
             pStatement.close();
-            resultSet.close();
             connection.close();
+
         } catch (Exception e) {
             JFrame frame = new InvalidError();
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.pack();
             frame.setVisible(true);
         }
-    }//GEN-LAST:event_searchJobsButtonActionPerformed
+    }//GEN-LAST:event_acceptJobButtonActionPerformed
 
     private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
         // TODO add your handling code here:
         try {
 
             Connection connection = DBConnection.getConnection();
-            String sqlQuery = "SELECT * FROM JobSheet WHERE status = ?";
+            String sqlQuery = "SELECT * FROM JobSheet";
             PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
-            pStatement.setString(1, "Pending");
             ResultSet resultSet = pStatement.executeQuery();
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
             model.setRowCount(0);
@@ -293,70 +260,6 @@ public class AcceptJobForm extends javax.swing.JFrame {
             frame.setVisible(true);
         }
     }//GEN-LAST:event_refreshButtonActionPerformed
-
-    private void jobSearchFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jobSearchFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jobSearchFieldActionPerformed
-
-    private void taskRefreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_taskRefreshButtonActionPerformed
-        // TODO add your handling code here:
-
-        try {
-
-            Connection connection = DBConnection.getConnection();
-            String sqlQuery = "SELECT * FROM Task";
-            PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
-            ResultSet resultSet = pStatement.executeQuery();
-            DefaultTableModel model = (DefaultTableModel) taskTable.getModel();
-            model.setRowCount(0);
-            while (resultSet.next()) {
-                Object o[] = {
-                    resultSet.getString("taskID"), resultSet.getString("taskDescription"), resultSet.getString("taskDuration")
-                };
-                model.addRow(o);
-
-            }
-            pStatement.close();
-            resultSet.close();
-            connection.close();
-        } catch (Exception e) {
-            JFrame frame = new InvalidError();
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.pack();
-            frame.setVisible(true);
-        }  
-    }//GEN-LAST:event_taskRefreshButtonActionPerformed
-
-    private void addTaskButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addTaskButtonActionPerformed
-        // TODO add your handling code here:
-        int jobRow = jTable1.getSelectedRow();
-        String jobNumber = jTable1.getModel().getValueAt(jobRow, 0).toString();
-        int taskRow = taskTable.getSelectedRow();
-        String taskCode = taskTable.getModel().getValueAt(taskRow, 0).toString();
-        String taskDescription = taskTable.getModel().getValueAt(taskRow, 1).toString();
-        String taskDuration = taskTable.getModel().getValueAt(taskRow, 2).toString();
-        
-        try {
-            Connection connection = DBConnection.getConnection();
-            String sqlQuery = "INSERT INTO JobTask (JobSheetjobNumber, taskID, estimatedTime, taskDescription, status) VALUES (?, ?, ?, ?, ?)" ;
-            PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
-            pStatement.setString(1, jobNumber);
-            pStatement.setString(2, taskCode);
-            pStatement.setString(3, taskDuration);
-            pStatement.setString(4, taskDescription);
-            pStatement.setString(5, "Pending");
-            pStatement.executeUpdate();
-            System.out.println("updated");
-            pStatement.close();
-            connection.close();
-
-        } catch (Exception e) {
-            JFrame frame = new InvalidError();
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.pack();
-            frame.setVisible(true);
-        }   
-    }//GEN-LAST:event_addTaskButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -391,14 +294,6 @@ public class AcceptJobForm extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -409,19 +304,16 @@ public class AcceptJobForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addTaskButton;
+    private javax.swing.JButton acceptJobButton;
     private javax.swing.JButton backButton;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JLabel jobNumberLabel;
-    private javax.swing.JTextField jobSearchField;
+    private javax.swing.JComboBox<String> jobTypeBox;
     private java.awt.Label label1;
     private javax.swing.JButton refreshButton;
-    private javax.swing.JButton searchJobsButton;
-    private javax.swing.JButton taskRefreshButton;
-    private javax.swing.JTable taskTable;
+    private javax.swing.JTextField vehicleRegField;
+    private javax.swing.JLabel vehicleRegLabel;
     // End of variables declaration//GEN-END:variables
 }
