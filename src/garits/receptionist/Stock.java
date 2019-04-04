@@ -9,6 +9,7 @@ import garits.receptionist.stock.CheckStock;
 import garits.receptionist.stock.EditThreshold;
 import garits.receptionist.stock.NewPart;
 import garits.receptionist.stock.OrderParts;
+import garits.receptionist.stock.ReplenishStock;
 import garits.receptionist.stock.StockReport;
 import javax.swing.JFrame;
 
@@ -42,6 +43,7 @@ public class Stock extends javax.swing.JFrame {
         label1 = new java.awt.Label();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        replenishStockButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setExtendedState(6);
@@ -124,13 +126,20 @@ public class Stock extends javax.swing.JFrame {
             }
         });
 
+        replenishStockButton.setText("Replenish Stock");
+        replenishStockButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                replenishStockButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 16, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,9 +149,11 @@ public class Stock extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(checkStockButton)
-                        .addGap(42, 42, 42)
+                        .addGap(53, 53, 53)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(40, 40, 40)
+                        .addGap(41, 41, 41)
+                        .addComponent(replenishStockButton, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(41, 41, 41)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(53, 53, 53)
                         .addComponent(stockReportButton)
@@ -164,11 +175,12 @@ public class Stock extends javax.swing.JFrame {
                                     .addComponent(orderPartsButton, javax.swing.GroupLayout.Alignment.TRAILING)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(checkStockButton)))))
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 412, Short.MAX_VALUE)
+                                .addComponent(checkStockButton))))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(replenishStockButton, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 449, Short.MAX_VALUE)
                 .addComponent(backButton)
                 .addContainerGap())
         );
@@ -230,6 +242,15 @@ public class Stock extends javax.swing.JFrame {
         frame.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void replenishStockButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_replenishStockButtonActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        JFrame frame = new ReplenishStock();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
+    }//GEN-LAST:event_replenishStockButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -274,6 +295,7 @@ public class Stock extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private java.awt.Label label1;
     private javax.swing.JButton orderPartsButton;
+    private javax.swing.JButton replenishStockButton;
     private javax.swing.JButton stockReportButton;
     // End of variables declaration//GEN-END:variables
 }
