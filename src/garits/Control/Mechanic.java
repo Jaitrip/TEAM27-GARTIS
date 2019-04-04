@@ -9,6 +9,9 @@ package garits.Control;
  *
  * @author jaimik
  */
+
+//Class for Mechanic information with labour rates
+
 public class Mechanic extends User {
     private double labourRate;
 
