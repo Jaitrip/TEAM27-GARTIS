@@ -9,6 +9,8 @@ package garits.Control;
  *
  * @author jaimik
  */
+
+//Class for all information requred for a user of the GARITS system
 public class User {
     
     private String employeeID;
