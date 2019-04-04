@@ -27,6 +27,7 @@ public class AddAccount {
     }
     
     public boolean isConnected() {
+        //Connect to the database
         try {
             return !connection.isClosed();
         } catch (SQLException e) {
@@ -36,11 +37,12 @@ public class AddAccount {
     }
     
     public void isAddAccount(String employeeID, String role, String firstName, String lastName, String password, String username) throws SQLException {
+        //Prepare query
         PreparedStatement pStatement = null;
         String sqlQuery = "INSERT INTO Employee (employeeID, role, first_name, last_name, password, username) VALUES (?, ?, ?, ?, ?, ?)";
         
         try {
-            
+            //execute query to add account
             pStatement = connection.prepareStatement(sqlQuery);
             pStatement.setString(1, employeeID);
             pStatement.setString(2, role);
@@ -54,6 +56,7 @@ public class AddAccount {
             
            
         } catch (Exception exception) {
+            //Show error if the query doesnt work
             JFrame frame = new InvalidError();
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.pack();

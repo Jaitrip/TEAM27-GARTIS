@@ -41,7 +41,7 @@ public class BackupForm extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         backupField = new javax.swing.JTextField();
         backUpButton = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        backButton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         browseButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
@@ -59,7 +59,6 @@ public class BackupForm extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setExtendedState(6);
-        setPreferredSize(new java.awt.Dimension(1920, 1080));
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel1.setText("Enter Folder for Back-up");
@@ -75,10 +74,10 @@ public class BackupForm extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garits/ICONS/back-icon.png"))); // NOI18N
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garits/ICONS/back-icon.png"))); // NOI18N
+        backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                backButtonActionPerformed(evt);
             }
         });
 
@@ -162,7 +161,7 @@ public class BackupForm extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton3)
+                .addComponent(backButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(799, Short.MAX_VALUE)
@@ -188,7 +187,7 @@ public class BackupForm extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(browseButton1)))
                 .addContainerGap(758, Short.MAX_VALUE))
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1932, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -215,7 +214,7 @@ public class BackupForm extends javax.swing.JFrame {
                     .addComponent(restoreButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 333, Short.MAX_VALUE)
-                .addComponent(jButton3)
+                .addComponent(backButton)
                 .addContainerGap())
         );
 
@@ -224,14 +223,14 @@ public class BackupForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        // go back
         this.dispose();
         JFrame frame = new AdminHomePage();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_backButtonActionPerformed
 
     
     private void browseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browseButtonActionPerformed
@@ -366,12 +365,12 @@ public class BackupForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backButton;
     private javax.swing.JButton backUpButton;
     private javax.swing.JTextField backupField;
     private javax.swing.JButton browseButton;
     private javax.swing.JButton browseButton1;
     private javax.swing.JButton homePageButton1;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

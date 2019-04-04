@@ -131,7 +131,7 @@ public class AdminHomePage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void usersButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usersButtonActionPerformed
-        // TODO add your handling code here:
+        // Go to add account form
         this.dispose();
         JFrame frame = new AddAccountForm();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -140,7 +140,7 @@ public class AdminHomePage extends javax.swing.JFrame {
     }//GEN-LAST:event_usersButtonActionPerformed
 
     private void logOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutButtonActionPerformed
-        // TODO add your handling code here:
+        // log out of garits
         this.dispose();
         JFrame frame = new SignInForm();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -149,7 +149,7 @@ public class AdminHomePage extends javax.swing.JFrame {
     }//GEN-LAST:event_logOutButtonActionPerformed
 
     private void databaseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_databaseButtonActionPerformed
-        // TODO add your handling code here:
+        // go to back up and resore
         this.dispose();
         JFrame frame = new BackupForm();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
