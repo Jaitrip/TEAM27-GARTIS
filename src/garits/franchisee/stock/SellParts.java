@@ -325,7 +325,7 @@ public class SellParts extends javax.swing.JFrame {
         if (qtyChange.matches("[0-9]+")){
             
             Date date = new Date();
-            DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         
             try {
 
@@ -373,13 +373,18 @@ public class SellParts extends javax.swing.JFrame {
                     }
                     
                     connection.commit();
+                    
+                    Random rand1 = new Random();
+                    int n1 = rand1.nextInt(100);
+                    String partUsedNumber = String.valueOf(n1);
 
-                    String partUsedQuery = "INSERT INTO PartsUsed (Description, partNo, qty, JobSheetjobNumber) VALUES (?, ?, ?, ?)";
+                    String partUsedQuery = "INSERT INTO PartsUsed (partUsedNumber, partNo, Description, qty, JobSheetjobNumber) VALUES (?, ?, ?, ?, ?)";
                     PreparedStatement partUsedStatement = connection.prepareStatement(partUsedQuery);
-                    partUsedStatement.setString(1, partName);
+                    partUsedStatement.setString(1, partUsedNumber);
                     partUsedStatement.setString(2, partNumber);
-                    partUsedStatement.setString(3, qtyChange);
-                    partUsedStatement.setString(4, jobNumber);
+                    partUsedStatement.setString(3, partName);
+                    partUsedStatement.setString(4, qtyChange);
+                    partUsedStatement.setString(5, jobNumber);
                     partUsedStatement.executeUpdate();
                     System.out.println("updated");
 

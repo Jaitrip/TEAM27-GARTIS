@@ -13,6 +13,7 @@ import garits.foreperson.JobsPage;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Random;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 
@@ -379,14 +380,19 @@ public class PartsUsedForm extends javax.swing.JFrame {
             System.out.println(!partNumber.isEmpty());
             
             if (!partNumber.isEmpty()) {
-            
-                String sqlQuery = "INSERT INTO PartsUsed (Description, partNo, qty, JobSheetjobNumber) VALUES (?, ?, ?, ?)";
-                PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
-                pStatement.setString(1, partName);
-                pStatement.setString(2, partNumber);
-                pStatement.setString(3, partQuantity);
-                pStatement.setString(4, jobNumber);
-                pStatement.executeUpdate();
+
+                Random rand1 = new Random();
+                int n1 = rand1.nextInt(100);
+                String partUsedNumber = String.valueOf(n1);
+
+                String partUsedQuery = "INSERT INTO PartsUsed (partUsedNumber, partNo, Description, qty, JobSheetjobNumber) VALUES (?, ?, ?, ?, ?)";
+                PreparedStatement partUsedStatement = connection.prepareStatement(partUsedQuery);
+                partUsedStatement.setString(1, partUsedNumber);
+                partUsedStatement.setString(2, partNumber);
+                partUsedStatement.setString(3, partName);
+                partUsedStatement.setString(4, qty);
+                partUsedStatement.setString(5, jobNumber);
+                partUsedStatement.executeUpdate();
                 System.out.println("updated");
                 
                 connection.commit();

@@ -44,6 +44,7 @@ public class JobsPage extends javax.swing.JFrame {
         partsUsedButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setExtendedState(6);
         getContentPane().setLayout(null);
 
         jButton1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N

@@ -46,6 +46,8 @@ public class StockPage extends javax.swing.JFrame {
         replenishStockButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setEnabled(false);
+        setExtendedState(6);
         getContentPane().setLayout(null);
 
         jButton1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
