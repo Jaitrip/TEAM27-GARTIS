@@ -195,7 +195,7 @@ public class TasksCompletedForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        // TODO add your handling code here:
+        //go back to homepage
         this.dispose();
         JFrame frame = new MechanicHomePage();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -204,16 +204,18 @@ public class TasksCompletedForm extends javax.swing.JFrame {
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void searchJobTasksButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchJobTasksButtonActionPerformed
-        // TODO add your handling code here:
+        // get input from text field
         String jobTaskNumber = jobNumberField.getText();
 
         try {
-
+            //connect to the database
             Connection connection = DBConnection.getConnection();
+            //execute query to search for job sheet number
             String sqlQuery = "SELECT * FROM JobTask WHERE JobSheetjobNumber = ?";
             PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
             pStatement.setString(1, jobTaskNumber);
             ResultSet resultSet = pStatement.executeQuery();
+            //populate the table
             DefaultTableModel model = (DefaultTableModel) jobTaskTable.getModel();
             model.setRowCount(0);
             while (resultSet.next()) {
@@ -222,10 +224,12 @@ public class TasksCompletedForm extends javax.swing.JFrame {
                 model.addRow(o);
 
             }
+            //close connection
             pStatement.close();
             resultSet.close();
             connection.close();
         } catch (Exception e) {
+            //show an error if unsuccessful
             JFrame frame = new InvalidError();
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.pack();
@@ -236,12 +240,14 @@ public class TasksCompletedForm extends javax.swing.JFrame {
     private void refreshTasksButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshTasksButtonActionPerformed
         // TODO add your handling code here:
         try {
-
+            //connect to the database
             Connection connection = DBConnection.getConnection();
+            //execute query
             String sqlQuery = "SELECT * FROM JobTask WHERE JobSheetjobNumber = ?";
             PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
             pStatement.setString(1, jobNumberField.getText());
             ResultSet resultSet = pStatement.executeQuery();
+            //populate the table
             DefaultTableModel model = (DefaultTableModel) jobTaskTable.getModel();
             model.setRowCount(0);
             while (resultSet.next()) {
@@ -250,10 +256,12 @@ public class TasksCompletedForm extends javax.swing.JFrame {
                 model.addRow(o);
 
             }
+            //clsoe connection
             pStatement.close();
             resultSet.close();
             connection.close();
         } catch (Exception e) {
+            //show an error
             JFrame frame = new InvalidError();
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.pack();

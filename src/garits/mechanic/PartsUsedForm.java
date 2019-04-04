@@ -246,7 +246,7 @@ public class PartsUsedForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        // TODO add your handling code here:
+        // go back one page
         this.dispose();
         JFrame frame = new MechanicHomePage();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -259,14 +259,16 @@ public class PartsUsedForm extends javax.swing.JFrame {
         System.out.println("Button Clicked");
         String partNumber;
         try {
-            
+            //connect to databaswe
             Connection connection = DBConnection.getConnection();
+            //execute sql query to show part with inputted code
             String sqlQuery = "SELECT * FROM StockLedger WHERE code = ?";
             PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
             partNumber = partNumberField.getText();
             System.out.println("Part Number Is: " + partNumber);
             pStatement.setString(1, partNumber);
             ResultSet resultSet = pStatement.executeQuery();
+            //populate the database
             DefaultTableModel model = (DefaultTableModel) partsTable.getModel();
             model.setRowCount(0);
             while (resultSet.next()) {
@@ -277,10 +279,12 @@ public class PartsUsedForm extends javax.swing.JFrame {
                 
                         
             }
+            //close the connection
             pStatement.close();
             resultSet.close();
             connection.close();
         } catch (Exception e) {
+            //show error if the query was unsuccessful
             JFrame frame = new InvalidError();
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.pack();
@@ -293,14 +297,16 @@ public class PartsUsedForm extends javax.swing.JFrame {
         System.out.println("Button Clicked");
         String employeeNumber;
         try {
-            
+            //connect to the database
             Connection connection = DBConnection.getConnection();
+            //excute query to search jobs
             String sqlQuery = "SELECT * FROM JobSheet WHERE EmployeeemployeeID = ? AND status = ?";
             PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
             employeeNumber = employeeNumberField.getText();
             pStatement.setString(1, employeeNumber);
             pStatement.setString(2, "Pending");
             ResultSet resultSet = pStatement.executeQuery();
+            //populate the table with results
             DefaultTableModel model = (DefaultTableModel) jobTable.getModel();
             model.setRowCount(0);
             while (resultSet.next()) {
@@ -311,10 +317,12 @@ public class PartsUsedForm extends javax.swing.JFrame {
                 
                         
             }
+            //close connection
             pStatement.close();
             resultSet.close();
             connection.close();
         } catch (Exception e) {
+            //show an error if the query was unsuccessful
             JFrame frame = new InvalidError();
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.pack();
@@ -326,11 +334,13 @@ public class PartsUsedForm extends javax.swing.JFrame {
     private void viewPartsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewPartsButtonActionPerformed
         // TODO add your handling code here:
         try {
-            
+            //connect to the database
             Connection connection = DBConnection.getConnection();
+            //execute qury to get all parts
             String sqlQuery = "SELECT * FROM StockLedger";
             PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
             ResultSet resultSet = pStatement.executeQuery();
+            //populate the table with results
             DefaultTableModel model = (DefaultTableModel) partsTable.getModel();
             model.setRowCount(0);
             while (resultSet.next()) {
@@ -338,13 +348,13 @@ public class PartsUsedForm extends javax.swing.JFrame {
                     resultSet.getString("code"), resultSet.getString("partName"), resultSet.getString("reorderThreshold"), resultSet.getString("quantity"), resultSet.getString("price")
                 };
                 model.addRow(o);
-                
-                        
             }
+            //close conenction
             pStatement.close();
             resultSet.close();
             connection.close();
         } catch (Exception e) {
+            //show error if query unsuccessful
             JFrame frame = new InvalidError();
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.pack();
@@ -353,12 +363,13 @@ public class PartsUsedForm extends javax.swing.JFrame {
     }//GEN-LAST:event_viewPartsButtonActionPerformed
 
     private void addPartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPartButtonActionPerformed
-        // TODO add your handling code here:
+        // Get input from text vield
         String partQuantity = quantityField.getText();
         try {
-            
+            //connect t database
             Connection connection = DBConnection.getConnection();
             
+            //get selected row
             int jobRow = jobTable.getSelectedRow();
             String jobNumber = jobTable.getModel().getValueAt(jobRow, 0).toString();
             int partRow = partsTable.getSelectedRow();
@@ -368,6 +379,7 @@ public class PartsUsedForm extends javax.swing.JFrame {
             String qty = partsTable.getModel().getValueAt(partRow, 3).toString();
             String partNumber = "";
             
+            //execute query to select parts
             String sqlQuery2 = "SELECT partNo FROM Part WHERE StockLedgercode = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery2);
             preparedStatement.setString(1, partCode);
@@ -385,6 +397,7 @@ public class PartsUsedForm extends javax.swing.JFrame {
             connection.setAutoCommit(false);
             System.out.println(!partNumber.isEmpty());
             
+            //add the part
             if (!partNumber.isEmpty()) {
                 
                 Random rand1 = new Random();
@@ -422,6 +435,7 @@ public class PartsUsedForm extends javax.swing.JFrame {
 
             }
             
+            //close the connection
             connection.commit();
             connection.setAutoCommit(true);
             rSet.close();
@@ -430,6 +444,7 @@ public class PartsUsedForm extends javax.swing.JFrame {
            
 
         } catch (Exception e) {
+            //show error if the query was not successful
             JFrame frame = new InvalidError();
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.pack();

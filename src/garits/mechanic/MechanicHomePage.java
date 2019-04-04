@@ -147,7 +147,7 @@ public class MechanicHomePage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tasksCompletedButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tasksCompletedButtonActionPerformed
-        // TODO add your handling code here:
+        // go to tasks completed
         this.dispose();
         JFrame frame = new TasksCompletedForm();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -156,7 +156,7 @@ public class MechanicHomePage extends javax.swing.JFrame {
     }//GEN-LAST:event_tasksCompletedButtonActionPerformed
 
     private void logOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutButtonActionPerformed
-        // TODO add your handling code here:
+        // log out of garits
         this.dispose();
         JFrame frame = new SignInForm();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -165,7 +165,7 @@ public class MechanicHomePage extends javax.swing.JFrame {
     }//GEN-LAST:event_logOutButtonActionPerformed
 
     private void partsUsedButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_partsUsedButtonActionPerformed
-        // TODO add your handling code here:
+        // go to parts used
         this.dispose();
         JFrame frame = new PartsUsedForm();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -174,7 +174,7 @@ public class MechanicHomePage extends javax.swing.JFrame {
     }//GEN-LAST:event_partsUsedButtonActionPerformed
 
     private void pickupJobButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pickupJobButtonActionPerformed
-        // TODO add your handling code here:
+        // go to pick up job
         this.dispose();
         JFrame frame = new PickUpJobForm();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

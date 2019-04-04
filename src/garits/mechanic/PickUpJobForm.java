@@ -172,7 +172,7 @@ public class PickUpJobForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        // TODO add your handling code here:
+        // go back to home page
         this.dispose();
         JFrame frame = new MechanicHomePage();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -187,11 +187,13 @@ public class PickUpJobForm extends javax.swing.JFrame {
     private void refreshJobButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshJobButtonActionPerformed
         // TODO add your handling code here:
         try {
-            
+            //connect to database
             Connection connection = DBConnection.getConnection();
+            //execute query to get all jobs
             String sqlQuery = "SELECT * FROM JobSheet";
             PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
             ResultSet resultSet = pStatement.executeQuery();
+            //populate the table
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
             model.setRowCount(0);
             while (resultSet.next()) {
@@ -202,10 +204,12 @@ public class PickUpJobForm extends javax.swing.JFrame {
                 
                         
             }
+            //close conneciton
             pStatement.close();
             resultSet.close();
             connection.close();
         } catch (Exception e) {
+            //show an error if unsuccessful
             JFrame frame = new InvalidError();
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.pack();
@@ -216,19 +220,22 @@ public class PickUpJobForm extends javax.swing.JFrame {
     private void acceptJobButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptJobButtonActionPerformed
         // TODO add your handling code here:
         try {
-            
+            //connect to the database
             Connection connection = DBConnection.getConnection();
             int row = jTable1.getSelectedRow();
             String jobNumber = jTable1.getModel().getValueAt(row, 0).toString();
             System.out.println(jobNumber);
+            //execute query to update the job sheet with an employee
             String sqlQuery = "UPDATE JobSheet SET EmployeeemployeeID = ? WHERE jobNumber =" + jobNumber ;
             PreparedStatement pStatement = connection.prepareStatement(sqlQuery);
             pStatement.setString(1, mechanicIDField.getText());
             pStatement.executeUpdate();
+            //close connection
             pStatement.close();
             connection.close();
 
         } catch (Exception e) {
+            //show an error if the query was unsuccessful
             JFrame frame = new InvalidError();
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.pack();
