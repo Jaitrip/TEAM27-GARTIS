@@ -14,9 +14,11 @@ public class DBConnection  {
 
     public static Connection getConnection() throws SQLException {
         try {
+            //Establish connection
             Class.forName("org.sqlite.JDBC");
             return DriverManager.getConnection("jdbc:sqlite:src/database/GARTISDatabase.sqlite");
         } catch (ClassNotFoundException ex) {
+            //If Connection fails then output an error window
             JFrame frame = new InvalidError();
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.pack();
