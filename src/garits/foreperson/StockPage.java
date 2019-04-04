@@ -59,7 +59,7 @@ public class StockPage extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(212, 351, 144, 161);
+        jButton1.setBounds(410, 470, 144, 161);
 
         jButton2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garits/ICONS/Report-icon.png"))); // NOI18N
@@ -72,7 +72,7 @@ public class StockPage extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(830, 351, 144, 161);
+        jButton2.setBounds(830, 290, 144, 161);
 
         jButton3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garits/ICONS/parts-icon.png"))); // NOI18N
@@ -85,7 +85,7 @@ public class StockPage extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton3);
-        jButton3.setBounds(1034, 351, 144, 161);
+        jButton3.setBounds(830, 470, 144, 161);
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garits/ICONS/back-icon.png"))); // NOI18N
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -124,6 +124,7 @@ public class StockPage extends javax.swing.JFrame {
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 1472, 100);
 
+        editThresholdButton.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         editThresholdButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garits/ICONS/parts-icon.png"))); // NOI18N
         editThresholdButton.setText("Edit Threshold");
         editThresholdButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -134,8 +135,9 @@ public class StockPage extends javax.swing.JFrame {
             }
         });
         getContentPane().add(editThresholdButton);
-        editThresholdButton.setBounds(615, 351, 144, 158);
+        editThresholdButton.setBounds(620, 290, 144, 158);
 
+        jButton5.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garits/ICONS/record payment-icon.png"))); // NOI18N
         jButton5.setText("Add Parts");
         jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -146,16 +148,20 @@ public class StockPage extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton5);
-        jButton5.setBounds(414, 351, 144, 161);
+        jButton5.setBounds(410, 290, 144, 161);
 
+        replenishStockButton.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        replenishStockButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garits/ICONS/Stock-icon.png"))); // NOI18N
         replenishStockButton.setText("Replenish Stock");
+        replenishStockButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        replenishStockButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         replenishStockButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 replenishStockButtonActionPerformed(evt);
             }
         });
         getContentPane().add(replenishStockButton);
-        replenishStockButton.setBounds(620, 540, 144, 29);
+        replenishStockButton.setBounds(610, 470, 140, 160);
 
         setBounds(0, 0, 1400, 822);
     }// </editor-fold>//GEN-END:initComponents

@@ -371,6 +371,8 @@ public class SellParts extends javax.swing.JFrame {
                         partNumber = rSet.getString("partNo");
 
                     }
+                    
+                    connection.commit();
 
                     String partUsedQuery = "INSERT INTO PartsUsed (Description, partNo, qty, JobSheetjobNumber) VALUES (?, ?, ?, ?)";
                     PreparedStatement partUsedStatement = connection.prepareStatement(partUsedQuery);

@@ -57,7 +57,7 @@ public class JobsPage extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(280, 400, 144, 161);
+        jButton1.setBounds(380, 290, 144, 161);
 
         jButton2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garits/ICONS/Monitor-progress-icon.png"))); // NOI18N
@@ -70,7 +70,7 @@ public class JobsPage extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(750, 400, 144, 161);
+        jButton2.setBounds(850, 290, 144, 161);
 
         jButton3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garits/ICONS/Pickup Job-icon.png"))); // NOI18N
@@ -83,7 +83,7 @@ public class JobsPage extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton3);
-        jButton3.setBounds(520, 400, 144, 161);
+        jButton3.setBounds(620, 290, 144, 161);
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garits/ICONS/back-icon.png"))); // NOI18N
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -133,7 +133,7 @@ public class JobsPage extends javax.swing.JFrame {
             }
         });
         getContentPane().add(tasksCompletedButton6);
-        tasksCompletedButton6.setBounds(990, 400, 161, 160);
+        tasksCompletedButton6.setBounds(730, 470, 161, 160);
 
         partsUsedButton.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         partsUsedButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garits/ICONS/parts-icon.png"))); // NOI18N
@@ -147,7 +147,7 @@ public class JobsPage extends javax.swing.JFrame {
             }
         });
         getContentPane().add(partsUsedButton);
-        partsUsedButton.setBounds(630, 200, 161, 157);
+        partsUsedButton.setBounds(490, 470, 161, 157);
 
         setBounds(0, 0, 1400, 822);
     }// </editor-fold>//GEN-END:initComponents

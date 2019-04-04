@@ -66,27 +66,26 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="payLaterBox2" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="creditTextField" min="-2" pref="167" max="-2" attributes="0"/>
-                              <Component id="deleteCustomerButton" alignment="0" min="-2" pref="176" max="-2" attributes="0"/>
-                              <Component id="updateCustomerButton" alignment="0" max="32767" attributes="0"/>
-                          </Group>
-                          <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="backButton" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace pref="357" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="viewCustomersButton" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="jScrollPane1" alignment="1" min="-2" pref="861" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="payLaterBox2" alignment="0" min="-2" pref="180" max="-2" attributes="0"/>
+                          <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="backButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="deleteCustomerButton" max="32767" attributes="0"/>
+                          <Component id="updateCustomerButton" alignment="0" pref="196" max="32767" attributes="0"/>
+                          <Component id="creditTextField" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="260" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jScrollPane1" alignment="1" min="-2" pref="861" max="-2" attributes="0"/>
+                          <Component id="viewCustomersButton" alignment="1" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -98,28 +97,28 @@
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="26" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="payLaterBox2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="creditTextField" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
-                      <Component id="updateCustomerButton" min="-2" pref="38" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="deleteCustomerButton" min="-2" pref="41" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="311" max="-2" attributes="0"/>
+                      <Component id="updateCustomerButton" min="-2" pref="48" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="deleteCustomerButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="249" max="-2" attributes="0"/>
                       <Component id="backButton" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="jScrollPane1" min="-2" pref="581" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="viewCustomersButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
+                      <Component id="viewCustomersButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -129,7 +128,9 @@
   <SubComponents>
     <Component class="javax.swing.JButton" name="backButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Back"/>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/garits/ICONS/back-icon.png"/>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="backButtonActionPerformed"/>
@@ -209,6 +210,9 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial" size="14" style="0"/>
         </Property>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/garits/ICONS/user-edit-icon small.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Update Customer"/>
       </Properties>
       <Events>
@@ -217,6 +221,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="viewCustomersButton">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/garits/ICONS/view-icon.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="View Customers"/>
       </Properties>
       <Events>
@@ -237,6 +244,9 @@
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial" size="14" style="0"/>
+        </Property>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/garits/ICONS/remove icon.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Delete Customer Account"/>
         <Property name="horizontalTextPosition" type="int" value="0"/>

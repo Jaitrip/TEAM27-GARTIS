@@ -130,7 +130,7 @@ public class ProduceInvoice extends javax.swing.JFrame {
         });
 
         printInvoiceButton.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        printInvoiceButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garits/ICONS/view-icon.png"))); // NOI18N
+        printInvoiceButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/garits/ICONS/Print small-icon.png"))); // NOI18N
         printInvoiceButton.setText("Print Invoice Button");
         printInvoiceButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
