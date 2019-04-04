@@ -5,9 +5,9 @@
  */
 package garits.foreperson.jobs;
 
-import garits.mechanic.*;
 import garits.DBConnectivity.DBConnection;
 import garits.InvalidError;
+import garits.foreperson.ForepersonHomePage;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -205,7 +205,7 @@ public class TasksCompletedForm extends javax.swing.JFrame {
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        JFrame frame = new MechanicHomePage();
+        JFrame frame = new ForepersonHomePage();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
