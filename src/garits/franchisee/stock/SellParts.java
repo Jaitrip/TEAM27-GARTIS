@@ -7,6 +7,9 @@ package garits.franchisee.stock;
 
 import garits.DBConnectivity.DBConnection;
 import garits.InvalidError;
+import garits.Job.Invoice;
+import garits.Job.ProduceInvoice;
+import garits.Job.SaveInvoice;
 import garits.franchisee.Stock;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,6 +17,7 @@ import java.sql.ResultSet;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Random;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 
@@ -46,13 +50,12 @@ public class SellParts extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         viewPartsButton = new javax.swing.JButton();
-        pnum = new javax.swing.JTextField();
         qnum = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
+        jLabel3 = new javax.swing.JLabel();
+        vehicleRegNumberTextField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -92,19 +95,11 @@ public class SellParts extends javax.swing.JFrame {
             }
         });
 
-        pnum.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pnumActionPerformed(evt);
-            }
-        });
-
         qnum.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 qnumActionPerformed(evt);
             }
         });
-
-        jLabel1.setText("Part Number");
 
         jLabel2.setText("Quantity");
 
@@ -115,6 +110,8 @@ public class SellParts extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setText("Vehicle Registration Number");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -122,75 +119,64 @@ public class SellParts extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(30, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(backButton)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(11, 11, 11)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(enterPartNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(enterPartNumberLabel)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(10, 10, 10)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(viewPartsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                        .addGap(51, 51, 51))
+                        .addGap(82, 82, 82)
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(backButton)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addContainerGap()
+                        .addComponent(enterPartNumberLabel))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(enterPartNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(44, 44, 44)
+                        .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(qnum, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(37, 37, 37)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(qnum, javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel1)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(10, 10, 10)
-                                                .addComponent(jLabel2))
-                                            .addComponent(pnum, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(18, 18, 18))
-                                    .addComponent(jButton1)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(85, 85, 85)
-                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(82, 82, 82)
-                                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 631, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(6, 6, 6)
+                                .addComponent(jLabel2))
+                            .addComponent(vehicleRegNumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton1)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 631, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(viewPartsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(19, 19, 19)
                 .addComponent(enterPartNumberLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(enterPartNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(searchButton)
-                .addGap(35, 35, 35)
-                .addComponent(viewPartsButton)
-                .addGap(31, 31, 31)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(enterPartNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(searchButton))
+                .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(qnum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(52, 52, 52)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(vehicleRegNumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
+                .addGap(119, 119, 119)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(backButton)
-                .addContainerGap())
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 554, Short.MAX_VALUE)
+                .addComponent(backButton))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(viewPartsButton)
+                .addGap(0, 19, Short.MAX_VALUE))
         );
 
         pack();
@@ -264,71 +250,106 @@ public class SellParts extends javax.swing.JFrame {
     
     }//GEN-LAST:event_viewPartsButtonActionPerformed
 
-    private void pnumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pnumActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pnumActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
-        String code = pnum.getText();
+        int jobRow = jTable1.getSelectedRow();
+        String code = jTable1.getModel().getValueAt(jobRow, 0).toString();
+        String partName = jTable1.getModel().getValueAt(jobRow, 1).toString();
+        double quantity = Double.parseDouble(jTable1.getModel().getValueAt(jobRow, 3).toString());
+        
         String qtyChange = qnum.getText();
+        
         if (qtyChange.matches("[0-9]+")){
             
             Date date = new Date();
             DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
         
             try {
+
                 Connection connection = DBConnection.getConnection();
-                String sqlQuery1 = "SELECT quantity FROM StockLedger WHERE code=?";
-                PreparedStatement pStatement = connection.prepareStatement(sqlQuery1);
-                pStatement.setString(1, code );
-                ResultSet resultSet = pStatement.executeQuery();
-                
-                String quantity="0";
-                while(resultSet.next()) {
-                    quantity = resultSet.getString("quantity");
-                }
-                
- 
-                String sqlQuery4 = "SELECT amount FROM StockLedger WHERE code=?";
-                pStatement = connection.prepareStatement(sqlQuery4);
-                pStatement.setString(1, code );
-                ResultSet resultSet2 = pStatement.executeQuery();
-                
-                String a="0";
-                while(resultSet2.next()) {
-                    a = resultSet2.getString("quantity");
-                }
-                double amount = Double.parseDouble(a);
-                
-                
-                int qty;
-                qty = Integer.parseInt(quantity)-Integer.parseInt(qtyChange);
+                connection.setAutoCommit(false);
+                           
+                double qty;
+                qty = quantity - Double.parseDouble(qtyChange);
                 
                 if (qty>=0){
 
                     String sqlQuery2 = "UPDATE StockLedger SET quantity=? WHERE code=?";
-                    pStatement = connection.prepareStatement(sqlQuery2);
-                    pStatement.setString(1, Integer.toString(qty) );
+                    PreparedStatement pStatement = connection.prepareStatement(sqlQuery2);
+                    pStatement.setString(1, Double.toString(qty) );
                     pStatement.setString(2, code );
                     pStatement.executeUpdate();
                     pStatement.close();
+                    connection.commit();
+   
+                    Random rand = new Random();
+                    int n = rand.nextInt(100);
+                    String jobNumber = String.valueOf(n);
                     
-                    String sqlQuery3 = "INSERT INTO Payment (paymentNumber,amount,dateTaken,status)" + "VALUES (?, ?, ?, ?)";
-                    pStatement = connection.prepareStatement(sqlQuery3);
-                    pStatement.setString(1,"1234");
-                    pStatement.setString(2,  Double.toString(1.2*Double.parseDouble(qtyChange)*amount));
-                    pStatement.setString(3,  df.format(date));
-                    pStatement.setString(4, "Paid" );
-                    pStatement.executeUpdate();
-                    pStatement.close();
+                    String sqlQuery = "INSERT INTO JobSheet (jobNumber, dateBookedIn, jobType, status, VehicleregistrationNumber) VALUES (?, ?, ?, ?, ?)";
+                    PreparedStatement jobStatement = connection.prepareStatement(sqlQuery);
+                    jobStatement.setString(1, jobNumber);
+                    jobStatement.setString(2, df.format(date));
+                    jobStatement.setString(3, "Part Purchase");
+                    jobStatement.setString(4, "Completed");
+                    jobStatement.setString(5, vehicleRegNumberTextField.getText());
+                    jobStatement.executeUpdate();
+                    jobStatement.close();
+                    connection.commit();
+
+                    String findPartNumberQuery = "SELECT partNo FROM Part WHERE StockLedgercode = ?";
+                    String partNumber = "";
+                    PreparedStatement preparedStatement = connection.prepareStatement(findPartNumberQuery);
+                    preparedStatement.setString(1, code);
+                    ResultSet rSet = preparedStatement.executeQuery();
+
+                    while (rSet.next()) {
+
+                        partNumber = rSet.getString("partNo");
+
+                    }
+
+                    String partUsedQuery = "INSERT INTO PartsUsed (Description, partNo, qty, JobSheetjobNumber) VALUES (?, ?, ?, ?)";
+                    PreparedStatement partUsedStatement = connection.prepareStatement(partUsedQuery);
+                    partUsedStatement.setString(1, partName);
+                    partUsedStatement.setString(2, partNumber);
+                    partUsedStatement.setString(3, qtyChange);
+                    partUsedStatement.setString(4, jobNumber);
+                    partUsedStatement.executeUpdate();
+                    System.out.println("updated");
+
+                    connection.commit();
+                    
+                    ProduceInvoice produceInvoice = new ProduceInvoice();
+                    Invoice invoice = produceInvoice.produceInvoice(jobNumber);
+                    
+                    String insertQuery = "INSERT INTO Invoice (invoiceNumber, jobNumber, dateOfInvoice, datePaymentDue, grandTotal, labourCost, partCost, status, totalTimeTaken) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                    PreparedStatement insertStatement = connection.prepareStatement(insertQuery);
+                    insertStatement.setString(1, invoice.getInvoiceNumber());
+                    insertStatement.setString(2, invoice.getJobNumber());
+                    insertStatement.setString(3, invoice.getDateOfInvoice());
+                    insertStatement.setString(4, invoice.getDatePaymentDue());
+                    insertStatement.setString(5, invoice.getGrandTotal());
+                    insertStatement.setString(6, invoice.getLabourCost());
+                    insertStatement.setString(7, invoice.getPartCost());
+                    insertStatement.setString(8, invoice.getStatus());
+                    insertStatement.setString(9, invoice.getTotalTimeTaken());
+                    insertStatement.executeUpdate();
+                    insertStatement.close();
+                    connection.commit();
+                    
+                    SaveInvoice saveInvoice = new SaveInvoice();
+                    saveInvoice.printInvoice(invoice.getInvoiceNumber(), connection);
+                    
+
                 }
                 viewPartsButtonActionPerformed(evt);
-                        
-                pStatement.close();
-                resultSet.close();
+                
+                connection.commit();
+                connection.setAutoCommit(true);
                 connection.close();
             } catch (Exception e) {
+                e.printStackTrace();
                 JFrame frame = new InvalidError();
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.pack();
@@ -396,15 +417,14 @@ public class SellParts extends javax.swing.JFrame {
     private javax.swing.JTextField enterPartNumberField;
     private javax.swing.JLabel enterPartNumberLabel;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField pnum;
     private javax.swing.JTextField qnum;
     private javax.swing.JButton searchButton;
+    private javax.swing.JTextField vehicleRegNumberTextField;
     private javax.swing.JButton viewPartsButton;
     // End of variables declaration//GEN-END:variables
 }
